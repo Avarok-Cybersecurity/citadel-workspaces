@@ -45,18 +45,25 @@ export const MessagesSection = () => {
       <SidebarGroupContent>
         <SidebarMenu>
           {messageChannels.map((channel) => (
-            <SidebarMenuItem key={channel.id}>
+            <SidebarMenuItem 
+              key={channel.id}
+              className="transform transition-transform duration-200 ease-in-out"
+            >
               <SidebarMenuButton
-                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-all duration-300 ease-in-out"
+                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-all duration-300 ease-in-out will-change-transform"
                 isActive={currentChannel === channel.id}
                 onClick={() => handleMessageClick(channel.id)}
               >
-                <Avatar className="h-4 w-4 transition-opacity duration-300 ease-in-out">
+                <Avatar className="h-4 w-4 transition-all duration-300 ease-in-out will-change-auto">
                   <AvatarImage 
                     src={channel.avatar} 
-                    className="transition-opacity duration-300 ease-in-out"
+                    className="transition-all duration-300 ease-in-out opacity-100"
+                    loading="eager"
                   />
-                  <AvatarFallback className="transition-opacity duration-300 ease-in-out">
+                  <AvatarFallback 
+                    className="transition-all duration-300 ease-in-out bg-transparent"
+                    delayMs={0}
+                  >
                     <MessageSquare className="h-4 w-4" />
                   </AvatarFallback>
                 </Avatar>
