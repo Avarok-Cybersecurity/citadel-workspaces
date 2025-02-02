@@ -25,7 +25,7 @@ export const messageChannels = [
   { 
     id: "general-discussion", 
     name: "General Discussion", 
-    icon: MessageCircle,
+    icon: Hash,
     avatar: "/placeholder.svg" 
   },
 ];
