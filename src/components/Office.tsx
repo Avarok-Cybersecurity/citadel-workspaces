@@ -72,8 +72,33 @@ export const Office = () => {
                 <Button onClick={handleSave}>Save Changes</Button>
               </div>
             ) : (
-              <div className="prose prose-sm max-w-none dark:prose-invert">
-                <ReactMarkdown>{content}</ReactMarkdown>
+              <div className="prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
+                <ReactMarkdown
+                  components={{
+                    h1: ({ children }) => (
+                      <h1 className="text-2xl font-bold mb-4 text-white">{children}</h1>
+                    ),
+                    h2: ({ children }) => (
+                      <h2 className="text-xl font-semibold mb-3 text-white">{children}</h2>
+                    ),
+                    p: ({ children }) => (
+                      <p className="mb-4 text-gray-300">{children}</p>
+                    ),
+                    ul: ({ children }) => (
+                      <ul className="list-disc list-inside mb-4 text-gray-300">{children}</ul>
+                    ),
+                    li: ({ children }) => (
+                      <li className="mb-1">{children}</li>
+                    ),
+                    a: ({ href, children }) => (
+                      <a href={href} className="text-blue-400 hover:text-blue-300 underline">
+                        {children}
+                      </a>
+                    ),
+                  }}
+                >
+                  {content}
+                </ReactMarkdown>
               </div>
             )}
           </div>
