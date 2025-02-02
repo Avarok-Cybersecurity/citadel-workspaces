@@ -45,7 +45,7 @@ export const ServerConnect = () => {
     
     // Update cache before navigation
     updateFormCache({ serverAddress, password });
-    navigate("/security-settings");
+    navigate("/server-register/security");
   };
 
   return (

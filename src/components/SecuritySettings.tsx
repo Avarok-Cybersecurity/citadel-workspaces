@@ -36,7 +36,7 @@ export const SecuritySettings = () => {
       psk: '',
     });
     
-    navigate("/join");
+    navigate("/server-register/join");
   };
 
   return (
@@ -102,7 +102,7 @@ export const SecuritySettings = () => {
             <Button
               type="button"
               variant="ghost"
-              onClick={() => navigate("/connect")}
+              onClick={() => navigate("/server-register")}
               className="text-white hover:bg-purple-500/20"
             >
               BACK
