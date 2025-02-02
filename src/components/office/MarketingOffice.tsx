@@ -10,6 +10,20 @@ export const MarketingOffice = () => {
   const [content, setContent] = useState(`
 # PR & Marketing Department 📢
 
+## Quick Access
+
+<Card title="Quick Search" description="Search Google directly">
+<div style={{ height: '400px', overflow: 'hidden' }}>
+  <iframe
+    src="https://www.google.com/search?igu=1"
+    width="100%"
+    height="400px"
+    style={{ border: 'none' }}
+    loading="lazy"
+  ></iframe>
+</div>
+</Card>
+
 ## Current Campaigns
 
 <Alert title="Active Campaign">
@@ -34,21 +48,8 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
   { date: 'Wed', content: 'Product Video', platform: 'YouTube', status: 'Planning' },
   { date: 'Fri', content: 'Newsletter', platform: 'Email', status: 'Scheduled' }
 ]} />
-
-## Search Google
-
-<Card title="Quick Search" description="Search Google directly">
-<div style={{ height: '400px', overflow: 'hidden' }}>
-  <iframe
-    src="https://www.google.com/search?igu=1"
-    width="100%"
-    height="400px"
-    style={{ border: 'none' }}
-    loading="lazy"
-  ></iframe>
-</div>
-</Card>
   `);
+
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();
