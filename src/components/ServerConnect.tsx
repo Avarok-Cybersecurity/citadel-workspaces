@@ -22,8 +22,8 @@ export const ServerConnect = () => {
       return;
     }
     
-    // For demo purposes, always navigate to office
-    navigate("/office");
+    // Navigate to security settings instead of office
+    navigate("/security-settings");
   };
 
   return (
@@ -40,7 +40,7 @@ export const ServerConnect = () => {
         }}
       />
       
-      {/* Gradient Overlay - Updated for smoother transition */}
+      {/* Gradient Overlay */}
       <div 
         className="absolute inset-0 z-0"
         style={{
