@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { MDXProvider } from '@mdx-js/react';
 import { evaluate } from '@mdx-js/mdx';
@@ -48,7 +48,7 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
     });
   };
 
-  useState(() => {
+  useEffect(() => {
     const compileContent = async () => {
       try {
         console.log('Compiling MDX content...');
