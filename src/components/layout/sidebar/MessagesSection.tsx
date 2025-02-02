@@ -33,6 +33,15 @@ export const MessagesSection = () => {
   const navigate = useNavigate();
   const currentChannel = new URLSearchParams(location.search).get("channel");
 
+  const handleMessageClick = (channelId: string) => {
+    // Get all current URL parameters
+    const params = new URLSearchParams(location.search);
+    // Update only the channel parameter
+    params.set("channel", channelId);
+    // Navigate to messages while preserving other parameters
+    navigate(`/messages?${params.toString()}`);
+  };
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>MESSAGES</SidebarGroupLabel>
@@ -43,7 +52,7 @@ export const MessagesSection = () => {
               <SidebarMenuButton
                 className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
                 isActive={currentChannel === channel.id}
-                onClick={() => navigate(`/messages?channel=${channel.id}`)}
+                onClick={() => handleMessageClick(channel.id)}
               >
                 <Avatar className="h-4 w-4">
                   <AvatarImage src={channel.avatar} />
