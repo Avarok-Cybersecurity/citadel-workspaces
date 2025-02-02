@@ -41,7 +41,7 @@ export const Landing = () => {
           <div className="flex gap-4">
             <Button
               onClick={() => navigate("/connect")}
-              className="bg-white text-black hover:bg-gray-100 text-lg px-8 py-6 transition-all duration-300 transform hover:scale-105"
+              className="bg-white text-black hover:bg-gray-100 text-lg px-8 h-[60px] transition-all duration-300 transform hover:scale-105"
               size="lg"
             >
               Join Workspace
@@ -49,7 +49,7 @@ export const Landing = () => {
             
             <Button
               variant="outline"
-              className="border-white text-black hover:bg-white/10 text-lg px-8 py-6 flex items-center gap-2 transition-all duration-300 transform hover:scale-105"
+              className="border-white bg-white text-black hover:bg-gray-100 text-lg px-8 h-[60px] flex items-center gap-2 transition-all duration-300 transform hover:scale-105"
               size="lg"
             >
               <PlusCircle className="w-5 h-5" />
