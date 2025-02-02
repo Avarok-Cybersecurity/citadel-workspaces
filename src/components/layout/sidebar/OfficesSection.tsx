@@ -1,4 +1,5 @@
-import { Building2, Briefcase, Users } from "lucide-react";
+import { User } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -7,27 +8,14 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { useNavigate, useLocation } from "react-router-dom";
 
-interface OfficesSectionProps {
-  isActive: boolean;
-  onActivate: () => void;
-}
-
-export const OfficesSection = ({ isActive, onActivate }: OfficesSectionProps) => {
+export const OfficesSection = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentSection = new URLSearchParams(location.search).get("section") || "company";
 
-  const offices = [
-    { id: "company", name: "Company Office", icon: Building2 },
-    { id: "marketing", name: "PR/Marketing", icon: Briefcase },
-    { id: "hr", name: "Human Resources", icon: Users },
-  ];
-
-  const handleOfficeClick = (officeId: string) => {
-    onActivate();
-    navigate(`/office?section=${officeId}`);
+  const handleSectionClick = (section: string) => {
+    navigate(`/office?section=${section}`);
   };
 
   return (
@@ -35,18 +23,36 @@ export const OfficesSection = ({ isActive, onActivate }: OfficesSectionProps) =>
       <SidebarGroupLabel>OFFICES</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {offices.map((office) => (
-            <SidebarMenuItem key={office.id}>
-              <SidebarMenuButton
-                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-                isActive={isActive && currentSection === office.id}
-                onClick={() => handleOfficeClick(office.id)}
-              >
-                <office.icon className="h-4 w-4" />
-                <span>{office.name}</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+          <SidebarMenuItem>
+            <SidebarMenuButton 
+              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+              onClick={() => handleSectionClick("company")}
+              data-active={currentSection === "company"}
+            >
+              <User className="h-4 w-4" />
+              <span>Company</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton 
+              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+              onClick={() => handleSectionClick("marketing")}
+              data-active={currentSection === "marketing"}
+            >
+              <User className="h-4 w-4" />
+              <span>PR/Marketing</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton 
+              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+              onClick={() => handleSectionClick("hr")}
+              data-active={currentSection === "hr"}
+            >
+              <User className="h-4 w-4" />
+              <span>Human Resources</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
