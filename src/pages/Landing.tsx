@@ -31,11 +31,11 @@ export const Landing = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl animate-fade-in">
           <h1 className="text-6xl font-bold text-white mb-6 leading-tight">
-            Quantum-Proof Your Virtual Workplace
+            The World's First Post-Quantum Virtual Workspace
           </h1>
           
           <p className="text-xl text-gray-300 mb-12">
-            Hyper-Secure, p2p, and up to 256 layers of encryption.
+            Hyper-security and control over security at your fingertips
           </p>
           
           <div className="flex gap-4">
