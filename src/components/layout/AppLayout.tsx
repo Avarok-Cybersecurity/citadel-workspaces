@@ -23,9 +23,9 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-[#1A1F2C] text-white">
+      <div className="min-h-screen flex w-full bg-[#444A6C] text-white">
         {/* Top Bar */}
-        <div className="fixed top-0 left-0 right-0 h-14 bg-[#1A1F2C] border-b border-gray-800 flex items-center justify-between px-4 z-50">
+        <div className="fixed top-0 left-0 right-0 h-14 bg-[#252424] border-b border-gray-800 flex items-center justify-between px-4 z-50">
           <div className="flex items-center space-x-4">
             <span className="font-semibold">{currentWorkspace}</span>
             <Button variant="ghost" size="icon">
@@ -46,7 +46,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
         </div>
 
         {/* Sidebar */}
-        <Sidebar className="pt-14">
+        <Sidebar className="pt-14 bg-[#262C4A]">
           <SidebarContent>
             <SidebarGroup>
               <SidebarGroupLabel>PINNED</SidebarGroupLabel>

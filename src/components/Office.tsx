@@ -31,9 +31,9 @@ export const Office = () => {
 
   return (
     <AppLayout>
-      <div className="h-[calc(100vh-3.5rem)] overflow-hidden bg-[#1A1F2C]">
+      <div className="h-[calc(100vh-3.5rem)] overflow-hidden bg-[#444A6C]">
         <div className="h-full flex flex-col">
-          <div className="flex justify-between items-center px-4 py-2 border-b border-gray-800">
+          <div className="flex justify-between items-center px-4 py-2 border-b border-gray-800 bg-[#343A5C]">
             <div className="flex items-center space-x-4">
               <h1 className="text-xl font-semibold text-white">Office</h1>
             </div>
@@ -65,7 +65,7 @@ export const Office = () => {
                 <textarea
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
-                  className="w-full h-[400px] p-4 rounded-md border border-gray-800 bg-[#1E2433] text-white resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full h-[400px] p-4 rounded-md border border-gray-800 bg-[#444A6C] text-white resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
                 <Button onClick={handleSave} className="mt-2">Save Changes</Button>
               </div>
