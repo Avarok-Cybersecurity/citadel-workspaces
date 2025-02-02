@@ -58,7 +58,7 @@ export const ServerConnect = () => {
         Back
       </Button>
 
-      <div className="w-full max-w-md p-8 space-y-6 glass-panel z-10">
+      <div className="w-full max-w-md p-8 space-y-6 bg-[#1A1F2C]/80 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold text-white">Welcome</h1>
           <p className="text-gray-200">Connect to your workspace</p>
@@ -75,7 +75,7 @@ export const ServerConnect = () => {
               placeholder="Enter server address"
               value={serverAddress}
               onChange={(e) => setServerAddress(e.target.value)}
-              className="bg-purple-900/70 border-purple-400 text-white placeholder:text-gray-300"
+              className="bg-[#221F26]/70 border-purple-400 text-white placeholder:text-gray-300"
             />
           </div>
 
@@ -89,7 +89,7 @@ export const ServerConnect = () => {
               placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-purple-900/70 border-purple-400 text-white placeholder:text-gray-300"
+              className="bg-[#221F26]/70 border-purple-400 text-white placeholder:text-gray-300"
             />
           </div>
 
