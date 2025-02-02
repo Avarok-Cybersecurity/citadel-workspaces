@@ -7,6 +7,7 @@ import * as runtime from 'react/jsx-runtime';
 import { evaluate } from '@mdx-js/mdx';
 import { AppLayout } from "./layout/AppLayout";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
+import Schedule from './Schedule';
 import {
   Table,
   TableBody,
@@ -60,6 +61,7 @@ const components = {
   td: ({ children, ...props }) => (
     <TableCell {...props} className="text-gray-300">{children}</TableCell>
   ),
+  Schedule: Schedule
 };
 
 export const Office = () => {
@@ -69,6 +71,16 @@ export const Office = () => {
 ## Interactive Documentation Example
 
 This is a demonstration of what MDX can do in our office space. Let's explore some features:
+
+### Schedule Component Example
+
+import Schedule from './Schedule'
+
+<Schedule data={[
+  { time: '9:00', monday: 'Standup', tuesday: 'Planning', wednesday: 'Review' },
+  { time: '11:00', monday: 'Dev', tuesday: 'Dev', wednesday: 'Testing' },
+  { time: '14:00', monday: 'Review', tuesday: 'Testing', wednesday: 'Deploy' }
+]} />
 
 ### Rich Text Formatting
 
@@ -108,25 +120,6 @@ Here's our team celebrating last quarter's success:
 
 > "Innovation distinguishes between a leader and a follower." 
 > - Steve Jobs
-
-### Tables
-
-| Time | Monday | Tuesday | Wednesday |
-|------|---------|----------|------------|
-| 9:00 | Standup | Planning | Review |
-| 11:00 | Dev | Dev | Testing |
-| 14:00 | Review | Testing | Deploy |
-
-### Final Notes
-
-Remember to:
-1. Check your calendar for meetings
-2. Update your tasks in the project board
-3. Share your progress with the team
-
----
-
-Need help? Reach out to your team lead or visit the support portal.
   `);
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -137,7 +130,8 @@ Need help? Reach out to your team lead or visit the support portal.
       try {
         const result = await evaluate(content, {
           ...runtime,
-          useMDXComponents: () => components
+          useMDXComponents: () => components,
+          baseUrl: window.location.origin
         });
         setCompiledContent(result.default({ components }));
       } catch (error) {
