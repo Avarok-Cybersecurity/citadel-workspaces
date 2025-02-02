@@ -44,6 +44,7 @@ const components = {
   img: ({ src, alt }) => (
     <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-lg my-4" />
   ),
+
   table: ({ children, ...props }) => (
     <div className="my-6 w-full overflow-y-auto">
       <Table {...props}>{children}</Table>
@@ -58,7 +59,7 @@ const components = {
   td: ({ children, ...props }) => (
     <TableCell {...props} className="text-gray-300">{children}</TableCell>
   ),
-  Card: ({ title, description, children }) => (
+  Card: ({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) => (
     <Card className="bg-[#343A5C] border-gray-700 mb-6">
       <CardHeader>
         <CardTitle className="text-white">{title}</CardTitle>
