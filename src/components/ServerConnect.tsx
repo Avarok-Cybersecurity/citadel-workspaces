@@ -60,13 +60,13 @@ export const ServerConnect = () => {
 
       <div className="w-full max-w-md p-8 space-y-6 glass-panel z-10">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-purple-100">Welcome</h1>
-          <p className="text-purple-200">Connect to your workspace</p>
+          <h1 className="text-3xl font-bold text-white">Welcome</h1>
+          <p className="text-gray-200">Connect to your workspace</p>
         </div>
 
         <form onSubmit={handleConnect} className="space-y-4">
           <div className="space-y-2">
-            <label htmlFor="server" className="text-sm font-medium text-purple-100">
+            <label htmlFor="server" className="text-sm font-medium text-white">
               Server Address
             </label>
             <Input
@@ -75,12 +75,12 @@ export const ServerConnect = () => {
               placeholder="Enter server address"
               value={serverAddress}
               onChange={(e) => setServerAddress(e.target.value)}
-              className="bg-purple-900/50 border-purple-700 text-purple-100 placeholder:text-purple-400"
+              className="bg-purple-900/70 border-purple-400 text-white placeholder:text-gray-300"
             />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="password" className="text-sm font-medium text-purple-100">
+            <label htmlFor="password" className="text-sm font-medium text-white">
               Password (Optional)
             </label>
             <Input
@@ -89,7 +89,7 @@ export const ServerConnect = () => {
               placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-purple-900/50 border-purple-700 text-purple-100 placeholder:text-purple-400"
+              className="bg-purple-900/70 border-purple-400 text-white placeholder:text-gray-300"
             />
           </div>
 
