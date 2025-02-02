@@ -7,18 +7,11 @@ import * as runtime from 'react/jsx-runtime';
 import { evaluate } from '@mdx-js/mdx';
 import { AppLayout } from "./layout/AppLayout";
 import { MessageSquare, Search, Settings, Share2, CheckCircle2, AlertCircle } from "lucide-react";
-import Schedule from './Schedule';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import Table from './Table';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const components = {
   h1: ({ children }) => (
@@ -44,7 +37,6 @@ const components = {
   img: ({ src, alt }) => (
     <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-lg my-4" />
   ),
-
   table: ({ children, ...props }) => (
     <div className="my-6 w-full overflow-y-auto">
       <Table {...props} className="w-full border border-gray-800">
@@ -84,7 +76,6 @@ const components = {
       <AlertDescription className="text-gray-300">{children}</AlertDescription>
     </Alert>
   ),
-
   Badge: ({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "secondary" | "destructive" | "outline" }) => {
     const getColorClass = (text: string) => {
       if (text === 'In Progress') return 'text-emerald-800 flex items-center gap-1 inline-flex';
@@ -103,43 +94,7 @@ const components = {
       </Badge>
     );
   },
-
-  Schedule: Schedule,
-
-  ProjectStats: () => (
-    <div className="my-6 w-full overflow-y-auto">
-      <Table>
-        <TableHeader>
-          <TableRow className="border-b border-gray-800">
-            <TableHead className="text-white font-medium p-4 pl-12 bg-[#343A5C]">Metric</TableHead>
-            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">This Week</TableHead>
-            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Last Week</TableHead>
-            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Change</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow className="hover:bg-[#E5DEFF]/10 transition-colors">
-            <TableCell className="text-gray-300 pl-12">Commits</TableCell>
-            <TableCell className="text-gray-300">156</TableCell>
-            <TableCell className="text-gray-300">142</TableCell>
-            <TableCell className="text-gray-300">+14</TableCell>
-          </TableRow>
-          <TableRow className="hover:bg-[#E5DEFF]/10 transition-colors">
-            <TableCell className="text-gray-300 pl-12">PRs Merged</TableCell>
-            <TableCell className="text-gray-300">23</TableCell>
-            <TableCell className="text-gray-300">18</TableCell>
-            <TableCell className="text-gray-300">+5</TableCell>
-          </TableRow>
-          <TableRow className="hover:bg-[#E5DEFF]/10 transition-colors">
-            <TableCell className="text-gray-300 pl-12">Issues Closed</TableCell>
-            <TableCell className="text-gray-300">34</TableCell>
-            <TableCell className="text-gray-300">28</TableCell>
-            <TableCell className="text-gray-300">+6</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </div>
-  )
+  Table: Table,
 };
 
 export const Office = () => {
@@ -165,15 +120,21 @@ Team meeting scheduled for 2 PM today in the main conference room.
 
 ## Team Schedule
 
-<Schedule data={[
+<Table data={[
   { time: '9:00', monday: 'Standup', tuesday: 'Planning', wednesday: 'Review' },
   { time: '11:00', monday: 'Dev', tuesday: 'Dev', wednesday: 'Testing' },
   { time: '14:00', monday: 'Review', tuesday: 'Testing', wednesday: 'Deploy' }
 ]} />
 
-## Project Statistics
+## Office Layout
 
-<ProjectStats />
+<iframe 
+  src="https://my.spline.design/untitled-b02aeb2e14c92c8f19bd20dc84bc4fa3/" 
+  frameborder="0" 
+  width="100%" 
+  height="400px"
+  className="rounded-lg border border-gray-800 bg-[#343A5C]/50 my-6"
+></iframe>
 
 ## Resources & Links
 
