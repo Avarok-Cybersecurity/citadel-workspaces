@@ -8,11 +8,23 @@ export const SecuritySettings = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative">
-      {/* Background with smooth gradient */}
+      {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
         style={{
-          background: "linear-gradient(90deg, #4F5889 0%, rgba(79, 88, 137, 0.9) 100%)"
+          backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
+          backgroundSize: "contain",
+          backgroundPosition: "right center",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.7
+        }}
+      />
+      
+      {/* Gradient Overlay */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: "linear-gradient(90deg, #1a1b26 0%, rgba(26, 27, 38, 0.95) 30%, rgba(26, 27, 38, 0.8) 60%, rgba(26, 27, 38, 0.4) 100%)"
         }}
       />
 
