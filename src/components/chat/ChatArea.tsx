@@ -102,12 +102,6 @@ export const ChatArea = ({ recipientId }: ChatAreaProps) => {
           <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
             <Bell className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
-            <Shield className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
-            <MoreVertical className="h-5 w-5" />
-          </Button>
         </div>
       </div>
       
@@ -145,17 +139,17 @@ export const ChatArea = ({ recipientId }: ChatAreaProps) => {
             <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
               <Upload className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
-              <Shield className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
-              <MoreVertical className="h-5 w-5" />
-            </Button>
           </div>
           <Input 
             placeholder="Message Kathy McCooper"
             className="flex-1 bg-[#444A6C] border-gray-700 text-white placeholder:text-gray-400"
           />
+          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
+            <Shield className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
+            <MoreVertical className="h-5 w-5" />
+          </Button>
           <Button size="icon" className="bg-purple-500 hover:bg-purple-600">
             <Send className="h-4 w-4" />
           </Button>
