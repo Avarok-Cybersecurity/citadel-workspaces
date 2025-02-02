@@ -58,7 +58,7 @@ export const ServerConnect = () => {
         Back
       </Button>
 
-      <div className="w-full max-w-xl p-8 space-y-6 bg-[#1A1F2C]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
+      <div className="w-full max-w-xl p-8 space-y-6 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
         <div className="flex items-center gap-3 mb-8">
           <Shield className="w-8 h-8 text-white" />
           <h1 className="text-2xl font-bold text-white">ADD A NEW WORKSPACE</h1>
