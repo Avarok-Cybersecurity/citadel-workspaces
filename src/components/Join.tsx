@@ -1,0 +1,208 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Shield, HelpCircle } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useToast } from "@/hooks/use-toast";
+
+export const Join = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  
+  const [formData, setFormData] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.fullName || !formData.username || !formData.password || !formData.confirmPassword) {
+      toast({
+        title: "Missing Fields",
+        description: "Please fill out all fields to continue",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      toast({
+        title: "Password Mismatch",
+        description: "The passwords you entered do not match",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Proceed with form submission
+    console.log("Form submitted:", formData);
+    navigate("/office");
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center relative bg-[#1C1D28]">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
+          backgroundSize: "cover",
+          width: "100vw",
+          height: "100vh",
+          opacity: 0.7
+        }}
+      />
+      
+      {/* Gradient Overlay */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: "linear-gradient(90deg, #1C1D28 0%, rgba(28, 29, 40, 0.95) 30%, rgba(28, 29, 40, 0.8) 60%, rgba(28, 29, 40, 0.4) 100%)"
+        }}
+      />
+
+      <div className="w-full max-w-xl p-8 space-y-6 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
+        <div className="flex items-center gap-3 mb-8">
+          <Shield className="w-8 h-8 text-white" />
+          <h1 className="text-2xl font-bold text-white">ADD A NEW WORKSPACE</h1>
+        </div>
+
+        <div className="space-y-8">
+          <h2 className="text-xl font-semibold text-white">SERVER PROFILE</h2>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Full Name Input */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-200 uppercase">
+                Full Name
+              </label>
+              <div className="relative">
+                <Input
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className="bg-[#221F26]/70 border-purple-400/20 text-white pr-12"
+                  placeholder="John Doe"
+                />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                      <p>Enter your full name as it will appear in the workspace</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            </div>
+
+            {/* Username Input */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-200 uppercase">
+                Username
+              </label>
+              <div className="relative">
+                <Input
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  className="bg-[#221F26]/70 border-purple-400/20 text-white pr-12"
+                  placeholder="john.doe.33"
+                />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                      <p>Choose a unique username for your workspace profile</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            </div>
+
+            {/* Password Input */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-200 uppercase">
+                Profile Password
+              </label>
+              <div className="relative">
+                <Input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="bg-[#221F26]/70 border-purple-400/20 text-white pr-12"
+                />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                      <p>Create a strong password for your profile</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            </div>
+
+            {/* Confirm Password Input */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-200 uppercase">
+                Confirm Profile Password
+              </label>
+              <div className="relative">
+                <Input
+                  type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  className="bg-[#221F26]/70 border-purple-400/20 text-white pr-12"
+                />
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                      <p>Re-enter your password to confirm</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-4 mt-8">
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => navigate("/security-settings")}
+                className="text-white hover:bg-purple-500/20"
+              >
+                BACK
+              </Button>
+              <Button
+                type="submit"
+                className="bg-purple-600 hover:bg-purple-700 text-white transition-colors"
+              >
+                JOIN
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
