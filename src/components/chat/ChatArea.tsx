@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Bell, Search, Shield, Send, MoreVertical, Upload, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { messageChannels } from "../layout/sidebar/MessagesSection";
 
 interface Message {
   id: string;
@@ -69,12 +70,12 @@ const MOCK_MESSAGES: Record<string, Message[]> = {
 
 export const ChatArea = ({ recipientId }: ChatAreaProps) => {
   const messages = MOCK_MESSAGES[recipientId] || [];
-  const firstMessage = messages[0];
+  const currentChannel = messageChannels.find(channel => channel.id === recipientId);
 
-  if (!firstMessage) {
+  if (!currentChannel) {
     return (
       <div className="h-full flex items-center justify-center text-muted-foreground">
-        No messages yet
+        Channel not found
       </div>
     );
   }
@@ -85,12 +86,12 @@ export const ChatArea = ({ recipientId }: ChatAreaProps) => {
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-800 bg-[#343A5C]">
         <div className="flex items-center space-x-3">
           <Avatar className="h-10 w-10">
-            <AvatarImage src={firstMessage.sender.avatar} />
-            <AvatarFallback>{firstMessage.sender.name[0]}</AvatarFallback>
+            <AvatarImage src={currentChannel.avatar} />
+            <AvatarFallback>{currentChannel.name[0]}</AvatarFallback>
           </Avatar>
           <div className="flex items-center space-x-2">
             <h1 className="text-xl font-semibold text-white">
-              {firstMessage.sender.name}
+              {currentChannel.name}
             </h1>
             <ChevronDown className="h-4 w-4 text-gray-400" />
           </div>
@@ -107,29 +108,35 @@ export const ChatArea = ({ recipientId }: ChatAreaProps) => {
       
       {/* Messages Area */}
       <ScrollArea className="flex-1 p-4">
-        <div className="space-y-4">
-          {messages.map((message) => (
-            <div key={message.id} className="flex items-start space-x-3">
-              <Avatar className="h-10 w-10 mt-0.5">
-                <AvatarImage src={message.sender.avatar} />
-                <AvatarFallback>{message.sender.name[0]}</AvatarFallback>
-              </Avatar>
-              <div className="flex-1">
-                <div className="flex items-center space-x-2">
-                  <span className="font-semibold text-white">
-                    {message.sender.name}
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    {message.timestamp}
-                  </span>
-                </div>
-                <div className="mt-1 text-white whitespace-pre-line">
-                  {message.content}
+        {messages.length === 0 ? (
+          <div className="h-full flex items-center justify-center text-muted-foreground">
+            No messages yet
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {messages.map((message) => (
+              <div key={message.id} className="flex items-start space-x-3">
+                <Avatar className="h-10 w-10 mt-0.5">
+                  <AvatarImage src={message.sender.avatar} />
+                  <AvatarFallback>{message.sender.name[0]}</AvatarFallback>
+                </Avatar>
+                <div className="flex-1">
+                  <div className="flex items-center space-x-2">
+                    <span className="font-semibold text-white">
+                      {message.sender.name}
+                    </span>
+                    <span className="text-sm text-muted-foreground">
+                      {message.timestamp}
+                    </span>
+                  </div>
+                  <div className="mt-1 text-white whitespace-pre-line">
+                    {message.content}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </ScrollArea>
 
       {/* Input Area */}
@@ -141,7 +148,7 @@ export const ChatArea = ({ recipientId }: ChatAreaProps) => {
             </Button>
           </div>
           <Input 
-            placeholder="Message Kathy McCooper"
+            placeholder={`Message ${currentChannel.name}`}
             className="flex-1 bg-[#444A6C] border-gray-700 text-white placeholder:text-gray-400"
           />
           <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
