@@ -26,17 +26,39 @@
     --radius: 0.75rem;
   }
  
-  * {
-    @apply border-border;
+  .dark {
+    --background: 26 31 44;
+    --foreground: 255 255 255;
+    --card: 30 36 51;
+    --card-foreground: 255 255 255;
+    --popover: 30 36 51;
+    --popover-foreground: 255 255 255;
+    --primary: 139 92 246;
+    --primary-foreground: 255 255 255;
+    --secondary: 30 36 51;
+    --secondary-foreground: 255 255 255;
+    --muted: 30 36 51;
+    --muted-foreground: 150 150 150;
+    --accent: 30 36 51;
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: 48 54 69;
+    --input: 48 54 69;
+    --ring: 139 92 246;
   }
+}
 
-  body {
-    @apply bg-background text-foreground font-body antialiased;
-  }
+* {
+  @apply border-border;
+}
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-sans;
-  }
+body {
+  @apply bg-background text-foreground font-body antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-sans;
 }
 
 .glass-panel {
@@ -49,4 +71,30 @@
 
 .animate-out {
   animation: fade-out 0.3s ease-out;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.prose {
+  @apply text-white;
+}
+
+.prose a {
+  @apply text-purple-400 hover:text-purple-300;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply text-white;
+}
+
+.prose ul {
+  @apply text-gray-300;
 }
