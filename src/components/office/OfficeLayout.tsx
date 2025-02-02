@@ -21,7 +21,7 @@ export const OfficeLayout = ({
       <div className="h-full flex flex-col">
         <div className="flex justify-between items-center px-4 py-2 border-b border-gray-800 bg-[#343A5C]">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-semibold text-white">Office —> {title}</h1>
+            <h1 className="text-xl font-semibold text-white">Office &rarr; {title}</h1>
           </div>
           <div className="flex items-center space-x-2">
             <Button 
