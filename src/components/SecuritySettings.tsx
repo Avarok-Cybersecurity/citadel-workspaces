@@ -17,7 +17,7 @@ export const SecuritySettings = () => {
   console.log('Retrieved form data in SecuritySettings:', formData);
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative">
+    <div className="min-h-screen flex items-center justify-center relative bg-[#1C1D28]">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
@@ -34,7 +34,7 @@ export const SecuritySettings = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          background: "linear-gradient(90deg, #1a1b26 0%, rgba(26, 27, 38, 0.95) 30%, rgba(26, 27, 38, 0.8) 60%, rgba(26, 27, 38, 0.4) 100%)"
+          background: "linear-gradient(90deg, #1C1D28 0%, rgba(28, 29, 40, 0.95) 30%, rgba(28, 29, 40, 0.8) 60%, rgba(28, 29, 40, 0.4) 100%)"
         }}
       />
 
