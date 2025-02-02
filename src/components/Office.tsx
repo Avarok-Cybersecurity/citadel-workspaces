@@ -12,6 +12,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Highlight, themes } from "prism-react-renderer";
 
 const components = {
   h1: ({ children }) => (
@@ -92,6 +93,32 @@ const components = {
         {children?.toString() === 'High Priority' && <AlertCircle className="h-3 w-3" />}
         {children}
       </Badge>
+    );
+  },
+  pre: ({ children }: { children: any }) => children,
+  code: ({ children, className }: { children: string; className?: string }) => {
+    const language = className ? className.replace(/language-/, '') : 'typescript';
+    
+    return (
+      <Highlight
+        theme={themes.nightOwl}
+        code={children.trim()}
+        language={language}
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className="p-4 rounded-lg overflow-x-auto bg-[#011627] my-4">
+            <code className={className} style={style}>
+              {tokens.map((line, i) => (
+                <div key={i} {...getLineProps({ line })}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token })} />
+                  ))}
+                </div>
+              ))}
+            </code>
+          </pre>
+        )}
+      </Highlight>
     );
   },
   Table: Table,
