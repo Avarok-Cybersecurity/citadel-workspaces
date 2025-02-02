@@ -35,7 +35,7 @@ export const Landing = () => {
           </h1>
           
           <p className="text-xl text-gray-300 mb-12">
-            Hyper-security and control over security at your fingertips
+            Hyper-security and control over defense and privacy at your fingertips
           </p>
           
           <div className="flex gap-4">
