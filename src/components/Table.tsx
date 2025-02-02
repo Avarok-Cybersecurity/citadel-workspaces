@@ -1,5 +1,5 @@
 import {
-  Table,
+  Table as UITable,
   TableBody,
   TableCell,
   TableHead,
@@ -14,14 +14,26 @@ interface ScheduleItem {
   wednesday: string;
 }
 
-interface ScheduleProps {
-  data: ScheduleItem[];
+interface TableProps {
+  data?: ScheduleItem[];
+  children?: React.ReactNode;
+  className?: string;
 }
 
-const Schedule = ({ data }: ScheduleProps) => {
+const TableComponent = ({ data, children, className }: TableProps) => {
+  if (children) {
+    return (
+      <div className="my-6 w-full overflow-y-auto">
+        <UITable className={className}>
+          {children}
+        </UITable>
+      </div>
+    );
+  }
+
   return (
     <div className="my-6 w-full overflow-y-auto">
-      <Table>
+      <UITable>
         <TableHeader>
           <TableRow className="border-b border-gray-800">
             <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Time</TableHead>
@@ -31,7 +43,7 @@ const Schedule = ({ data }: ScheduleProps) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((item, index) => (
+          {data?.map((item, index) => (
             <TableRow 
               key={index}
               className="hover:bg-[#E5DEFF]/10 transition-colors"
@@ -43,9 +55,9 @@ const Schedule = ({ data }: ScheduleProps) => {
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </UITable>
     </div>
   );
 };
 
-export default Schedule;
+export default TableComponent;
