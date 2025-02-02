@@ -22,12 +22,12 @@ export const OfficesSection = () => {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>OFFICES</SidebarGroupLabel>
+      <SidebarGroupLabel className="text-purple-300">OFFICES</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton 
-              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+              className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
               onClick={() => handleSectionClick("company")}
               data-active={currentSection === "company"}
             >
@@ -37,7 +37,7 @@ export const OfficesSection = () => {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton 
-              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+              className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
               onClick={() => handleSectionClick("marketing")}
               data-active={currentSection === "marketing"}
             >
@@ -47,7 +47,7 @@ export const OfficesSection = () => {
           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton 
-              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+              className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
               onClick={() => handleSectionClick("hr")}
               data-active={currentSection === "hr"}
             >

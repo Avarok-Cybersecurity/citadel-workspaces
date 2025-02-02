@@ -10,8 +10,6 @@ import { OfficesSection } from "./sidebar/OfficesSection";
 import { RoomsSection } from "./sidebar/RoomsSection";
 import { MessagesSection } from "./sidebar/MessagesSection";
 import { FilesSection } from "./sidebar/FilesSection";
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface AppLayoutProps {
@@ -37,16 +35,6 @@ const AppContent = ({ children }: AppLayoutProps) => {
 
       <div className="flex-1 pt-14 pl-0 overflow-x-hidden">
         <div className="sticky top-14 z-40 h-14 bg-[#444A6C] border-b border-gray-700 flex items-center px-4">
-          {isMobile && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] md:hidden mr-4"
-              onClick={toggleSidebar}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          )}
         </div>
         {children}
       </div>
