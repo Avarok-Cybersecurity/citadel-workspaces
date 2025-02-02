@@ -1,5 +1,5 @@
-import { MessageSquare } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Hash, MessageSquare } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -8,39 +8,16 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { useLocation, useNavigate } from "react-router-dom";
 
 export const messageChannels = [
-  {
-    id: "team-chat",
-    name: "Kathy McCooper",
-    avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7"
-  },
-  {
-    id: "project-updates",
-    name: "Project Updates",
-    avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-  },
-  {
-    id: "general-discussion",
-    name: "General Discussion",
-    avatar: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1"
-  }
+  { id: "project-updates", name: "Project Updates", icon: Hash, avatar: "/placeholder.svg" },
+  { id: "general-discussion", name: "General Discussion", icon: MessageSquare, avatar: "/placeholder.svg" },
 ];
 
 export const MessagesSection = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const currentChannel = new URLSearchParams(location.search).get("channel");
-
-  const handleMessageClick = (channelId: string) => {
-    // Get all current URL parameters
-    const params = new URLSearchParams(location.search);
-    // Update only the channel parameter
-    params.set("channel", channelId);
-    // Navigate to messages while preserving other parameters
-    navigate(`/messages?${params.toString()}`);
-  };
+  const isMessagesRoute = location.pathname === "/messages";
 
   return (
     <SidebarGroup>
@@ -50,16 +27,11 @@ export const MessagesSection = () => {
           {messageChannels.map((channel) => (
             <SidebarMenuItem key={channel.id}>
               <SidebarMenuButton
-                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-                isActive={currentChannel === channel.id}
-                onClick={() => handleMessageClick(channel.id)}
+                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-all duration-300"
+                onClick={() => navigate(`/messages?channel=${channel.id}`)}
+                data-active={isMessagesRoute && new URLSearchParams(location.search).get("channel") === channel.id}
               >
-                <Avatar className="h-4 w-4">
-                  <AvatarImage src={channel.avatar} />
-                  <AvatarFallback>
-                    <MessageSquare className="h-4 w-4" />
-                  </AvatarFallback>
-                </Avatar>
+                <channel.icon className="h-4 w-4 transition-colors duration-300" />
                 <span>{channel.name}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
