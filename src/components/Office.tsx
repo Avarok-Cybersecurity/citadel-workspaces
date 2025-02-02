@@ -126,7 +126,7 @@ Team meeting scheduled for 2 PM today in the main conference room.
   { time: '14:00', monday: 'Review', tuesday: 'Testing', wednesday: 'Deploy' }
 ]} />
 
-## Office Search
+## Embed Useful Websites
 
 <iframe 
   src="https://www.google.com/search?igu=1" 
