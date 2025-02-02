@@ -1,4 +1,4 @@
-import { Bell, Menu, Settings, User } from "lucide-react";
+import { Menu, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -33,13 +33,6 @@ export const TopBar = ({ currentWorkspace }: TopBarProps) => {
           className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C]"
         >
           <Settings className="h-4 w-4" />
-        </Button>
-        <Button 
-          variant="ghost" 
-          size="icon"
-          className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C]"
-        >
-          <Bell className="h-4 w-4" />
         </Button>
         <Button 
           variant="ghost" 
