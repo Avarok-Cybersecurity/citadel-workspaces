@@ -38,14 +38,18 @@ Team meeting scheduled for 2 PM today in the main conference room.
 ## Search Google
 
 <Card title="Quick Search" description="Search Google directly">
-<iframe
-  src="https://www.google.com/search?igu=1"
-  width="100%"
-  height="400px"
-  style={{ border: 'none' }}
-></iframe>
+<div style={{ height: '400px', overflow: 'hidden' }}>
+  <iframe
+    src="https://www.google.com/search?igu=1"
+    width="100%"
+    height="400px"
+    style={{ border: 'none' }}
+    loading="lazy"
+  ></iframe>
+</div>
 </Card>
   `);
+  
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();

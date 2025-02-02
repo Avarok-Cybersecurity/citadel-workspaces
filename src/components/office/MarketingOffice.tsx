@@ -38,12 +38,15 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
 ## Search Google
 
 <Card title="Quick Search" description="Search Google directly">
-<iframe
-  src="https://www.google.com/search?igu=1"
-  width="100%"
-  height="400px"
-  style={{ border: 'none' }}
-></iframe>
+<div style={{ height: '400px', overflow: 'hidden' }}>
+  <iframe
+    src="https://www.google.com/search?igu=1"
+    width="100%"
+    height="400px"
+    style={{ border: 'none' }}
+    loading="lazy"
+  ></iframe>
+</div>
 </Card>
   `);
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
