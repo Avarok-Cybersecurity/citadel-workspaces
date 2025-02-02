@@ -129,11 +129,8 @@ Team meeting scheduled for 2 PM today in the main conference room.
 ## Office Layout
 
 <iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0673607881384!2d-122.41941658468226!3d37.77492997975892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6c8f4459%3A0xb10ed6d9b5050fa5!2sTwitter%20HQ!5e0!3m2!1sen!2sus!4v1648181241469!5w!3h400"
-  style="border:0;" 
-  allowfullscreen="" 
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade"
+  src="https://my.spline.design/untitled-b02aeb2e14c92c8f19bd20dc84bc4fa3/" 
+  frameborder="0" 
   width="100%" 
   height="400px"
   className="rounded-lg border border-gray-800 bg-[#343A5C]/50 my-6"
