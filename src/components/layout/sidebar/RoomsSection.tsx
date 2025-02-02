@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 
-const officeRooms = {
+export const officeRooms = {
   company: [
     { id: "main", name: "Main Office", icon: Home },
     { id: "meeting-a", name: "Meeting Room A", icon: Building2 },
