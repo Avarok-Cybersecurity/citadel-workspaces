@@ -8,6 +8,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { useSidebar } from "@/components/ui/sidebar";
 
 export const officeRooms = {
   company: [
@@ -30,6 +31,7 @@ export const officeRooms = {
 export const RoomsSection = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { closeSidebar } = useSidebar();
   const currentSection = new URLSearchParams(location.search).get("section") || "company";
   const currentRoom = new URLSearchParams(location.search).get("room");
   
@@ -37,6 +39,7 @@ export const RoomsSection = () => {
     const params = new URLSearchParams(location.search);
     params.set("room", roomId);
     navigate(`/office?${params.toString()}`);
+    closeSidebar();
   };
 
   const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];
@@ -46,7 +49,7 @@ export const RoomsSection = () => {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>ROOMS</SidebarGroupLabel>
+      <SidebarGroupLabel className="text-[#9b87f5] font-semibold">ROOMS</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           <div className={shouldAnimate ? "animate-fade-in animate-slide-in" : ""}>
@@ -61,7 +64,7 @@ export const RoomsSection = () => {
                 } : undefined}
               >
                 <SidebarMenuButton 
-                  className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+                  className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
                   onClick={() => handleRoomClick(room.id)}
                   data-active={currentRoom === room.id}
                 >
