@@ -41,6 +41,10 @@ Board meeting scheduled for 3 PM - Q1 performance review and strategy discussion
   { time: '11:00', event: 'Investor Call', location: 'Conference Line' },
   { time: '15:00', event: 'Board Meeting', location: 'Board Room' }
 ]} />
+
+## Search Resources
+
+<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "meeting-a":
@@ -72,6 +76,10 @@ Product Strategy Review - Starting in 30 minutes
   { time: '13:00', meeting: 'Sales Pipeline Review', organizer: 'Sales Director' },
   { time: '15:30', meeting: 'Tech Architecture', organizer: 'CTO' }
 ]} />
+
+## Search Resources
+
+<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "meeting-b":
@@ -103,6 +111,10 @@ Room configured for workshop-style meetings with breakout areas
   { time: '13:30', activity: 'Design Sprint', facilitator: 'UX Team' },
   { time: '16:00', activity: 'Tech Demo', facilitator: 'Engineering' }
 ]} />
+
+## Search Resources
+
+<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       default:
@@ -133,6 +145,10 @@ Team meeting scheduled for 2 PM today in the main conference room.
   { time: '11:00', monday: 'Dev', tuesday: 'Dev', wednesday: 'Testing' },
   { time: '14:00', monday: 'Review', tuesday: 'Testing', wednesday: 'Deploy' }
 ]} />
+
+## Search Resources
+
+<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
     }
   };
