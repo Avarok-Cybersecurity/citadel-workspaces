@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface OfficeLayoutProps {
   title: string;
@@ -9,6 +10,12 @@ interface OfficeLayoutProps {
   children: React.ReactNode;
 }
 
+const officeNames = {
+  company: "Company",
+  marketing: "PR/Marketing",
+  hr: "Human Resources"
+};
+
 export const OfficeLayout = ({ 
   title, 
   isEditing, 
@@ -16,12 +23,32 @@ export const OfficeLayout = ({
   onSave, 
   children 
 }: OfficeLayoutProps) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentSection = new URLSearchParams(location.search).get("section") || "company";
+  const currentRoom = new URLSearchParams(location.search).get("room");
+  const roomName = currentRoom ? ` → ${title}` : "";
+
+  const handleOfficeClick = () => {
+    const params = new URLSearchParams(location.search);
+    params.delete("room");
+    navigate(`/office?${params.toString()}`);
+  };
+
   return (
     <div className="h-[calc(100vh-3.5rem)] overflow-hidden bg-[#444A6C]">
       <div className="h-full flex flex-col">
         <div className="flex justify-between items-center px-4 py-2 border-b border-gray-800 bg-[#343A5C]">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-semibold text-white">Office &rarr; {title}</h1>
+            <h1 className="text-xl font-semibold text-white">
+              <button 
+                onClick={handleOfficeClick}
+                className="hover:text-[#E5DEFF] transition-colors"
+              >
+                {officeNames[currentSection as keyof typeof officeNames]}
+              </button>
+              <span className="text-[#E5DEFF]">{roomName}</span>
+            </h1>
           </div>
           <div className="flex items-center space-x-2">
             <Button 
