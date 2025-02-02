@@ -4,6 +4,10 @@ import path from 'path';
 import mdx from '@mdx-js/rollup';
 
 export default defineConfig({
+  server: {
+    host: "::",
+    port: 8080,
+  },
   plugins: [
     mdx(),
     react(),

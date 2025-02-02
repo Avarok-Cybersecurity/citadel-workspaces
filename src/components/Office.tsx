@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { MDXProvider } from '@mdx-js/react';
@@ -48,8 +48,23 @@ export const Office = () => {
 
 ![Sonny and Mariel high fiving.](https://content.codecademy.com/courses/learn-cpp/community-challenge/highfive.gif)
   `);
+  const [compiledContent, setCompiledContent] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const compileContent = async () => {
+      try {
+        const compiled = String(await compile(content, { outputFormat: 'function-body', jsxRuntime: 'automatic' }));
+        const { default: Component } = await runtime.evaluateSync(compiled, { ...runtime });
+        setCompiledContent(Component());
+      } catch (error) {
+        console.error('Error compiling MDX:', error);
+      }
+    };
+
+    compileContent();
+  }, [content]);
 
   const handleSave = () => {
     setIsEditing(false);
@@ -124,7 +139,7 @@ export const Office = () => {
             ) : (
               <div className="p-2 prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
                 <MDXProvider components={components}>
-                  <div dangerouslySetInnerHTML={{ __html: content }} />
+                  {compiledContent}
                 </MDXProvider>
               </div>
             )}
