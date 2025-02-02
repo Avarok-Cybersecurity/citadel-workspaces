@@ -36,18 +36,69 @@ const components = {
 
 export const Office = () => {
   const [content, setContent] = useState(`
-# Welcome to Our Office
-## Company Updates
-- New project kickoff next week
-- Team building event on Friday
-- Q4 planning session tomorrow
+# Welcome to Our Office Space 🏢
 
-## Quick Links
+## Interactive Documentation Example
+
+This is a demonstration of what MDX can do in our office space. Let's explore some features:
+
+### Rich Text Formatting
+
+You can write **bold text**, *italic text*, and even ~~strikethrough~~. 
+
+### Lists and Tasks
+
+Here's what's on our agenda today:
+- Morning standup at 9:00 AM
+- Project review at 11:00 AM
+- Team lunch at 12:30 PM
+- Sprint planning at 2:00 PM
+
+### Code Examples
+
+You can share code snippets with your team:
+
+\`\`\`typescript
+const greetTeam = (name: string) => {
+  console.log(\`Welcome to the team, \${name}!\`);
+};
+\`\`\`
+
+### Links and References
+
+- [Company Wiki](#)
 - [HR Portal](#)
 - [IT Support](#)
-- [Meeting Rooms](#)
 
-![Sonny and Mariel high fiving.](https://content.codecademy.com/courses/learn-cpp/community-challenge/highfive.gif)
+### Images and Media
+
+Here's our team celebrating last quarter's success:
+
+![Team Celebration](https://content.codecademy.com/courses/learn-cpp/community-challenge/highfive.gif)
+
+### Quotes and Callouts
+
+> "Innovation distinguishes between a leader and a follower." 
+> - Steve Jobs
+
+### Tables
+
+| Time | Monday | Tuesday | Wednesday |
+|------|---------|----------|------------|
+| 9:00 | Standup | Planning | Review |
+| 11:00 | Dev | Dev | Testing |
+| 14:00 | Review | Testing | Deploy |
+
+### Final Notes
+
+Remember to:
+1. Check your calendar for meetings
+2. Update your tasks in the project board
+3. Share your progress with the team
+
+---
+
+Need help? Reach out to your team lead or visit the support portal.
   `);
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
   const [isEditing, setIsEditing] = useState(false);
