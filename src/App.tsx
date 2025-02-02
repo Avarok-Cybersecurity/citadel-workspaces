@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ServerConnect } from "@/components/ServerConnect";
 import { Office } from "@/components/Office";
+import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -16,7 +17,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ServerConnect />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/connect" element={<ServerConnect />} />
           <Route path="/office" element={<Office />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
