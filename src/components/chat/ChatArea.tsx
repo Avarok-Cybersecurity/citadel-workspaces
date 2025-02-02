@@ -145,6 +145,12 @@ export const ChatArea = ({ recipientId }: ChatAreaProps) => {
             <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
               <Upload className="h-5 w-5" />
             </Button>
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
+              <Shield className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
+              <MoreVertical className="h-5 w-5" />
+            </Button>
           </div>
           <Input 
             placeholder="Message Kathy McCooper"
