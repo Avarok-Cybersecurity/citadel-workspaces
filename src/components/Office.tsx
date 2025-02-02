@@ -47,17 +47,27 @@ const components = {
 
   table: ({ children, ...props }) => (
     <div className="my-6 w-full overflow-y-auto">
-      <Table {...props}>{children}</Table>
+      <Table {...props} className="border border-gray-800">
+        {children}
+      </Table>
     </div>
   ),
   thead: TableHeader,
   tbody: TableBody,
-  tr: TableRow,
+  tr: ({ children, ...props }) => (
+    <TableRow {...props} className="hover:bg-gray-800/50">
+      {children}
+    </TableRow>
+  ),
   th: ({ children, ...props }) => (
-    <TableHead {...props} className="text-white">{children}</TableHead>
+    <TableHead {...props} className="border-b border-gray-800 bg-gray-900/50 text-white font-medium">
+      {children}
+    </TableHead>
   ),
   td: ({ children, ...props }) => (
-    <TableCell {...props} className="text-gray-300">{children}</TableCell>
+    <TableCell {...props} className="border-b border-gray-800 text-gray-300">
+      {children}
+    </TableCell>
   ),
   Card: ({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) => (
     <Card className="bg-[#343A5C] border-gray-700 mb-6">
