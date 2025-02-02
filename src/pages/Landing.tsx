@@ -6,7 +6,7 @@ export const Landing = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex items-center relative overflow-hidden bg-[#1a1b26]">
+    <div className="min-h-screen flex items-center relative overflow-hidden bg-[#1C1D28]">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
@@ -23,7 +23,7 @@ export const Landing = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          background: "linear-gradient(90deg, #1a1b26 0%, rgba(26, 27, 38, 0.8) 50%, rgba(26, 27, 38, 0.4) 100%)"
+          background: "linear-gradient(90deg, #1C1D28 0%, rgba(28, 29, 40, 0.8) 50%, rgba(28, 29, 40, 0.4) 100%)"
         }}
       />
       
