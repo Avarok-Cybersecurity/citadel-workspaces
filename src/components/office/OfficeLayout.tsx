@@ -30,7 +30,6 @@ export const OfficeLayout = ({
   const currentRoom = new URLSearchParams(location.search).get("room");
   const officeName = officeNames[currentSection as keyof typeof officeNames];
   
-  // Find the current room's full name from the officeRooms configuration
   const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];
   const currentRoomData = rooms.find(room => room.id === currentRoom);
   const roomName = currentRoomData ? ` → ${currentRoomData.name}` : "";
@@ -46,7 +45,7 @@ export const OfficeLayout = ({
       <div className="h-full flex flex-col">
         <div className="flex justify-between items-center px-4 py-2 border-b border-gray-800 bg-[#343A5C]">
           <div className="flex items-center space-x-4">
-            <h1 className="text-xl font-semibold text-white">
+            <h1 className="text-xl font-semibold text-white hidden md:block">
               <button 
                 onClick={handleOfficeClick}
                 className="hover:text-[#E5DEFF] transition-colors"

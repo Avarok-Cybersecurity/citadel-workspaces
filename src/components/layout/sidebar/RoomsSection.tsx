@@ -34,12 +34,12 @@ export const RoomsSection = () => {
   const { setOpenMobile } = useSidebar();
   const currentSection = new URLSearchParams(location.search).get("section") || "company";
   const currentRoom = new URLSearchParams(location.search).get("room");
-  
+
   const handleRoomClick = (roomId: string) => {
     const params = new URLSearchParams(location.search);
     params.set("room", roomId);
     navigate(`/office?${params.toString()}`);
-    setOpenMobile(false); // Close mobile sidebar after navigation
+    setOpenMobile(false);
   };
 
   const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];

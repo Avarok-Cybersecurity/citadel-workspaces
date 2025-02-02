@@ -23,9 +23,9 @@ export const SecuritySettings = () => {
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
-          backgroundSize: "contain",
-          backgroundPosition: "right center",
-          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          width: "100vw",
+          height: "100vh",
           opacity: 0.7
         }}
       />
@@ -38,6 +38,7 @@ export const SecuritySettings = () => {
         }}
       />
 
+      {/* Rest of the component */}
       <div className="w-full max-w-xl p-8 space-y-8 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
         <div className="flex items-center gap-3 mb-8">
           <Shield className="w-8 h-8 text-white" />

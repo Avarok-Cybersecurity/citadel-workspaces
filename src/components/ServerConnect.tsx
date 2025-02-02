@@ -55,9 +55,9 @@ export const ServerConnect = () => {
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
-          backgroundSize: "contain",
-          backgroundPosition: "right center",
-          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          width: "100vw",
+          height: "100vh",
           opacity: 0.7
         }}
       />
@@ -70,7 +70,7 @@ export const ServerConnect = () => {
         }}
       />
 
-      {/* Back Button */}
+      {/* Rest of the component */}
       <Button
         variant="ghost"
         className="absolute top-4 left-4 text-white z-10 hover:bg-purple-500/20 animate-fade-in"
