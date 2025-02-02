@@ -24,7 +24,7 @@ export const TopBar = ({ currentWorkspace }: TopBarProps) => {
             <Menu className="h-5 w-5" />
           </Button>
         )}
-        <span className="font-semibold truncate">{currentWorkspace}</span>
+        <span className="font-semibold truncate hidden md:block">{currentWorkspace}</span>
         <Button 
           variant="ghost" 
           size="icon"

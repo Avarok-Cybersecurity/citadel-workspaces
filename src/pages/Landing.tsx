@@ -9,17 +9,12 @@ export const Landing = () => {
     <div className="min-h-screen flex items-center relative overflow-hidden bg-[#1C1D28]">
       {/* Background Image */}
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-70 hidden md:block"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-70"
         style={{
           backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
-        }}
-      />
-      
-      {/* Mobile Background Image */}
-      <div 
-        className="absolute inset-0 z-0 bg-contain bg-center bg-no-repeat opacity-50 md:hidden"
-        style={{
-          backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
+          backgroundSize: 'cover',
+          width: '100vw',
+          height: '100vh'
         }}
       />
       

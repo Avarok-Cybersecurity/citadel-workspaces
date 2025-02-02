@@ -41,7 +41,7 @@ export const MessagesSection = () => {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>MESSAGES</SidebarGroupLabel>
+      <SidebarGroupLabel className="text-[#9b87f5] font-semibold">MESSAGES</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           {messageChannels.map((channel) => (
@@ -50,7 +50,7 @@ export const MessagesSection = () => {
               className="transform transition-transform duration-200 ease-in-out"
             >
               <SidebarMenuButton
-                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-all duration-300 ease-in-out will-change-transform"
+                className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-all duration-300 ease-in-out will-change-transform"
                 isActive={currentChannel === channel.id}
                 onClick={() => handleMessageClick(channel.id)}
               >

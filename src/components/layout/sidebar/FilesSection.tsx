@@ -87,13 +87,13 @@ export const FilesSection = () => {
   return (
     <>
       <SidebarGroup>
-        <SidebarGroupLabel>FILES</SidebarGroupLabel>
+        <SidebarGroupLabel className="text-[#9b87f5] font-semibold">FILES</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             {files.map((file) => (
               <SidebarMenuItem key={file.id}>
                 <SidebarMenuButton 
-                  className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+                  className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
                   onClick={() => handleFileClick(file)}
                 >
                   {getFileIcon(file.name)}
@@ -102,7 +102,7 @@ export const FilesSection = () => {
               </SidebarMenuItem>
             ))}
             <SidebarMenuItem>
-              <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+              <SidebarMenuButton className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
                 <Folder className="h-4 w-4" />
                 <span>File Manager</span>
               </SidebarMenuButton>
