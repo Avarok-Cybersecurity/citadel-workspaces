@@ -49,7 +49,7 @@ export const Landing = () => {
             
             <Button
               variant="outline"
-              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6 flex items-center gap-2 transition-all duration-300 transform hover:scale-105"
+              className="border-white text-black hover:bg-white/10 text-lg px-8 py-6 flex items-center gap-2 transition-all duration-300 transform hover:scale-105"
               size="lg"
             >
               <PlusCircle className="w-5 h-5" />
