@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { MDXProvider } from '@mdx-js/react';
+import { compile } from '@mdx-js/mdx';
+import * as runtime from 'react/jsx-runtime';
 import { AppLayout } from "./layout/AppLayout";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
 
@@ -122,7 +124,7 @@ export const Office = () => {
             ) : (
               <div className="p-2 prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
                 <MDXProvider components={components}>
-                  {content}
+                  <div dangerouslySetInnerHTML={{ __html: content }} />
                 </MDXProvider>
               </div>
             )}
