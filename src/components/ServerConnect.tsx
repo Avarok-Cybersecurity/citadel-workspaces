@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Shield, HelpCircle } from "lucide-react";
 
 export const ServerConnect = () => {
   const [serverAddress, setServerAddress] = useState("");
@@ -58,48 +58,68 @@ export const ServerConnect = () => {
         Back
       </Button>
 
-      <div className="w-full max-w-md p-8 space-y-6 bg-[#1A1F2C]/80 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-white">Welcome</h1>
-          <p className="text-gray-200">Connect to your workspace</p>
+      <div className="w-full max-w-xl p-8 space-y-6 bg-[#1A1F2C]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
+        <div className="flex items-center gap-3 mb-8">
+          <Shield className="w-8 h-8 text-white" />
+          <h1 className="text-2xl font-bold text-white">ADD A NEW WORKSPACE</h1>
         </div>
 
-        <form onSubmit={handleConnect} className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="server" className="text-sm font-medium text-white">
-              Server Address
-            </label>
-            <Input
-              id="server"
-              type="text"
-              placeholder="Enter server address"
-              value={serverAddress}
-              onChange={(e) => setServerAddress(e.target.value)}
-              className="bg-[#221F26]/70 border-purple-400 text-white placeholder:text-gray-300"
-            />
-          </div>
+        <div className="space-y-8">
+          <h2 className="text-xl font-semibold text-white">WORKSPACE INFORMATION</h2>
 
-          <div className="space-y-2">
-            <label htmlFor="password" className="text-sm font-medium text-white">
-              Password (Optional)
-            </label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="bg-[#221F26]/70 border-purple-400 text-white placeholder:text-gray-300"
-            />
-          </div>
+          <form onSubmit={handleConnect} className="space-y-6">
+            <div className="space-y-2">
+              <label htmlFor="server" className="text-sm font-medium text-gray-200 uppercase">
+                Workspace Location
+              </label>
+              <div className="relative">
+                <Input
+                  id="server"
+                  type="text"
+                  placeholder="workspace-name.avarok.net"
+                  value={serverAddress}
+                  onChange={(e) => setServerAddress(e.target.value)}
+                  className="bg-[#221F26]/70 border-purple-400/20 text-white placeholder:text-gray-400 pr-10"
+                />
+                <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              </div>
+            </div>
 
-          <Button
-            type="submit"
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white transition-colors"
-          >
-            Connect
-          </Button>
-        </form>
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm font-medium text-gray-200 uppercase">
+                Workspace Password (Optional)
+              </label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Enter workspace password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="bg-[#221F26]/70 border-purple-400/20 text-white placeholder:text-gray-400 pr-10"
+                />
+                <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-4 mt-8">
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => navigate("/")}
+                className="text-white hover:bg-purple-500/20"
+              >
+                CANCEL
+              </Button>
+              <Button
+                type="submit"
+                className="bg-purple-600 hover:bg-purple-700 text-white transition-colors"
+              >
+                NEXT
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
