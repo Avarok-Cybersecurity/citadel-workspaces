@@ -47,7 +47,7 @@ const components = {
 
   table: ({ children, ...props }) => (
     <div className="my-6 w-full overflow-y-auto">
-      <Table {...props} className="border border-gray-800">
+      <Table {...props} className="w-full border border-gray-800">
         {children}
       </Table>
     </div>
@@ -55,17 +55,17 @@ const components = {
   thead: TableHeader,
   tbody: TableBody,
   tr: ({ children, ...props }) => (
-    <TableRow {...props} className="hover:bg-gray-800/50">
+    <TableRow {...props} className="hover:bg-[#E5DEFF]/10 transition-colors">
       {children}
     </TableRow>
   ),
   th: ({ children, ...props }) => (
-    <TableHead {...props} className="border-b border-gray-800 bg-gray-900/50 text-white font-medium">
+    <TableHead {...props} className="border-b border-gray-800 bg-gray-900/50 text-white font-medium p-4">
       {children}
     </TableHead>
   ),
   td: ({ children, ...props }) => (
-    <TableCell {...props} className="border-b border-gray-800 text-gray-300">
+    <TableCell {...props} className="border-b border-gray-800 text-gray-300 p-4">
       {children}
     </TableCell>
   ),
@@ -84,11 +84,22 @@ const components = {
       <AlertDescription className="text-gray-300">{children}</AlertDescription>
     </Alert>
   ),
-  Badge: ({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "secondary" | "destructive" | "outline" }) => (
-    <Badge variant={variant} className="mr-2 mb-2">
-      {children}
-    </Badge>
-  ),
+  Badge: ({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "secondary" | "destructive" | "outline" }) => {
+    const getColorClass = (text: string) => {
+      if (text === 'In Progress') return 'text-[#F2FCE2]';
+      if (text === 'High Priority') return 'text-[#ea384c]';
+      return '';
+    };
+
+    return (
+      <Badge 
+        variant={variant} 
+        className={`mr-2 mb-2 ${getColorClass(children?.toString() || '')}`}
+      >
+        {children}
+      </Badge>
+    );
+  },
   Schedule: Schedule
 };
 
