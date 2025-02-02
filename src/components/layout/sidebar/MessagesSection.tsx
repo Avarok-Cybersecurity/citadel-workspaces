@@ -10,8 +10,24 @@ import {
 } from "@/components/ui/sidebar";
 
 export const messageChannels = [
-  { id: "project-updates", name: "Project Updates", icon: Hash, avatar: "/placeholder.svg" },
-  { id: "general-discussion", name: "General Discussion", icon: MessageSquare, avatar: "/placeholder.svg" },
+  { 
+    id: "team-chat", 
+    name: "Kathy McCooper", 
+    icon: MessageSquare, 
+    avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
+  },
+  { 
+    id: "project-updates", 
+    name: "Project Updates", 
+    icon: Hash, 
+    avatar: "/placeholder.svg" 
+  },
+  { 
+    id: "general-discussion", 
+    name: "General Discussion", 
+    icon: MessageSquare, 
+    avatar: "/placeholder.svg" 
+  },
 ];
 
 export const MessagesSection = () => {
