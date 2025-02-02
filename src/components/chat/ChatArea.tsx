@@ -1,5 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Bell, Search, Shield, Send, MoreVertical, Upload, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Message {
@@ -78,16 +81,37 @@ export const ChatArea = ({ recipientId }: ChatAreaProps) => {
 
   return (
     <div className="flex flex-col h-full bg-[#444A6C]">
-      <div className="flex items-center px-4 py-2 border-b border-gray-800 bg-[#343A5C]">
-        <Avatar className="h-10 w-10 mr-3">
-          <AvatarImage src={firstMessage.sender.avatar} />
-          <AvatarFallback>{firstMessage.sender.name[0]}</AvatarFallback>
-        </Avatar>
-        <h1 className="text-xl font-semibold text-white">
-          {firstMessage.sender.name}
-        </h1>
+      {/* Top Bar */}
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-800 bg-[#343A5C]">
+        <div className="flex items-center space-x-3">
+          <Avatar className="h-10 w-10">
+            <AvatarImage src={firstMessage.sender.avatar} />
+            <AvatarFallback>{firstMessage.sender.name[0]}</AvatarFallback>
+          </Avatar>
+          <div className="flex items-center space-x-2">
+            <h1 className="text-xl font-semibold text-white">
+              {firstMessage.sender.name}
+            </h1>
+            <ChevronDown className="h-4 w-4 text-gray-400" />
+          </div>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
+            <Search className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
+            <Bell className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
+            <Shield className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
+            <MoreVertical className="h-5 w-5" />
+          </Button>
+        </div>
       </div>
       
+      {/* Messages Area */}
       <ScrollArea className="flex-1 p-4">
         <div className="space-y-4">
           {messages.map((message) => (
@@ -113,6 +137,24 @@ export const ChatArea = ({ recipientId }: ChatAreaProps) => {
           ))}
         </div>
       </ScrollArea>
+
+      {/* Input Area */}
+      <div className="p-4 border-t border-gray-800 bg-[#343A5C]">
+        <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1">
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-700">
+              <Upload className="h-5 w-5" />
+            </Button>
+          </div>
+          <Input 
+            placeholder="Message Kathy McCooper"
+            className="flex-1 bg-[#444A6C] border-gray-700 text-white placeholder:text-gray-400"
+          />
+          <Button size="icon" className="bg-purple-500 hover:bg-purple-600">
+            <Send className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
