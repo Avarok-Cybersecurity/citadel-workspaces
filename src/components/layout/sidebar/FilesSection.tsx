@@ -87,10 +87,10 @@ export const FilesSection = () => {
 
   return (
     <>
-      <SidebarGroup>
+      <SidebarGroup className="flex-shrink-0 min-h-[4rem]">
         <SidebarGroupLabel className="text-[#9b87f5] font-semibold">FILES</SidebarGroupLabel>
         <SidebarGroupContent>
-          <ScrollArea className="h-[200px]">
+          <ScrollArea className="max-h-[30vh]">
             <SidebarMenu>
               {files.map((file) => (
                 <SidebarMenuItem key={file.id}>

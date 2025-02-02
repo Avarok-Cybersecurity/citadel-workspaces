@@ -41,10 +41,10 @@ export const MessagesSection = () => {
   };
 
   return (
-    <SidebarGroup>
+    <SidebarGroup className="flex-shrink-0 min-h-[4rem] mb-4">
       <SidebarGroupLabel className="text-[#9b87f5] font-semibold">MESSAGES</SidebarGroupLabel>
       <SidebarGroupContent>
-        <ScrollArea className="h-[200px]">
+        <ScrollArea className="max-h-[30vh]">
           <SidebarMenu>
             {messageChannels.map((channel) => (
               <SidebarMenuItem 

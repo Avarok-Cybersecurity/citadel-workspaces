@@ -49,10 +49,10 @@ export const RoomsSection = () => {
   const shouldAnimate = isOfficeRoute && prevSection && prevSection !== currentSection;
 
   return (
-    <SidebarGroup>
+    <SidebarGroup className="flex-shrink-0 min-h-[4rem] mb-4">
       <SidebarGroupLabel className="text-[#9b87f5] font-semibold">ROOMS</SidebarGroupLabel>
       <SidebarGroupContent>
-        <ScrollArea className="h-[200px]">
+        <ScrollArea className="max-h-[30vh]">
           <SidebarMenu>
             <div className={shouldAnimate ? "animate-fade-in animate-slide-in" : ""}>
               {rooms.map((room, index) => (
