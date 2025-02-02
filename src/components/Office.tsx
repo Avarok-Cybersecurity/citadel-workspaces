@@ -7,6 +7,14 @@ import * as runtime from 'react/jsx-runtime';
 import { evaluate } from '@mdx-js/mdx';
 import { AppLayout } from "./layout/AppLayout";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const components = {
   h1: ({ children }) => (
@@ -32,6 +40,22 @@ const components = {
   img: ({ src, alt }) => (
     <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-lg my-4" />
   ),
+  table: ({ children }) => (
+    <Table className="my-4">{children}</Table>
+  ),
+  thead: ({ children }) => (
+    <TableHeader>{children}</TableHeader>
+  ),
+  tbody: ({ children }) => (
+    <TableBody>{children}</TableBody>
+  ),
+  th: ({ children }) => (
+    <TableHead className="text-white">{children}</TableHead>
+  ),
+  td: ({ children }) => (
+    <TableCell className="text-gray-300">{children}</TableCell>
+  ),
+  tr: TableRow,
 };
 
 export const Office = () => {
@@ -41,6 +65,25 @@ export const Office = () => {
 ## Interactive Documentation Example
 
 This is a demonstration of what MDX can do in our office space. Let's explore some features:
+
+### MDX-Specific Features
+
+{/* This is an MDX comment - it won't show in the output */}
+
+{/* Using a React component inline */}
+<Button 
+  onClick={() => alert('MDX is awesome!')}
+  className="my-4"
+>
+  Click me - I'm a React component!
+</Button>
+
+{/* Using variables and expressions */}
+export const teamName = 'Awesome Team';
+export const currentTime = new Date().toLocaleTimeString();
+
+Your team: **{teamName}**
+Current time: *{currentTime}*
 
 ### Rich Text Formatting
 
@@ -83,11 +126,11 @@ Here's our team celebrating last quarter's success:
 
 ### Tables
 
-| Time | Monday | Tuesday | Wednesday |
-|------|---------|----------|------------|
-| 9:00 | Standup | Planning | Review |
-| 11:00 | Dev | Dev | Testing |
-| 14:00 | Review | Testing | Deploy |
+| Time  | Monday  | Tuesday | Wednesday |
+|-------|---------|----------|-----------|
+| 9:00  | Standup | Planning | Review    |
+| 11:00 | Dev     | Dev      | Testing   |
+| 14:00 | Review  | Testing  | Deploy    |
 
 ### Final Notes
 
