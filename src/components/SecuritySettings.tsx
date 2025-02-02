@@ -90,7 +90,7 @@ export const SecuritySettings = () => {
             </Button>
             <Button
               type="button"
-              onClick={() => navigate("/office")}
+              onClick={() => navigate("/join")}
               className="bg-purple-600 hover:bg-purple-700 text-white transition-colors"
             >
               NEXT
