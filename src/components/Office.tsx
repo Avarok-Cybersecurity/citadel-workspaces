@@ -67,13 +67,13 @@ const components = {
       <CardContent className="text-gray-300">{children}</CardContent>
     </Card>
   ),
-  Alert: ({ title, children, variant = "default" }) => (
+  Alert: ({ title, children, variant = "default" }: { title: string; children: React.ReactNode; variant?: "default" | "destructive" }) => (
     <Alert variant={variant} className="mb-6 bg-[#343A5C] border-purple-800">
       <AlertTitle className="text-white">{title}</AlertTitle>
       <AlertDescription className="text-gray-300">{children}</AlertDescription>
     </Alert>
   ),
-  Badge: ({ children, variant = "default" }) => (
+  Badge: ({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "secondary" | "destructive" | "outline" }) => (
     <Badge variant={variant} className="mr-2 mb-2">
       {children}
     </Badge>
