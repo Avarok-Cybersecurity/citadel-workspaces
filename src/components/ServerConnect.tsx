@@ -4,12 +4,32 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Shield, HelpCircle } from "lucide-react";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 export const ServerConnect = () => {
-  const [serverAddress, setServerAddress] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  // Use React Query to persist form state
+  const { data: formData } = useQuery({
+    queryKey: ['serverConnectForm'],
+    queryFn: () => ({ serverAddress: '', password: '' }),
+    initialData: { serverAddress: '', password: '' }
+  });
+
+  const [serverAddress, setServerAddress] = useState(formData.serverAddress);
+  const [password, setPassword] = useState(formData.password);
+
+  // Mutation to update form state in cache
+  const { mutate: updateFormCache } = useMutation({
+    mutationFn: (newData: { serverAddress: string; password: string }) => {
+      console.log('Updating form cache:', newData);
+      return Promise.resolve(newData);
+    },
+    onSuccess: (newData) => {
+      queryClient.setQueryData(['serverConnectForm'], newData);
+    },
+  });
 
   const handleConnect = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +42,8 @@ export const ServerConnect = () => {
       return;
     }
     
-    // Navigate to security settings instead of office
+    // Update cache before navigation
+    updateFormCache({ serverAddress, password });
     navigate("/security-settings");
   };
 

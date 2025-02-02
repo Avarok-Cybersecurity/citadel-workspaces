@@ -2,9 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Shield, HelpCircle, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 export const SecuritySettings = () => {
   const navigate = useNavigate();
+
+  // Access the stored form data when navigating back
+  const { data: formData } = useQuery({
+    queryKey: ['serverConnectForm'],
+    queryFn: () => ({ serverAddress: '', password: '' }),
+    initialData: { serverAddress: '', password: '' }
+  });
+
+  console.log('Retrieved form data in SecuritySettings:', formData);
 
   return (
     <div className="min-h-screen flex items-center justify-center relative">
