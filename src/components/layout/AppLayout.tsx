@@ -31,7 +31,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           </SidebarContent>
         </Sidebar>
 
-        <div className="flex-1 pt-14 pl-[var(--sidebar-width)] p-0">
+        <div className="flex-1 pt-14 pl-0">
           {children}
         </div>
       </div>
