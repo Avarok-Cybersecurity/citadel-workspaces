@@ -58,10 +58,9 @@ export const Office = () => {
       try {
         const result = await evaluate(content, {
           ...runtime,
-          useDynamicImport: true,
           useMDXComponents: () => components
         });
-        setCompiledContent(result.default());
+        setCompiledContent(result.default({ components }));
       } catch (error) {
         console.error('Error compiling MDX:', error);
       }
