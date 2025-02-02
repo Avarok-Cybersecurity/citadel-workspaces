@@ -7,6 +7,14 @@ import * as runtime from 'react/jsx-runtime';
 import { evaluate } from '@mdx-js/mdx';
 import { AppLayout } from "./layout/AppLayout";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const components = {
   h1: ({ children }) => (
@@ -31,6 +39,26 @@ const components = {
   ),
   img: ({ src, alt }) => (
     <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-lg my-4" />
+  ),
+  table: ({ children, ...props }) => (
+    <div className="my-6 w-full overflow-y-auto">
+      <Table {...props}>{children}</Table>
+    </div>
+  ),
+  thead: ({ children, ...props }) => (
+    <TableHeader {...props}>{children}</TableHeader>
+  ),
+  tbody: ({ children, ...props }) => (
+    <TableBody {...props}>{children}</TableBody>
+  ),
+  tr: ({ children, ...props }) => (
+    <TableRow {...props}>{children}</TableRow>
+  ),
+  th: ({ children, ...props }) => (
+    <TableHead {...props} className="text-white">{children}</TableHead>
+  ),
+  td: ({ children, ...props }) => (
+    <TableCell {...props} className="text-gray-300">{children}</TableCell>
   ),
 };
 
