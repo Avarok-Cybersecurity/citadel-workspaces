@@ -10,20 +10,6 @@ export const HROffice = () => {
   const [content, setContent] = useState(`
 # Human Resources Department 👥
 
-## Quick Access
-
-<Card title="Quick Search" description="Search Google directly">
-<div style={{ height: '400px', overflow: 'hidden' }}>
-  <iframe
-    src="https://www.google.com/search?igu=1"
-    width="100%"
-    height="400px"
-    style={{ border: 'none' }}
-    loading="lazy"
-  ></iframe>
-</div>
-</Card>
-
 ## Important Announcements
 
 <Alert title="Upcoming Events">
@@ -48,6 +34,20 @@ Annual performance reviews starting next week - Schedule your meeting with your 
   { course: 'DEI Workshop', date: 'Wednesday', time: '2:00 PM', location: 'Main Hall' },
   { course: 'Tech Skills', date: 'Friday', time: '11:00 AM', location: 'Room 205' }
 ]} />
+
+## Quick Search
+
+<Card title="Quick Search" description="Search Google directly">
+<div style={{ height: '400px', overflow: 'hidden' }}>
+  <iframe
+    src="https://www.google.com/search?igu=1"
+    width="100%"
+    height="400px"
+    style={{ border: 'none' }}
+    loading="lazy"
+  ></iframe>
+</div>
+</Card>
   `);
 
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);

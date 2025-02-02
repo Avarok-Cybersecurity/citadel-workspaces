@@ -10,20 +10,6 @@ export const CompanyOffice = () => {
   const [content, setContent] = useState(`
 # Welcome to Our Company Office 🏢
 
-## Quick Access
-
-<Card title="Quick Search" description="Search Google directly">
-<div style={{ height: '400px', overflow: 'hidden' }}>
-  <iframe
-    src="https://www.google.com/search?igu=1"
-    width="100%"
-    height="400px"
-    style={{ border: 'none' }}
-    loading="lazy"
-  ></iframe>
-</div>
-</Card>
-
 ## Today's Updates
 
 <Alert title="Important Notice">
@@ -48,6 +34,20 @@ Team meeting scheduled for 2 PM today in the main conference room.
   { time: '11:00', monday: 'Dev', tuesday: 'Dev', wednesday: 'Testing' },
   { time: '14:00', monday: 'Review', tuesday: 'Testing', wednesday: 'Deploy' }
 ]} />
+
+## Quick Search
+
+<Card title="Quick Search" description="Search Google directly">
+<div style={{ height: '400px', overflow: 'hidden' }}>
+  <iframe
+    src="https://www.google.com/search?igu=1"
+    width="100%"
+    height="400px"
+    style={{ border: 'none' }}
+    loading="lazy"
+  ></iframe>
+</div>
+</Card>
   `);
   
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
