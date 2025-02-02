@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ServerConnect } from "@/components/ServerConnect";
 import { SecuritySettings } from "@/components/SecuritySettings";
 import { Office } from "@/components/Office";
+import { Join } from "@/components/Join";
 import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
 import Messages from "./pages/Messages";
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/" element={<Landing />} />
           <Route path="/connect" element={<ServerConnect />} />
           <Route path="/security-settings" element={<SecuritySettings />} />
+          <Route path="/join" element={<Join />} />
           <Route path="/office" element={<Office />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="*" element={<NotFound />} />
