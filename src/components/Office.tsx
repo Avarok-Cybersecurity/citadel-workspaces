@@ -209,6 +209,7 @@ const fetchData = async () => {
     toast({
       title: "Changes saved",
       description: "The office page has been updated",
+      className: "bg-[#343A5C] border-purple-800 text-purple-200",
     });
   };
 
