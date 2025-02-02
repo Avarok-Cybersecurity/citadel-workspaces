@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Shield, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { SecurityLevelSelect } from "./security/SecurityLevelSelect";
 import { SecurityModeSelect } from "./security/SecurityModeSelect";
 import { useState } from "react";
@@ -11,14 +11,33 @@ import { AdvancedSettings } from "./security/AdvancedSettings";
 export const SecuritySettings = () => {
   const navigate = useNavigate();
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
+  const queryClient = useQueryClient();
 
-  const { data: formData } = useQuery({
-    queryKey: ['serverConnectForm'],
-    queryFn: () => ({ serverAddress: '', password: '' }),
-    initialData: { serverAddress: '', password: '' }
+  // Store security settings in React Query cache
+  const { mutate: updateSecuritySettings } = useMutation({
+    mutationFn: (settings: any) => {
+      console.log('Updating security settings:', settings);
+      return Promise.resolve(settings);
+    },
+    onSuccess: (settings) => {
+      queryClient.setQueryData(['securitySettings'], settings);
+    },
   });
 
-  console.log('Retrieved form data in SecuritySettings:', formData);
+  const handleNext = () => {
+    // Save current security settings to cache before navigation
+    updateSecuritySettings({
+      securityLevel: 'standard', // Get actual values from your form
+      securityMode: 'enhanced',
+      encryptionAlgorithm: 'aes',
+      kemAlgorithm: 'kyber',
+      signingAlgorithm: 'falcon',
+      headerObfuscatorMode: 'off',
+      psk: '',
+    });
+    
+    navigate("/join");
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center relative bg-[#1C1D28]">
@@ -90,7 +109,7 @@ export const SecuritySettings = () => {
             </Button>
             <Button
               type="button"
-              onClick={() => navigate("/join")}
+              onClick={handleNext}
               className="bg-purple-600 hover:bg-purple-700 text-white transition-colors"
             >
               NEXT

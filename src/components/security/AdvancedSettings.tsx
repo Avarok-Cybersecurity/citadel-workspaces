@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { HelpCircle } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const AdvancedSettings = () => {
   const [showPSKDialog, setShowPSKDialog] = useState(false);
@@ -27,13 +28,22 @@ export const AdvancedSettings = () => {
             <SelectTrigger className="w-full bg-[#221F26]/70 border-purple-400/20 text-white">
               <SelectValue placeholder="Select encryption algorithm" />
             </SelectTrigger>
-            <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl">
-              <SelectItem value="aes" className="hover:bg-purple-500/20 focus:bg-purple-500/20">AES 256 GCM</SelectItem>
-              <SelectItem value="chacha" className="hover:bg-purple-500/20 focus:bg-purple-500/20">ChaCha20Poly1305</SelectItem>
-              <SelectItem value="hybrid" className="hover:bg-purple-500/20 focus:bg-purple-500/20">Hybrid Kyber/AES 256 GCM</SelectItem>
+            <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl p-2">
+              <SelectItem value="aes" className="hover:bg-purple-500/20 focus:bg-purple-500/20 rounded-sm p-2">AES 256 GCM</SelectItem>
+              <SelectItem value="chacha" className="hover:bg-purple-500/20 focus:bg-purple-500/20 rounded-sm p-2">ChaCha20Poly1305</SelectItem>
+              <SelectItem value="hybrid" className="hover:bg-purple-500/20 focus:bg-purple-500/20 rounded-sm p-2">Hybrid Kyber/AES 256 GCM</SelectItem>
             </SelectContent>
           </Select>
-          <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                <p>Choose the encryption algorithm for your workspace</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </div>
 
@@ -47,11 +57,20 @@ export const AdvancedSettings = () => {
             <SelectTrigger className="w-full bg-[#221F26]/70 border-purple-400/20 text-white">
               <SelectValue placeholder="Select KEM algorithm" />
             </SelectTrigger>
-            <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl">
-              <SelectItem value="kyber" className="hover:bg-purple-500/20 focus:bg-purple-500/20">Kyber</SelectItem>
+            <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl p-2">
+              <SelectItem value="kyber" className="hover:bg-purple-500/20 focus:bg-purple-500/20 rounded-sm p-2">Kyber</SelectItem>
             </SelectContent>
           </Select>
-          <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                <p>Select the Key Encapsulation Mechanism algorithm</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </div>
 
@@ -65,11 +84,20 @@ export const AdvancedSettings = () => {
             <SelectTrigger className="w-full bg-[#221F26]/70 border-purple-400/20 text-white">
               <SelectValue placeholder="Select signing algorithm" />
             </SelectTrigger>
-            <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl">
-              <SelectItem value="falcon" className="hover:bg-purple-500/20 focus:bg-purple-500/20">Falcon1024</SelectItem>
+            <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl p-2">
+              <SelectItem value="falcon" className="hover:bg-purple-500/20 focus:bg-purple-500/20 rounded-sm p-2">Falcon1024</SelectItem>
             </SelectContent>
           </Select>
-          <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                <p>Choose the digital signature algorithm</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </div>
 
@@ -83,13 +111,22 @@ export const AdvancedSettings = () => {
             <SelectTrigger className="w-full bg-[#221F26]/70 border-purple-400/20 text-white">
               <SelectValue placeholder="Select header obfuscator mode" />
             </SelectTrigger>
-            <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl">
-              <SelectItem value="off" className="hover:bg-purple-500/20 focus:bg-purple-500/20">Off</SelectItem>
-              <SelectItem value="on" className="hover:bg-purple-500/20 focus:bg-purple-500/20">On</SelectItem>
-              <SelectItem value="psk" className="hover:bg-purple-500/20 focus:bg-purple-500/20">PSK</SelectItem>
+            <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl p-2">
+              <SelectItem value="off" className="hover:bg-purple-500/20 focus:bg-purple-500/20 rounded-sm p-2">Off</SelectItem>
+              <SelectItem value="on" className="hover:bg-purple-500/20 focus:bg-purple-500/20 rounded-sm p-2">On</SelectItem>
+              <SelectItem value="psk" className="hover:bg-purple-500/20 focus:bg-purple-500/20 rounded-sm p-2">PSK</SelectItem>
             </SelectContent>
           </Select>
-          <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                <p>Configure header obfuscation settings</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </div>
 

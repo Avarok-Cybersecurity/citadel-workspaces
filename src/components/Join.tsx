@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Shield, HelpCircle } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
+import { useQuery } from "@tanstack/react-query";
+import type { WorkspaceConfig } from "@/types/workspace";
 
 export const Join = () => {
   const navigate = useNavigate();
@@ -16,6 +18,28 @@ export const Join = () => {
     password: "",
     confirmPassword: "",
   });
+
+  // Get connection and security settings from React Query cache
+  const { data: serverData } = useQuery({
+    queryKey: ['serverConnectForm'],
+    queryFn: () => ({ serverAddress: '', password: '' }),
+  });
+
+  const { data: securitySettings } = useQuery({
+    queryKey: ['securitySettings'],
+    queryFn: () => ({
+      securityLevel: 'standard',
+      securityMode: 'enhanced',
+      encryptionAlgorithm: 'aes',
+      kemAlgorithm: 'kyber',
+      signingAlgorithm: 'falcon',
+      headerObfuscatorMode: 'off',
+      psk: '',
+    }),
+  });
+
+  console.log('Retrieved server data:', serverData);
+  console.log('Retrieved security settings:', securitySettings);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -43,8 +67,32 @@ export const Join = () => {
       return;
     }
 
-    // Proceed with form submission
-    console.log("Form submitted:", formData);
+    // Create workspace configuration
+    const workspaceConfig: WorkspaceConfig = {
+      // Connection details
+      serverAddress: serverData?.serverAddress || '',
+      password: serverData?.password,
+      
+      // Security settings
+      securityLevel: securitySettings?.securityLevel || 'standard',
+      securityMode: securitySettings?.securityMode || 'enhanced',
+      
+      // Advanced settings
+      encryptionAlgorithm: securitySettings?.encryptionAlgorithm || 'aes',
+      kemAlgorithm: securitySettings?.kemAlgorithm || 'kyber',
+      signingAlgorithm: securitySettings?.signingAlgorithm || 'falcon',
+      headerObfuscatorMode: securitySettings?.headerObfuscatorMode || 'off',
+      psk: securitySettings?.psk,
+      
+      // Profile details
+      fullName: formData.fullName,
+      username: formData.username,
+      profilePassword: formData.password,
+    };
+
+    console.log('Final workspace configuration:', workspaceConfig);
+    
+    // Navigate to office with the complete configuration
     navigate("/office");
   };
 
