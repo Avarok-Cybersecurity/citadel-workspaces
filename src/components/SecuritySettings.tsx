@@ -4,9 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { SecurityLevelSelect } from "./security/SecurityLevelSelect";
 import { SecurityModeSelect } from "./security/SecurityModeSelect";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { AdvancedSettings } from "./security/AdvancedSettings";
 
 export const SecuritySettings = () => {
   const navigate = useNavigate();
+  const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
 
   const { data: formData } = useQuery({
     queryKey: ['serverConnectForm'],
@@ -38,7 +42,7 @@ export const SecuritySettings = () => {
         }}
       />
 
-      {/* Rest of the component */}
+      {/* Content */}
       <div className="w-full max-w-xl p-8 space-y-8 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
         <div className="flex items-center gap-3 mb-8">
           <Shield className="w-8 h-8 text-white" />
@@ -53,10 +57,25 @@ export const SecuritySettings = () => {
             <SecurityModeSelect />
 
             <div className="space-y-2">
-              <button className="flex items-center text-white space-x-2">
+              <button 
+                onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}
+                className="flex items-center text-white space-x-2 w-full transition-colors duration-200 hover:text-purple-300"
+              >
                 <span className="text-lg font-semibold">ADVANCED SETTINGS</span>
-                <ChevronDown className="w-5 h-5" />
+                <ChevronDown 
+                  className={cn(
+                    "w-5 h-5 transition-transform duration-300",
+                    isAdvancedOpen && "rotate-180"
+                  )} 
+                />
               </button>
+              
+              <div className={cn(
+                "overflow-hidden transition-all duration-300 ease-out",
+                isAdvancedOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+              )}>
+                <AdvancedSettings />
+              </div>
             </div>
           </div>
 
