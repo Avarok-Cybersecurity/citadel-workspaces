@@ -40,22 +40,23 @@ export const RoomsSection = () => {
   };
 
   const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];
+  const isOfficeRoute = location.pathname === "/office";
 
   return (
     <SidebarGroup>
       <SidebarGroupLabel>ROOMS</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          <div className="animate-fade-in animate-slide-in">
+          <div className={isOfficeRoute ? "animate-fade-in animate-slide-in" : ""}>
             {rooms.map((room, index) => (
               <SidebarMenuItem 
                 key={room.id}
                 className="transition-all duration-200"
-                style={{ 
+                style={isOfficeRoute ? { 
                   animationDelay: `${index * 50}ms`,
                   opacity: 0,
                   animation: `fade-in 0.3s ease-out ${index * 50}ms forwards, slide-in 0.3s ease-out ${index * 50}ms forwards`
-                }}
+                } : undefined}
               >
                 <SidebarMenuButton 
                   className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
