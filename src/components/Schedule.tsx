@@ -23,11 +23,11 @@ const Schedule = ({ data }: ScheduleProps) => {
     <div className="my-6 w-full overflow-y-auto">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead className="text-white">Time</TableHead>
-            <TableHead className="text-white">Monday</TableHead>
-            <TableHead className="text-white">Tuesday</TableHead>
-            <TableHead className="text-white">Wednesday</TableHead>
+          <TableRow className="border-b border-gray-800">
+            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Time</TableHead>
+            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Monday</TableHead>
+            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Tuesday</TableHead>
+            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Wednesday</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
