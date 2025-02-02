@@ -22,7 +22,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
       <div className="min-h-screen flex w-full bg-[#444A6C] text-white">
         <TopBar currentWorkspace={currentWorkspace} />
 
-        <Sidebar className="pt-14 bg-[#262C4A]">
+        <Sidebar className="pt-14 bg-[#262C4A] transition-transform duration-300 ease-in-out">
           <SidebarContent>
             <OfficesSection />
             <RoomsSection />
@@ -31,7 +31,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           </SidebarContent>
         </Sidebar>
 
-        <div className="flex-1 pt-14 pl-0">
+        <div className="flex-1 pt-14 pl-0 overflow-x-hidden">
           {children}
         </div>
       </div>
