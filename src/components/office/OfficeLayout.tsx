@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { officeRooms } from "../layout/sidebar/RoomsSection";
 
 interface OfficeLayoutProps {
   title: string;
@@ -28,7 +29,11 @@ export const OfficeLayout = ({
   const currentSection = new URLSearchParams(location.search).get("section") || "company";
   const currentRoom = new URLSearchParams(location.search).get("room");
   const officeName = officeNames[currentSection as keyof typeof officeNames];
-  const roomName = currentRoom ? ` → ${currentRoom}` : "";
+  
+  // Find the current room's full name from the officeRooms configuration
+  const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];
+  const currentRoomData = rooms.find(room => room.id === currentRoom);
+  const roomName = currentRoomData ? ` → ${currentRoomData.name}` : "";
 
   const handleOfficeClick = () => {
     const params = new URLSearchParams(location.search);
