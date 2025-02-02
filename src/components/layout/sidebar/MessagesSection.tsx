@@ -28,10 +28,20 @@ export const messageChannels = [
   }
 ];
 
-export const MessagesSection = () => {
+interface MessagesSectionProps {
+  isActive: boolean;
+  onActivate: () => void;
+}
+
+export const MessagesSection = ({ isActive, onActivate }: MessagesSectionProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const currentChannel = new URLSearchParams(location.search).get("channel");
+
+  const handleChannelClick = (channelId: string) => {
+    onActivate();
+    navigate(`/messages?channel=${channelId}`);
+  };
 
   return (
     <SidebarGroup>
@@ -42,8 +52,8 @@ export const MessagesSection = () => {
             <SidebarMenuItem key={channel.id}>
               <SidebarMenuButton
                 className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-                isActive={currentChannel === channel.id}
-                onClick={() => navigate(`/messages?channel=${channel.id}`)}
+                isActive={isActive && currentChannel === channel.id}
+                onClick={() => handleChannelClick(channel.id)}
               >
                 <Avatar className="h-4 w-4">
                   <AvatarImage src={channel.avatar} />

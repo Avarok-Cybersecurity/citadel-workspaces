@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -16,6 +17,13 @@ interface AppLayoutProps {
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
   const [currentWorkspace] = useState("AVAROK CYBERSECURITY");
+  const location = useLocation();
+  const [activeSection, setActiveSection] = useState(() => {
+    // Initialize based on current route
+    if (location.pathname.includes('office')) return 'offices';
+    if (location.pathname.includes('messages')) return 'messages';
+    return 'offices';
+  });
 
   return (
     <SidebarProvider>
@@ -24,10 +32,10 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
 
         <Sidebar className="pt-14 bg-[#262C4A]">
           <SidebarContent>
-            <OfficesSection />
-            <RoomsSection />
-            <MessagesSection />
-            <FilesSection />
+            <OfficesSection isActive={activeSection === 'offices'} onActivate={() => setActiveSection('offices')} />
+            <RoomsSection isActive={activeSection === 'rooms'} onActivate={() => setActiveSection('rooms')} />
+            <MessagesSection isActive={activeSection === 'messages'} onActivate={() => setActiveSection('messages')} />
+            <FilesSection isActive={activeSection === 'files'} onActivate={() => setActiveSection('files')} />
           </SidebarContent>
         </Sidebar>
 

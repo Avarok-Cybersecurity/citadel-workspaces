@@ -1,4 +1,4 @@
-import { FileText, Folder } from "lucide-react";
+import { FileText } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -8,34 +8,25 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 
-export const FilesSection = () => {
+interface FilesSectionProps {
+  isActive: boolean;
+  onActivate: () => void;
+}
+
+export const FilesSection = ({ isActive, onActivate }: FilesSectionProps) => {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>FILES</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+            <SidebarMenuButton
+              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+              isActive={isActive}
+              onClick={onActivate}
+            >
               <FileText className="h-4 w-4" />
-              <span>Q4 Report.pdf</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
-              <FileText className="h-4 w-4" />
-              <span>Project Timeline.xlsx</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
-              <FileText className="h-4 w-4" />
-              <span>Meeting Notes.docx</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
-              <Folder className="h-4 w-4" />
-              <span>File Manager</span>
+              <span>Documents</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

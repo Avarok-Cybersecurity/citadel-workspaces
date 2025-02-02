@@ -1,5 +1,4 @@
-import { Building2, Home } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { DoorOpen } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -9,55 +8,27 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 
-export const officeRooms = {
-  company: [
-    { id: "main", name: "Main Office", icon: Home },
-    { id: "meeting-a", name: "Meeting Room A", icon: Building2 },
-    { id: "meeting-b", name: "Meeting Room B", icon: Building2 },
-  ],
-  marketing: [
-    { id: "creative", name: "Creative Studio", icon: Home },
-    { id: "conference", name: "Conference Room", icon: Building2 },
-    { id: "media", name: "Media Room", icon: Building2 },
-  ],
-  hr: [
-    { id: "training", name: "Training Room", icon: Home },
-    { id: "interview-a", name: "Interview Room A", icon: Building2 },
-    { id: "interview-b", name: "Interview Room B", icon: Building2 },
-  ],
-};
+interface RoomsSectionProps {
+  isActive: boolean;
+  onActivate: () => void;
+}
 
-export const RoomsSection = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const currentSection = new URLSearchParams(location.search).get("section") || "company";
-  const currentRoom = new URLSearchParams(location.search).get("room");
-  
-  const handleRoomClick = (roomId: string) => {
-    const params = new URLSearchParams(location.search);
-    params.set("room", roomId);
-    navigate(`/office?${params.toString()}`);
-  };
-
-  const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];
-
+export const RoomsSection = ({ isActive, onActivate }: RoomsSectionProps) => {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>ROOMS</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {rooms.map((room) => (
-            <SidebarMenuItem key={room.id}>
-              <SidebarMenuButton 
-                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-                onClick={() => handleRoomClick(room.id)}
-                data-active={currentRoom === room.id}
-              >
-                <room.icon className="h-4 w-4" />
-                <span>{room.name}</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+              isActive={isActive}
+              onClick={onActivate}
+            >
+              <DoorOpen className="h-4 w-4" />
+              <span>Meeting Room</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

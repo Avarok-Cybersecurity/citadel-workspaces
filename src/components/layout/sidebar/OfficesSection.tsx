@@ -1,5 +1,4 @@
-import { User } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Building2 } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -8,14 +7,19 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { useNavigate } from "react-router-dom";
 
-export const OfficesSection = () => {
+interface OfficesSectionProps {
+  isActive: boolean;
+  onActivate: () => void;
+}
+
+export const OfficesSection = ({ isActive, onActivate }: OfficesSectionProps) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const currentSection = new URLSearchParams(location.search).get("section") || "company";
 
-  const handleSectionClick = (section: string) => {
-    navigate(`/office?section=${section}`);
+  const handleOfficeClick = (path: string) => {
+    onActivate();
+    navigate(path);
   };
 
   return (
@@ -24,33 +28,13 @@ export const OfficesSection = () => {
       <SidebarGroupContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton 
+            <SidebarMenuButton
               className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-              onClick={() => handleSectionClick("company")}
-              data-active={currentSection === "company"}
+              isActive={isActive}
+              onClick={() => handleOfficeClick('/office')}
             >
-              <User className="h-4 w-4" />
-              <span>Company</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton 
-              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-              onClick={() => handleSectionClick("marketing")}
-              data-active={currentSection === "marketing"}
-            >
-              <User className="h-4 w-4" />
-              <span>PR/Marketing</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton 
-              className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-              onClick={() => handleSectionClick("hr")}
-              data-active={currentSection === "hr"}
-            >
-              <User className="h-4 w-4" />
-              <span>Human Resources</span>
+              <Building2 className="h-4 w-4" />
+              <span>Company Office</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
