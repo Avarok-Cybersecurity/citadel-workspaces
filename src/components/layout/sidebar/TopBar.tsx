@@ -1,4 +1,4 @@
-import { Bell, Menu, Plus, Settings, User } from "lucide-react";
+import { Bell, Menu, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -24,14 +24,7 @@ export const TopBar = ({ currentWorkspace }: TopBarProps) => {
             <Menu className="h-5 w-5" />
           </Button>
         )}
-        <span className="font-semibold truncate hidden md:block">{currentWorkspace}</span>
-        <Button 
-          variant="ghost" 
-          size="icon"
-          className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C]"
-        >
-          <Plus className="h-4 w-4" />
-        </Button>
+        <span className="font-semibold truncate text-white">{currentWorkspace}</span>
       </div>
       <div className="flex items-center space-x-2">
         <Button 
