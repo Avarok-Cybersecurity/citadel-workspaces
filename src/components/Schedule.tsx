@@ -32,7 +32,10 @@ const Schedule = ({ data }: ScheduleProps) => {
         </TableHeader>
         <TableBody>
           {data.map((item, index) => (
-            <TableRow key={index}>
+            <TableRow 
+              key={index}
+              className="hover:bg-[#E5DEFF]/10 transition-colors"
+            >
               <TableCell className="text-gray-300">{item.time}</TableCell>
               <TableCell className="text-gray-300">{item.monday}</TableCell>
               <TableCell className="text-gray-300">{item.tuesday}</TableCell>
