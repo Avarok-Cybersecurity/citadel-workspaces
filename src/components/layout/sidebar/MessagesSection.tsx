@@ -13,19 +13,19 @@ export const messageChannels = [
   { 
     id: "team-chat", 
     name: "Kathy McCooper", 
-    icon: MessageCircle, 
+    icon: MessageCircle,
     avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
   },
   { 
     id: "project-updates", 
     name: "Project Updates", 
-    icon: Hash, 
+    icon: Hash,
     avatar: "/placeholder.svg" 
   },
   { 
     id: "general-discussion", 
     name: "General Discussion", 
-    icon: MessageCircle, 
+    icon: MessageCircle,
     avatar: "/placeholder.svg" 
   },
 ];
