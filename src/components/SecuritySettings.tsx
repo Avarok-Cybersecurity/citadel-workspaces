@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Shield, HelpCircle, ChevronDown } from "lucide-react";
+import { Shield, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { SecurityLevelSelect } from "./security/SecurityLevelSelect";
+import { SecurityModeSelect } from "./security/SecurityModeSelect";
 
 export const SecuritySettings = () => {
   const navigate = useNavigate();
 
-  // Access the stored form data when navigating back
   const { data: formData } = useQuery({
     queryKey: ['serverConnectForm'],
     queryFn: () => ({ serverAddress: '', password: '' }),
@@ -48,42 +48,8 @@ export const SecuritySettings = () => {
           <h2 className="text-xl font-semibold text-white">SESSION SECURITY SETTINGS</h2>
 
           <div className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-200 uppercase">
-                Security Level
-              </label>
-              <div className="relative">
-                <Select defaultValue="standard">
-                  <SelectTrigger className="w-full bg-[#221F26]/70 border-purple-400/20 text-white">
-                    <SelectValue placeholder="Select security level" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl">
-                    <SelectItem value="standard" className="hover:bg-purple-500/20 focus:bg-purple-500/20">Standard</SelectItem>
-                    <SelectItem value="high" className="hover:bg-purple-500/20 focus:bg-purple-500/20">High</SelectItem>
-                    <SelectItem value="maximum" className="hover:bg-purple-500/20 focus:bg-purple-500/20">Maximum</SelectItem>
-                  </SelectContent>
-                </Select>
-                <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-200 uppercase">
-                Security Mode
-              </label>
-              <div className="relative">
-                <Select defaultValue="best-effort">
-                  <SelectTrigger className="w-full bg-[#221F26]/70 border-purple-400/20 text-white">
-                    <SelectValue placeholder="Select security mode" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-[#2A2438] border border-purple-400/30 text-white shadow-xl">
-                    <SelectItem value="best-effort" className="hover:bg-purple-500/20 focus:bg-purple-500/20">Best Effort</SelectItem>
-                    <SelectItem value="strict" className="hover:bg-purple-500/20 focus:bg-purple-500/20">Strict</SelectItem>
-                  </SelectContent>
-                </Select>
-                <HelpCircle className="absolute right-12 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              </div>
-            </div>
+            <SecurityLevelSelect />
+            <SecurityModeSelect />
 
             <div className="space-y-2">
               <button className="flex items-center text-white space-x-2">
