@@ -17,6 +17,8 @@ export const Office = () => {
 - [HR Portal](#)
 - [IT Support](#)
 - [Meeting Rooms](#)
+
+![Sonny and Mariel high fiving.](https://content.codecademy.com/courses/learn-cpp/community-challenge/highfive.gif)
   `);
   const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();
