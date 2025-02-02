@@ -1,4 +1,4 @@
-import { Hash, MessageSquare } from "lucide-react";
+import { Hash, MessageCircle } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   SidebarGroup,
@@ -13,7 +13,7 @@ export const messageChannels = [
   { 
     id: "team-chat", 
     name: "Kathy McCooper", 
-    icon: MessageSquare, 
+    icon: MessageCircle, 
     avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
   },
   { 
@@ -25,7 +25,7 @@ export const messageChannels = [
   { 
     id: "general-discussion", 
     name: "General Discussion", 
-    icon: MessageSquare, 
+    icon: MessageCircle, 
     avatar: "/placeholder.svg" 
   },
 ];
