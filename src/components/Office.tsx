@@ -111,7 +111,7 @@ const components = {
       <Table>
         <TableHeader>
           <TableRow className="border-b border-gray-800">
-            <TableHead className="text-white font-medium p-4 pl-8 bg-[#343A5C]">Metric</TableHead>
+            <TableHead className="text-white font-medium p-4 pl-12 bg-[#343A5C]">Metric</TableHead>
             <TableHead className="text-white font-medium p-4 bg-[#343A5C]">This Week</TableHead>
             <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Last Week</TableHead>
             <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Change</TableHead>
@@ -119,19 +119,19 @@ const components = {
         </TableHeader>
         <TableBody>
           <TableRow className="hover:bg-[#E5DEFF]/10 transition-colors">
-            <TableCell className="text-gray-300 pl-8">Commits</TableCell>
+            <TableCell className="text-gray-300 pl-12">Commits</TableCell>
             <TableCell className="text-gray-300">156</TableCell>
             <TableCell className="text-gray-300">142</TableCell>
             <TableCell className="text-gray-300">+14</TableCell>
           </TableRow>
           <TableRow className="hover:bg-[#E5DEFF]/10 transition-colors">
-            <TableCell className="text-gray-300 pl-8">PRs Merged</TableCell>
+            <TableCell className="text-gray-300 pl-12">PRs Merged</TableCell>
             <TableCell className="text-gray-300">23</TableCell>
             <TableCell className="text-gray-300">18</TableCell>
             <TableCell className="text-gray-300">+5</TableCell>
           </TableRow>
           <TableRow className="hover:bg-[#E5DEFF]/10 transition-colors">
-            <TableCell className="text-gray-300 pl-8">Issues Closed</TableCell>
+            <TableCell className="text-gray-300 pl-12">Issues Closed</TableCell>
             <TableCell className="text-gray-300">34</TableCell>
             <TableCell className="text-gray-300">28</TableCell>
             <TableCell className="text-gray-300">+6</TableCell>
@@ -299,4 +299,3 @@ const fetchData = async () => {
     </AppLayout>
   );
 };
-
