@@ -1,9 +1,35 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import ReactMarkdown from "react-markdown";
+import { MDXProvider } from '@mdx-js/react';
 import { AppLayout } from "./layout/AppLayout";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
+
+const components = {
+  h1: ({ children }) => (
+    <h1 className="text-4xl font-bold mb-4 text-white">{children}</h1>
+  ),
+  h2: ({ children }) => (
+    <h2 className="text-2xl font-semibold mb-3 text-white">{children}</h2>
+  ),
+  p: ({ children }) => (
+    <p className="mb-4 text-gray-300">{children}</p>
+  ),
+  ul: ({ children }) => (
+    <ul className="list-disc list-inside mb-4 text-gray-300">{children}</ul>
+  ),
+  li: ({ children }) => (
+    <li className="mb-2">{children}</li>
+  ),
+  a: ({ href, children }) => (
+    <a href={href} className="text-purple-400 hover:text-purple-300 underline">
+      {children}
+    </a>
+  ),
+  img: ({ src, alt }) => (
+    <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-lg my-4" />
+  ),
+};
 
 export const Office = () => {
   const [content, setContent] = useState(`
@@ -95,32 +121,9 @@ export const Office = () => {
               </div>
             ) : (
               <div className="p-2 prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
-                <ReactMarkdown
-                  components={{
-                    h1: ({ children }) => (
-                      <h1 className="text-4xl font-bold mb-4 text-white">{children}</h1>
-                    ),
-                    h2: ({ children }) => (
-                      <h2 className="text-2xl font-semibold mb-3 text-white">{children}</h2>
-                    ),
-                    p: ({ children }) => (
-                      <p className="mb-4 text-gray-300">{children}</p>
-                    ),
-                    ul: ({ children }) => (
-                      <ul className="list-disc list-inside mb-4 text-gray-300">{children}</ul>
-                    ),
-                    li: ({ children }) => (
-                      <li className="mb-2">{children}</li>
-                    ),
-                    a: ({ href, children }) => (
-                      <a href={href} className="text-purple-400 hover:text-purple-300 underline">
-                        {children}
-                      </a>
-                    ),
-                  }}
-                >
+                <MDXProvider components={components}>
                   {content}
-                </ReactMarkdown>
+                </MDXProvider>
               </div>
             )}
           </div>
