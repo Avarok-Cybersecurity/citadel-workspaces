@@ -13,14 +13,14 @@ import { useSidebar } from "@/components/ui/sidebar";
 export const OfficesSection = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { closeSidebar } = useSidebar();
+  const { setOpenMobile } = useSidebar();
   const currentSection = new URLSearchParams(location.search).get("section") || "company";
 
   const handleSectionClick = (section: string) => {
     navigate(`/office?section=${section}`, {
       state: { prevSection: currentSection }
     });
-    closeSidebar();
+    setOpenMobile(false); // Close mobile sidebar after navigation
   };
 
   return (

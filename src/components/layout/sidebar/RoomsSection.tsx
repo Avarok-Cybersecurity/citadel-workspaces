@@ -31,7 +31,7 @@ export const officeRooms = {
 export const RoomsSection = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { closeSidebar } = useSidebar();
+  const { setOpenMobile } = useSidebar();
   const currentSection = new URLSearchParams(location.search).get("section") || "company";
   const currentRoom = new URLSearchParams(location.search).get("room");
   
@@ -39,7 +39,7 @@ export const RoomsSection = () => {
     const params = new URLSearchParams(location.search);
     params.set("room", roomId);
     navigate(`/office?${params.toString()}`);
-    closeSidebar();
+    setOpenMobile(false); // Close mobile sidebar after navigation
   };
 
   const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];
