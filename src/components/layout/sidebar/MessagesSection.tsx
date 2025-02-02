@@ -7,10 +7,8 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 export const messageChannels = [
   {
@@ -33,17 +31,12 @@ export const messageChannels = [
 export const MessagesSection = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setOpenMobile } = useSidebar();
-  const isMobile = useIsMobile();
   const currentChannel = new URLSearchParams(location.search).get("channel");
 
   const handleMessageClick = (channelId: string) => {
     const params = new URLSearchParams(location.search);
     params.set("channel", channelId);
     navigate(`/messages?${params.toString()}`);
-    if (isMobile) {
-      setOpenMobile(false);
-    }
   };
 
   return (
@@ -57,7 +50,7 @@ export const MessagesSection = () => {
               className="transform transition-transform duration-200 ease-in-out"
             >
               <SidebarMenuButton
-                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-all duration-300 ease-in-out will-change-transform text-white"
+                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-all duration-300 ease-in-out will-change-transform"
                 isActive={currentChannel === channel.id}
                 onClick={() => handleMessageClick(channel.id)}
               >

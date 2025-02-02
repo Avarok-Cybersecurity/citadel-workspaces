@@ -9,7 +9,7 @@ export const Landing = () => {
     <div className="min-h-screen flex items-center relative overflow-hidden bg-[#1C1D28]">
       {/* Background Image */}
       <div 
-        className="absolute inset-0 z-0 bg-cover md:bg-contain bg-center md:bg-right bg-no-repeat opacity-70"
+        className="absolute inset-0 z-0 bg-contain bg-right bg-no-repeat opacity-70 hidden md:block"
         style={{
           backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
         }}
@@ -17,7 +17,7 @@ export const Landing = () => {
       
       {/* Gradient Overlay */}
       <div 
-        className="absolute inset-0 z-0 bg-gradient-to-r from-[#1C1D28] via-[rgba(28,29,40,0.8)] to-[rgba(28,29,40,0.4)]"
+        className="absolute inset-0 z-0 bg-gradient-to-r from-[#1C1D28] via-[rgba(28,29,40,0.8)] to-[rgba(28,29,40,0.4)] hidden md:block"
       />
       
       {/* Content */}

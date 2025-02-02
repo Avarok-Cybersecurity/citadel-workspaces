@@ -21,7 +21,7 @@ export const TopBar = ({ currentWorkspace }: TopBarProps) => {
             className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] md:hidden"
             onClick={toggleSidebar}
           >
-            <Menu className="h-4 w-4" />
+            <Menu className="h-5 w-5" />
           </Button>
         )}
         <span className="font-semibold truncate">{currentWorkspace}</span>
