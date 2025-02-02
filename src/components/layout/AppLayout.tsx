@@ -91,7 +91,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
         </Sidebar>
 
         {/* Main Content */}
-        <div className="flex-1 pt-14 pl-[var(--sidebar-width)]">
+        <div className="flex-1 pt-14 pl-[var(--sidebar-width)] p-0">
           {children}
         </div>
       </div>
