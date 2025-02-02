@@ -16,6 +16,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const components = {
   h1: ({ children }) => (
@@ -46,20 +49,34 @@ const components = {
       <Table {...props}>{children}</Table>
     </div>
   ),
-  thead: ({ children, ...props }) => (
-    <TableHeader {...props}>{children}</TableHeader>
-  ),
-  tbody: ({ children, ...props }) => (
-    <TableBody {...props}>{children}</TableBody>
-  ),
-  tr: ({ children, ...props }) => (
-    <TableRow {...props}>{children}</TableRow>
-  ),
+  thead: TableHeader,
+  tbody: TableBody,
+  tr: TableRow,
   th: ({ children, ...props }) => (
     <TableHead {...props} className="text-white">{children}</TableHead>
   ),
   td: ({ children, ...props }) => (
     <TableCell {...props} className="text-gray-300">{children}</TableCell>
+  ),
+  Card: ({ title, description, children }) => (
+    <Card className="bg-[#343A5C] border-gray-700 mb-6">
+      <CardHeader>
+        <CardTitle className="text-white">{title}</CardTitle>
+        {description && <CardDescription className="text-gray-300">{description}</CardDescription>}
+      </CardHeader>
+      <CardContent className="text-gray-300">{children}</CardContent>
+    </Card>
+  ),
+  Alert: ({ title, children, variant = "default" }) => (
+    <Alert variant={variant} className="mb-6 bg-[#343A5C] border-purple-800">
+      <AlertTitle className="text-white">{title}</AlertTitle>
+      <AlertDescription className="text-gray-300">{children}</AlertDescription>
+    </Alert>
+  ),
+  Badge: ({ children, variant = "default" }) => (
+    <Badge variant={variant} className="mr-2 mb-2">
+      {children}
+    </Badge>
   ),
   Schedule: Schedule
 };
@@ -68,11 +85,24 @@ export const Office = () => {
   const [content, setContent] = useState(`
 # Welcome to Our Office Space 🏢
 
-## Interactive Documentation Example
+## Today's Updates
 
-This is a demonstration of what MDX can do in our office space. Let's explore some features:
+<Alert title="Important Notice">
+Team meeting scheduled for 2 PM today in the main conference room.
+</Alert>
 
-### Schedule Component Example
+## Project Overview
+
+<Card title="Current Sprint" description="Sprint 23 - Week 2">
+- Feature development in progress
+- Code reviews pending
+- QA testing scheduled
+
+<Badge>In Progress</Badge>
+<Badge variant="secondary">High Priority</Badge>
+</Card>
+
+## Team Schedule
 
 <Schedule data={[
   { time: '9:00', monday: 'Standup', tuesday: 'Planning', wednesday: 'Review' },
@@ -80,44 +110,31 @@ This is a demonstration of what MDX can do in our office space. Let's explore so
   { time: '14:00', monday: 'Review', tuesday: 'Testing', wednesday: 'Deploy' }
 ]} />
 
-### Rich Text Formatting
+## Project Statistics
 
-You can write **bold text**, *italic text*, and even ~~strikethrough~~. 
+| Metric | This Week | Last Week | Change |
+| ------ | --------- | --------- | ------ |
+| Commits | 156 | 142 | +14 |
+| PRs Merged | 23 | 18 | +5 |
+| Issues Closed | 34 | 28 | +6 |
 
-### Lists and Tasks
+## Resources & Links
 
-Here's what's on our agenda today:
-- Morning standup at 9:00 AM
-- Project review at 11:00 AM
-- Team lunch at 12:30 PM
-- Sprint planning at 2:00 PM
+<Card title="Quick Links" description="Frequently accessed resources">
+- [Documentation Wiki](#)
+- [Design System](#)
+- [Team Calendar](#)
+</Card>
 
-### Code Examples
-
-You can share code snippets with your team:
+## Code Examples
 
 \`\`\`typescript
-const greetTeam = (name: string) => {
-  console.log(\`Welcome to the team, \${name}!\`);
+// Example of our new API integration
+const fetchData = async () => {
+  const response = await api.get('/endpoint');
+  return response.data;
 };
 \`\`\`
-
-### Links and References
-
-- [Company Wiki](#)
-- [HR Portal](#)
-- [IT Support](#)
-
-### Images and Media
-
-Here's our team celebrating last quarter's success:
-
-![Team Celebration](https://content.codecademy.com/courses/learn-cpp/community-challenge/highfive.gif)
-
-### Quotes and Callouts
-
-> "Innovation distinguishes between a leader and a follower." 
-> - Steve Jobs
   `);
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
   const [isEditing, setIsEditing] = useState(false);
