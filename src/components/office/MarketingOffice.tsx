@@ -5,9 +5,108 @@ import { evaluate } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 import { components } from "./mdxComponents";
 import { OfficeLayout } from "./OfficeLayout";
+import { useLocation } from "react-router-dom";
 
 export const MarketingOffice = () => {
-  const [content, setContent] = useState(`
+  const location = useLocation();
+  const currentRoom = new URLSearchParams(location.search).get("room");
+
+  const getInitialContent = () => {
+    switch(currentRoom) {
+      case "creative":
+        return `
+# Creative Studio - Design Hub 🎨
+
+## Project Status
+
+<Alert title="Active Projects">
+Brand refresh project entering final phase - Review meeting at 2 PM
+</Alert>
+
+## Design Resources
+
+<Card title="Available Tools" description="Creative Suite">
+- Adobe Creative Cloud
+- 3D Rendering Station
+- Photography Equipment
+- Digital Drawing Tablets
+
+<Badge>Professional Tools</Badge>
+<Badge variant="secondary">High-End Equipment</Badge>
+</Card>
+
+## Creative Schedule
+
+<Table data={[
+  { time: '9:00', project: 'Brand Design', team: 'Visual Design' },
+  { time: '11:30', project: 'Video Editing', team: 'Media Team' },
+  { time: '14:00', project: 'Photo Shoot', team: 'Content Team' }
+]} />
+`;
+
+      case "conference":
+        return `
+# Marketing Conference Room 📊
+
+## Today's Agenda
+
+<Alert title="Upcoming Presentation">
+Client presentation for new campaign concept - 11 AM
+</Alert>
+
+## Campaign Analytics
+
+<Card title="Current Performance" description="Q1 Campaign">
+- Social Media Reach: 2.5M
+- Engagement Rate: 4.8%
+- Lead Generation: +35%
+
+<Badge>Exceeding Goals</Badge>
+<Badge variant="secondary">High Impact</Badge>
+</Card>
+
+## Meeting Schedule
+
+<Table data={[
+  { time: '10:00', meeting: 'Campaign Review', client: 'Tech Corp' },
+  { time: '13:00', meeting: 'Strategy Planning', client: 'Internal' },
+  { time: '15:00', meeting: 'Content Calendar', client: 'Fashion Brand' }
+]} />
+`;
+
+      case "media":
+        return `
+# Media Production Room 🎥
+
+## Studio Status
+
+<Alert title="Equipment Notice">
+New 4K cameras available for content creation
+</Alert>
+
+## Production Equipment
+
+<Card title="Available Gear" description="Professional Setup">
+- 4K Video Cameras
+- Lighting Equipment
+- Sound Recording Studio
+- Green Screen Setup
+
+<Badge>Professional Grade</Badge>
+<Badge variant="secondary">Full Studio</Badge>
+</Card>
+
+## Production Schedule
+
+<Table data={[
+  { time: '9:00', project: 'Product Showcase', type: 'Video' },
+  { time: '11:00', project: 'Podcast Recording', type: 'Audio' },
+  { time: '14:00', project: 'Social Media Content', type: 'Mixed Media' }
+]} />
+`;
+
+      default:
+        return `
 # PR & Marketing Department 📢
 
 ## Current Campaigns
@@ -34,22 +133,11 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
   { date: 'Wed', content: 'Product Video', platform: 'YouTube', status: 'Planning' },
   { date: 'Fri', content: 'Newsletter', platform: 'Email', status: 'Scheduled' }
 ]} />
+`;
+    }
+  };
 
-## Quick Search
-
-<Card title="Quick Search" description="Search Google directly">
-<div style={{ height: '400px', overflow: 'hidden' }}>
-  <iframe
-    src="https://www.google.com/search?igu=1"
-    width="100%"
-    height="400px"
-    style={{ border: 'none' }}
-    loading="lazy"
-  ></iframe>
-</div>
-</Card>
-  `);
-
+  const [content, setContent] = useState(getInitialContent());
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();
@@ -62,6 +150,10 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
       className: "bg-[#343A5C] border-purple-800 text-purple-200",
     });
   };
+
+  useEffect(() => {
+    setContent(getInitialContent());
+  }, [currentRoom]);
 
   useEffect(() => {
     const compileContent = async () => {
