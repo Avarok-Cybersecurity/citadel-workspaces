@@ -126,10 +126,10 @@ Team meeting scheduled for 2 PM today in the main conference room.
   { time: '14:00', monday: 'Review', tuesday: 'Testing', wednesday: 'Deploy' }
 ]} />
 
-## Office Layout
+## Office Search
 
 <iframe 
-  src="https://my.spline.design/untitled-b02aeb2e14c92c8f19bd20dc84bc4fa3/" 
+  src="https://www.google.com/search?igu=1" 
   frameborder="0" 
   width="100%" 
   height="400px"
