@@ -45,7 +45,7 @@ Brand refresh project entering final phase - Review meeting at 2 PM
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "conference":
@@ -79,7 +79,7 @@ Client presentation for new campaign concept - 11 AM
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "media":
@@ -114,7 +114,7 @@ New 4K cameras available for content creation
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       default:
@@ -148,7 +148,7 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
     }
   };
@@ -215,3 +215,4 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
     </OfficeLayout>
   );
 };
+

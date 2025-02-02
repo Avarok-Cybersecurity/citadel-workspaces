@@ -45,7 +45,7 @@ Leadership Development Workshop - Starting at 10 AM in the main training room
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "interview-a":
@@ -79,7 +79,7 @@ Senior Developer Position - Candidate arriving at 11 AM
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "interview-b":
@@ -114,7 +114,7 @@ Group assessment for Management Trainee positions
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       default:
@@ -148,7 +148,7 @@ Annual performance reviews starting next week - Schedule your meeting with your 
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
     }
   };
@@ -215,3 +215,4 @@ Annual performance reviews starting next week - Schedule your meeting with your 
     </OfficeLayout>
   );
 };
+

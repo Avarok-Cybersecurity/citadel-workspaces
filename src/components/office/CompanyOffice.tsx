@@ -44,7 +44,7 @@ Board meeting scheduled for 3 PM - Q1 performance review and strategy discussion
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "meeting-a":
@@ -79,7 +79,7 @@ Product Strategy Review - Starting in 30 minutes
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "meeting-b":
@@ -114,7 +114,7 @@ Room configured for workshop-style meetings with breakout areas
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       default:
@@ -148,7 +148,7 @@ Team meeting scheduled for 2 PM today in the main conference room.
 
 ## Search Resources
 
-<iframe src="https://www.google.com/search?igu=1" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
+<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
     }
   };
@@ -215,3 +215,4 @@ Team meeting scheduled for 2 PM today in the main conference room.
     </OfficeLayout>
   );
 };
+
