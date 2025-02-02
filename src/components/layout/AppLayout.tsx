@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bell, Plus, Settings, User } from "lucide-react";
+import { Bell, Building2, Home, MessageSquare, Plus, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sidebar,
@@ -65,13 +65,51 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
         <Sidebar className="pt-14 bg-[#262C4A]">
           <SidebarContent>
             <SidebarGroup>
-              <SidebarGroupLabel>PINNED</SidebarGroupLabel>
+              <SidebarGroupLabel>ROOMS</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton>
-                      <User className="h-4 w-4" />
-                      <span>David Anderson</span>
+                    <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+                      <Home className="h-4 w-4" />
+                      <span>Main Office</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+                      <Building2 className="h-4 w-4" />
+                      <span>Meeting Room A</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+                      <Building2 className="h-4 w-4" />
+                      <span>Meeting Room B</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+
+            <SidebarGroup>
+              <SidebarGroupLabel>MESSAGES</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+                      <MessageSquare className="h-4 w-4" />
+                      <span>Team Chat</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+                      <MessageSquare className="h-4 w-4" />
+                      <span>Project Updates</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+                      <MessageSquare className="h-4 w-4" />
+                      <span>General Discussion</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -83,19 +121,19 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton>
+                    <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
                       <User className="h-4 w-4" />
                       <span>Company</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton>
+                    <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
                       <User className="h-4 w-4" />
                       <span>PR/Marketing</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton>
+                    <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
                       <User className="h-4 w-4" />
                       <span>Human Resources</span>
                     </SidebarMenuButton>
