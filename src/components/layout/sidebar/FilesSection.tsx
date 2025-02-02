@@ -1,4 +1,4 @@
-import { FileText, Folder } from "lucide-react";
+import { FileSpreadsheet, FileText, FilePdf, FileCode, Folder } from "lucide-react";
 import { useState } from "react";
 import {
   SidebarGroup,
@@ -49,6 +49,27 @@ const files = [
   }
 ];
 
+const getFileIcon = (fileName: string) => {
+  const extension = fileName.split('.').pop()?.toLowerCase();
+  
+  switch (extension) {
+    case 'xlsx':
+    case 'xls':
+      return <FileSpreadsheet className="h-4 w-4" />;
+    case 'pdf':
+      return <FilePdf className="h-4 w-4" />;
+    case 'md':
+    case 'mdx':
+    case 'txt':
+    case 'doc':
+    case 'docx':
+    case 'odt':
+      return <FileText className="h-4 w-4" />;
+    default:
+      return <FileCode className="h-4 w-4" />;
+  }
+};
+
 export const FilesSection = () => {
   const [selectedFile, setSelectedFile] = useState<typeof files[0] | null>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -75,7 +96,7 @@ export const FilesSection = () => {
                   className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
                   onClick={() => handleFileClick(file)}
                 >
-                  <FileText className="h-4 w-4" />
+                  {getFileIcon(file.name)}
                   <span>{file.name}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>

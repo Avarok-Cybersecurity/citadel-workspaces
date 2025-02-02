@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Calendar, Download, FileText, User } from "lucide-react";
+import { Calendar, Download, FileSpreadsheet, FileText, FilePdf, FileCode, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatFileSize } from "@/lib/utils";
 
@@ -23,6 +23,76 @@ interface FilePreviewDialogProps {
   onClose: () => void;
 }
 
+const getFileIcon = (fileName: string) => {
+  const extension = fileName.split('.').pop()?.toLowerCase();
+  
+  switch (extension) {
+    case 'xlsx':
+    case 'xls':
+      return <FileSpreadsheet className="h-5 w-5 text-gray-300" />;
+    case 'pdf':
+      return <FilePdf className="h-5 w-5 text-gray-300" />;
+    case 'md':
+    case 'mdx':
+    case 'txt':
+    case 'doc':
+    case 'docx':
+    case 'odt':
+      return <FileText className="h-5 w-5 text-gray-300" />;
+    default:
+      return <FileCode className="h-5 w-5 text-gray-300" />;
+  }
+};
+
+const renderFilePreview = (file: FileDetails) => {
+  const extension = file.name.split('.').pop()?.toLowerCase();
+
+  switch (extension) {
+    case 'pdf':
+      return (
+        <iframe
+          src={`${file.url}#toolbar=0`}
+          className="w-full h-[600px] rounded-lg"
+          title={file.name}
+        />
+      );
+    case 'txt':
+    case 'md':
+    case 'mdx':
+      return (
+        <div className="w-full max-h-[600px] overflow-auto bg-[#343A5C] p-4 rounded-lg">
+          <pre className="text-white whitespace-pre-wrap">{file.url}</pre>
+        </div>
+      );
+    case 'xlsx':
+    case 'xls':
+      return (
+        <iframe
+          src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(file.url)}`}
+          className="w-full h-[600px] rounded-lg"
+          title={file.name}
+        />
+      );
+    case 'doc':
+    case 'docx':
+    case 'odt':
+      return (
+        <iframe
+          src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(file.url)}`}
+          className="w-full h-[600px] rounded-lg"
+          title={file.name}
+        />
+      );
+    default:
+      return (
+        <div className="text-center p-8 bg-[#343A5C] rounded-lg">
+          <FileCode className="mx-auto h-12 w-12 text-gray-300 mb-4" />
+          <p className="text-white">Preview not available for this file type</p>
+        </div>
+      );
+  }
+};
+
 export const FilePreviewDialog = ({ file, isOpen, onClose }: FilePreviewDialogProps) => {
   if (!file) return null;
 
@@ -44,13 +114,13 @@ export const FilePreviewDialog = ({ file, isOpen, onClose }: FilePreviewDialogPr
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-[#444A6C] border-[#262C4A] text-white max-w-md">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-xl font-semibold">
-            <FileText className="h-6 w-6" />
+          <DialogTitle className="flex items-center gap-2 text-base font-medium">
+            {getFileIcon(file.name)}
             FILE PREVIEW
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-6 py-4">
+        <div className="space-y-4 py-2">
           <div className="flex items-center gap-3">
             <User className="h-5 w-5 text-gray-300" />
             <span className="text-sm font-medium">SENT BY:</span>
@@ -65,9 +135,9 @@ export const FilePreviewDialog = ({ file, isOpen, onClose }: FilePreviewDialogPr
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <FileText className="h-5 w-5 text-gray-300" />
+              {getFileIcon(file.name)}
               <span className="text-sm font-medium">FILENAME</span>
               <span className="flex-1 rounded-md bg-[#343A5C] px-4 py-2">
                 {file.name}
@@ -83,7 +153,7 @@ export const FilePreviewDialog = ({ file, isOpen, onClose }: FilePreviewDialogPr
             </div>
 
             <div className="flex items-center gap-3">
-              <FileText className="h-5 w-5 text-gray-300" />
+              {getFileIcon(file.name)}
               <span className="text-sm font-medium">FILE TYPE</span>
               <span className="flex-1 rounded-md bg-[#343A5C] px-4 py-2">
                 {file.type}
@@ -91,7 +161,7 @@ export const FilePreviewDialog = ({ file, isOpen, onClose }: FilePreviewDialogPr
             </div>
 
             <div className="flex items-center gap-3">
-              <FileText className="h-5 w-5 text-gray-300" />
+              {getFileIcon(file.name)}
               <span className="text-sm font-medium">FILE SIZE</span>
               <span className="flex-1 rounded-md bg-[#343A5C] px-4 py-2">
                 {formatFileSize(file.size)}
@@ -99,7 +169,7 @@ export const FilePreviewDialog = ({ file, isOpen, onClose }: FilePreviewDialogPr
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-4">
+          <div className="flex justify-end gap-2">
             <Button
               onClick={handlePreview}
               className="bg-[#E5DEFF] text-[#343A5C] hover:bg-[#E5DEFF]/90"
