@@ -27,7 +27,8 @@ export const OfficeLayout = ({
   const navigate = useNavigate();
   const currentSection = new URLSearchParams(location.search).get("section") || "company";
   const currentRoom = new URLSearchParams(location.search).get("room");
-  const roomName = currentRoom ? ` → ${title}` : "";
+  const officeName = officeNames[currentSection as keyof typeof officeNames];
+  const roomName = currentRoom ? ` → ${currentRoom}` : "";
 
   const handleOfficeClick = () => {
     const params = new URLSearchParams(location.search);
@@ -45,7 +46,7 @@ export const OfficeLayout = ({
                 onClick={handleOfficeClick}
                 className="hover:text-[#E5DEFF] transition-colors"
               >
-                {officeNames[currentSection as keyof typeof officeNames]}
+                {officeName}
               </button>
               <span className="text-[#E5DEFF]">{roomName}</span>
             </h1>
