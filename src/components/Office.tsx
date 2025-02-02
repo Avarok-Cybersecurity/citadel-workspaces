@@ -104,7 +104,42 @@ const components = {
     );
   },
 
-  Schedule: Schedule
+  Schedule: Schedule,
+
+  ProjectStats: () => (
+    <div className="my-6 w-full overflow-y-auto">
+      <Table>
+        <TableHeader>
+          <TableRow className="border-b border-gray-800">
+            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Metric</TableHead>
+            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">This Week</TableHead>
+            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Last Week</TableHead>
+            <TableHead className="text-white font-medium p-4 bg-[#343A5C]">Change</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow className="hover:bg-[#E5DEFF]/10 transition-colors">
+            <TableCell className="text-gray-300">Commits</TableCell>
+            <TableCell className="text-gray-300">156</TableCell>
+            <TableCell className="text-gray-300">142</TableCell>
+            <TableCell className="text-gray-300">+14</TableCell>
+          </TableRow>
+          <TableRow className="hover:bg-[#E5DEFF]/10 transition-colors">
+            <TableCell className="text-gray-300">PRs Merged</TableCell>
+            <TableCell className="text-gray-300">23</TableCell>
+            <TableCell className="text-gray-300">18</TableCell>
+            <TableCell className="text-gray-300">+5</TableCell>
+          </TableRow>
+          <TableRow className="hover:bg-[#E5DEFF]/10 transition-colors">
+            <TableCell className="text-gray-300">Issues Closed</TableCell>
+            <TableCell className="text-gray-300">34</TableCell>
+            <TableCell className="text-gray-300">28</TableCell>
+            <TableCell className="text-gray-300">+6</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
+  )
 };
 
 export const Office = () => {
@@ -138,11 +173,7 @@ Team meeting scheduled for 2 PM today in the main conference room.
 
 ## Project Statistics
 
-| Metric | This Week | Last Week | Change |
-| ------ | --------- | --------- | ------ |
-| Commits | 156 | 142 | +14 |
-| PRs Merged | 23 | 18 | +5 |
-| Issues Closed | 34 | 28 | +6 |
+<ProjectStats />
 
 ## Resources & Links
 
@@ -268,5 +299,3 @@ const fetchData = async () => {
     </AppLayout>
   );
 };
-
-
