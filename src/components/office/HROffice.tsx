@@ -34,6 +34,17 @@ Annual performance reviews starting next week - Schedule your meeting with your 
   { course: 'DEI Workshop', date: 'Wednesday', time: '2:00 PM', location: 'Main Hall' },
   { course: 'Tech Skills', date: 'Friday', time: '11:00 AM', location: 'Room 205' }
 ]} />
+
+## Search Google
+
+<Card title="Quick Search" description="Search Google directly">
+<iframe
+  src="https://www.google.com/search?igu=1"
+  width="100%"
+  height="400px"
+  style={{ border: 'none' }}
+></iframe>
+</Card>
   `);
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
   const [isEditing, setIsEditing] = useState(false);

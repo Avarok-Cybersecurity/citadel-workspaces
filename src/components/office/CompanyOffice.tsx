@@ -34,6 +34,17 @@ Team meeting scheduled for 2 PM today in the main conference room.
   { time: '11:00', monday: 'Dev', tuesday: 'Dev', wednesday: 'Testing' },
   { time: '14:00', monday: 'Review', tuesday: 'Testing', wednesday: 'Deploy' }
 ]} />
+
+## Search Google
+
+<Card title="Quick Search" description="Search Google directly">
+<iframe
+  src="https://www.google.com/search?igu=1"
+  width="100%"
+  height="400px"
+  style={{ border: 'none' }}
+></iframe>
+</Card>
   `);
   const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
   const [isEditing, setIsEditing] = useState(false);
