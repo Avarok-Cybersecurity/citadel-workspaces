@@ -10,10 +10,19 @@ export const Landing = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('/lovable-uploads/da713047-2cd4-4f0e-aa8b-41f2f94bc851.png')",
-          backgroundSize: "cover",
+          backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
+          backgroundSize: "contain",
           backgroundPosition: "right center",
-          opacity: 0.5
+          backgroundRepeat: "no-repeat",
+          opacity: 0.7
+        }}
+      />
+      
+      {/* Gradient Overlay */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: "linear-gradient(90deg, #1a1b26 0%, rgba(26, 27, 38, 0.8) 50%, rgba(26, 27, 38, 0.4) 100%)"
         }}
       />
       
