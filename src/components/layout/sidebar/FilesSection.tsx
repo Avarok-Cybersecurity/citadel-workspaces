@@ -1,5 +1,6 @@
 import { FileSpreadsheet, FileText, FileType, FileCode, Folder } from "lucide-react";
 import { useState } from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -89,25 +90,27 @@ export const FilesSection = () => {
       <SidebarGroup>
         <SidebarGroupLabel className="text-[#9b87f5] font-semibold">FILES</SidebarGroupLabel>
         <SidebarGroupContent>
-          <SidebarMenu>
-            {files.map((file) => (
-              <SidebarMenuItem key={file.id}>
-                <SidebarMenuButton 
-                  className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-                  onClick={() => handleFileClick(file)}
-                >
-                  {getFileIcon(file.name)}
-                  <span>{file.name}</span>
+          <ScrollArea className="h-[200px]">
+            <SidebarMenu>
+              {files.map((file) => (
+                <SidebarMenuItem key={file.id}>
+                  <SidebarMenuButton 
+                    className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+                    onClick={() => handleFileClick(file)}
+                  >
+                    {getFileIcon(file.name)}
+                    <span>{file.name}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+              <SidebarMenuItem>
+                <SidebarMenuButton className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+                  <Folder className="h-4 w-4" />
+                  <span>File Manager</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-            ))}
-            <SidebarMenuItem>
-              <SidebarMenuButton className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
-                <Folder className="h-4 w-4" />
-                <span>File Manager</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
+            </SidebarMenu>
+          </ScrollArea>
         </SidebarGroupContent>
       </SidebarGroup>
 

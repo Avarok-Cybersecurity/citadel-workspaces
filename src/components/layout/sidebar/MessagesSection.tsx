@@ -1,4 +1,5 @@
 import { MessageSquare } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   SidebarGroup,
@@ -43,35 +44,37 @@ export const MessagesSection = () => {
     <SidebarGroup>
       <SidebarGroupLabel className="text-[#9b87f5] font-semibold">MESSAGES</SidebarGroupLabel>
       <SidebarGroupContent>
-        <SidebarMenu>
-          {messageChannels.map((channel) => (
-            <SidebarMenuItem 
-              key={channel.id}
-              className="transform transition-transform duration-200 ease-in-out"
-            >
-              <SidebarMenuButton
-                className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-all duration-300 ease-in-out will-change-transform"
-                isActive={currentChannel === channel.id}
-                onClick={() => handleMessageClick(channel.id)}
+        <ScrollArea className="h-[200px]">
+          <SidebarMenu>
+            {messageChannels.map((channel) => (
+              <SidebarMenuItem 
+                key={channel.id}
+                className="transform transition-transform duration-200 ease-in-out"
               >
-                <Avatar className="h-4 w-4 transition-all duration-300 ease-in-out will-change-auto">
-                  <AvatarImage 
-                    src={channel.avatar} 
-                    className="transition-all duration-300 ease-in-out opacity-100"
-                    loading="eager"
-                  />
-                  <AvatarFallback 
-                    className="transition-all duration-300 ease-in-out bg-transparent"
-                    delayMs={0}
-                  >
-                    <MessageSquare className="h-4 w-4" />
-                  </AvatarFallback>
-                </Avatar>
-                <span>{channel.name}</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
+                <SidebarMenuButton
+                  className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-all duration-300 ease-in-out will-change-transform"
+                  isActive={currentChannel === channel.id}
+                  onClick={() => handleMessageClick(channel.id)}
+                >
+                  <Avatar className="h-4 w-4 transition-all duration-300 ease-in-out will-change-auto">
+                    <AvatarImage 
+                      src={channel.avatar} 
+                      className="transition-all duration-300 ease-in-out opacity-100"
+                      loading="eager"
+                    />
+                    <AvatarFallback 
+                      className="transition-all duration-300 ease-in-out bg-transparent"
+                      delayMs={0}
+                    >
+                      <MessageSquare className="h-4 w-4" />
+                    </AvatarFallback>
+                  </Avatar>
+                  <span>{channel.name}</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </ScrollArea>
       </SidebarGroupContent>
     </SidebarGroup>
   );

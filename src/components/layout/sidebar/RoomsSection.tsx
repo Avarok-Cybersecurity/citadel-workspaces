@@ -1,5 +1,6 @@
 import { Building2, Home } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -51,30 +52,32 @@ export const RoomsSection = () => {
     <SidebarGroup>
       <SidebarGroupLabel className="text-[#9b87f5] font-semibold">ROOMS</SidebarGroupLabel>
       <SidebarGroupContent>
-        <SidebarMenu>
-          <div className={shouldAnimate ? "animate-fade-in animate-slide-in" : ""}>
-            {rooms.map((room, index) => (
-              <SidebarMenuItem 
-                key={room.id}
-                className="transition-all duration-200"
-                style={shouldAnimate ? { 
-                  animationDelay: `${index * 50}ms`,
-                  opacity: 0,
-                  animation: `fade-in 0.3s ease-out ${index * 50}ms forwards, slide-in 0.3s ease-out ${index * 50}ms forwards`
-                } : undefined}
-              >
-                <SidebarMenuButton 
-                  className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-                  onClick={() => handleRoomClick(room.id)}
-                  data-active={currentRoom === room.id}
+        <ScrollArea className="h-[200px]">
+          <SidebarMenu>
+            <div className={shouldAnimate ? "animate-fade-in animate-slide-in" : ""}>
+              {rooms.map((room, index) => (
+                <SidebarMenuItem 
+                  key={room.id}
+                  className="transition-all duration-200"
+                  style={shouldAnimate ? { 
+                    animationDelay: `${index * 50}ms`,
+                    opacity: 0,
+                    animation: `fade-in 0.3s ease-out ${index * 50}ms forwards, slide-in 0.3s ease-out ${index * 50}ms forwards`
+                  } : undefined}
                 >
-                  <room.icon className="h-4 w-4" />
-                  <span>{room.name}</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </div>
-        </SidebarMenu>
+                  <SidebarMenuButton 
+                    className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+                    onClick={() => handleRoomClick(room.id)}
+                    data-active={currentRoom === room.id}
+                  >
+                    <room.icon className="h-4 w-4" />
+                    <span>{room.name}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </div>
+          </SidebarMenu>
+        </ScrollArea>
       </SidebarGroupContent>
     </SidebarGroup>
   );
