@@ -1,4 +1,5 @@
 import { MessageSquare } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -7,31 +8,53 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { useLocation, useNavigate } from "react-router-dom";
+
+export const messageChannels = [
+  {
+    id: "team-chat",
+    name: "Team Chat",
+    avatar: "/lovable-uploads/5dd08330-702f-4b97-9a17-5db0044a3fdf.png"
+  },
+  {
+    id: "project-updates",
+    name: "Project Updates",
+    avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+  },
+  {
+    id: "general-discussion",
+    name: "General Discussion",
+    avatar: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1"
+  }
+];
 
 export const MessagesSection = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentChannel = new URLSearchParams(location.search).get("channel");
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>MESSAGES</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
-              <MessageSquare className="h-4 w-4" />
-              <span>Team Chat</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
-              <MessageSquare className="h-4 w-4" />
-              <span>Project Updates</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
-              <MessageSquare className="h-4 w-4" />
-              <span>General Discussion</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          {messageChannels.map((channel) => (
+            <SidebarMenuItem key={channel.id}>
+              <SidebarMenuButton
+                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+                isActive={currentChannel === channel.id}
+                onClick={() => navigate(`/messages?channel=${channel.id}`)}
+              >
+                <Avatar className="h-4 w-4">
+                  <AvatarImage src={channel.avatar} />
+                  <AvatarFallback>
+                    <MessageSquare className="h-4 w-4" />
+                  </AvatarFallback>
+                </Avatar>
+                <span>{channel.name}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

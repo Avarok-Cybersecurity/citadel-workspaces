@@ -8,6 +8,7 @@ import { SecuritySettings } from "@/components/SecuritySettings";
 import { Office } from "@/components/Office";
 import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
+import Messages from "./pages/Messages";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/connect" element={<ServerConnect />} />
           <Route path="/security-settings" element={<SecuritySettings />} />
           <Route path="/office" element={<Office />} />
+          <Route path="/messages" element={<Messages />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

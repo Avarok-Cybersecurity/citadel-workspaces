@@ -1,0 +1,118 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
+
+interface Message {
+  id: string;
+  content: string;
+  timestamp: string;
+  sender: {
+    id: string;
+    name: string;
+    avatar: string;
+  };
+}
+
+interface ChatAreaProps {
+  recipientId: string;
+}
+
+const MOCK_MESSAGES: Record<string, Message[]> = {
+  "team-chat": [
+    {
+      id: "1",
+      content: "Hey Chris, had a question!\n\nAre you around sometime to chat?\n\nI have a couple questions about your recent paper",
+      timestamp: "7:16 PM",
+      sender: {
+        id: "kathy",
+        name: "Kathy McCooper",
+        avatar: "/lovable-uploads/5dd08330-702f-4b97-9a17-5db0044a3fdf.png"
+      }
+    },
+    {
+      id: "2",
+      content: "Hey, Kathy\n\nGive me 5 minutes to get my ducks in order, but sure, we can chat.",
+      timestamp: "7:16 PM",
+      sender: {
+        id: "chris",
+        name: "Chris Thompson",
+        avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952"
+      }
+    },
+    {
+      id: "3",
+      content: "Alright, what were you wondering about?",
+      timestamp: "7:24 PM",
+      sender: {
+        id: "chris",
+        name: "Chris Thompson",
+        avatar: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952"
+      }
+    },
+    {
+      id: "4",
+      content: "Emily had a few questions about the timeline you proposed. She thinks it might be a bit aggressive considering the projects that are already on the table. Have you connected with her yet, by chance?",
+      timestamp: "7:16 PM",
+      sender: {
+        id: "kathy",
+        name: "Kathy McCooper",
+        avatar: "/lovable-uploads/5dd08330-702f-4b97-9a17-5db0044a3fdf.png"
+      }
+    }
+  ],
+  "project-updates": [],
+  "general-discussion": []
+};
+
+export const ChatArea = ({ recipientId }: ChatAreaProps) => {
+  const messages = MOCK_MESSAGES[recipientId] || [];
+  const firstMessage = messages[0];
+
+  if (!firstMessage) {
+    return (
+      <div className="h-full flex items-center justify-center text-muted-foreground">
+        No messages yet
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col h-full bg-[#444A6C]">
+      <div className="flex items-center px-4 py-2 border-b border-gray-800 bg-[#343A5C]">
+        <Avatar className="h-10 w-10 mr-3">
+          <AvatarImage src={firstMessage.sender.avatar} />
+          <AvatarFallback>{firstMessage.sender.name[0]}</AvatarFallback>
+        </Avatar>
+        <h1 className="text-xl font-semibold text-white">
+          {firstMessage.sender.name}
+        </h1>
+      </div>
+      
+      <ScrollArea className="flex-1 p-4">
+        <div className="space-y-4">
+          {messages.map((message) => (
+            <div key={message.id} className="flex items-start space-x-3">
+              <Avatar className="h-10 w-10 mt-0.5">
+                <AvatarImage src={message.sender.avatar} />
+                <AvatarFallback>{message.sender.name[0]}</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <div className="flex items-center space-x-2">
+                  <span className="font-semibold text-white">
+                    {message.sender.name}
+                  </span>
+                  <span className="text-sm text-muted-foreground">
+                    {message.timestamp}
+                  </span>
+                </div>
+                <div className="mt-1 text-white whitespace-pre-line">
+                  {message.content}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+    </div>
+  );
+};
