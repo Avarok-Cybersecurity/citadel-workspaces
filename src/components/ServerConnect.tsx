@@ -40,11 +40,11 @@ export const ServerConnect = () => {
         }}
       />
       
-      {/* Gradient Overlay */}
+      {/* Gradient Overlay - Updated for smoother transition */}
       <div 
         className="absolute inset-0 z-0"
         style={{
-          background: "linear-gradient(90deg, #1a1b26 0%, rgba(26, 27, 38, 0.8) 50%, rgba(26, 27, 38, 0.4) 100%)"
+          background: "linear-gradient(90deg, #1a1b26 0%, rgba(26, 27, 38, 0.95) 30%, rgba(26, 27, 38, 0.8) 60%, rgba(26, 27, 38, 0.4) 100%)"
         }}
       />
 
