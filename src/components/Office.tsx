@@ -6,7 +6,7 @@ import { compile } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 import { evaluate } from '@mdx-js/mdx';
 import { AppLayout } from "./layout/AppLayout";
-import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
+import { MessageSquare, Search, Settings, Share2, CheckCircle2, AlertCircle } from "lucide-react";
 import Schedule from './Schedule';
 import {
   Table,
@@ -86,8 +86,8 @@ const components = {
   ),
   Badge: ({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "secondary" | "destructive" | "outline" }) => {
     const getColorClass = (text: string) => {
-      if (text === 'In Progress') return 'text-[#F2FCE2]';
-      if (text === 'High Priority') return 'text-[#ea384c]';
+      if (text === 'In Progress') return 'text-emerald-800 flex items-center gap-1';
+      if (text === 'High Priority') return 'text-red-600 flex items-center gap-1';
       return '';
     };
 
@@ -96,6 +96,8 @@ const components = {
         variant={variant} 
         className={`mr-2 mb-2 ${getColorClass(children?.toString() || '')}`}
       >
+        {children?.toString() === 'In Progress' && <CheckCircle2 className="h-3 w-3" />}
+        {children?.toString() === 'High Priority' && <AlertCircle className="h-3 w-3" />}
         {children}
       </Badge>
     );
@@ -264,3 +266,4 @@ const fetchData = async () => {
     </AppLayout>
   );
 };
+
