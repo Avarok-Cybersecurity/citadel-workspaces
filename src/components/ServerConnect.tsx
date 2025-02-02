@@ -7,43 +7,35 @@ import { useToast } from "@/hooks/use-toast";
 export const ServerConnect = () => {
   const [serverAddress, setServerAddress] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleConnect = async (e: React.FormEvent) => {
+  const handleConnect = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      // TODO: Implement actual server connection logic
-      console.log("Connecting to server:", serverAddress);
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network request
-      
+    if (!serverAddress) {
       toast({
-        title: "Connected successfully",
-        description: "Welcome to the server!",
-      });
-      
-      navigate("/office");
-    } catch (error) {
-      toast({
-        title: "Connection failed",
-        description: "Please check your server address and try again",
+        title: "Server address required",
+        description: "Please enter a server address to connect",
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
+      return;
     }
+    
+    // For demo purposes, always navigate to office
+    navigate("/office");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="glass-panel w-full max-w-md p-8 rounded-lg animate-in">
-        <h1 className="text-3xl font-bold text-center mb-8">Connect to Server</h1>
-        <form onSubmit={handleConnect} className="space-y-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-purple-100">
+      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-lg border border-purple-100">
+        <div className="text-center space-y-2">
+          <h1 className="text-3xl font-bold text-purple-900">Welcome</h1>
+          <p className="text-purple-600">Connect to your workspace</p>
+        </div>
+
+        <form onSubmit={handleConnect} className="space-y-4">
           <div className="space-y-2">
-            <label htmlFor="server" className="text-sm font-medium">
+            <label htmlFor="server" className="text-sm font-medium text-purple-700">
               Server Address
             </label>
             <Input
@@ -52,29 +44,29 @@ export const ServerConnect = () => {
               placeholder="Enter server address"
               value={serverAddress}
               onChange={(e) => setServerAddress(e.target.value)}
-              className="w-full"
-              required
+              className="w-full border-purple-200 focus:border-purple-500 focus:ring-purple-500"
             />
           </div>
+
           <div className="space-y-2">
-            <label htmlFor="password" className="text-sm font-medium">
+            <label htmlFor="password" className="text-sm font-medium text-purple-700">
               Password (Optional)
             </label>
             <Input
               id="password"
               type="password"
-              placeholder="Enter server password"
+              placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full"
+              className="w-full border-purple-200 focus:border-purple-500 focus:ring-purple-500"
             />
           </div>
+
           <Button
             type="submit"
-            className="w-full"
-            disabled={!serverAddress || isLoading}
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white transition-colors"
           >
-            {isLoading ? "Connecting..." : "Connect"}
+            Connect
           </Button>
         </form>
       </div>
