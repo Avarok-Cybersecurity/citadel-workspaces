@@ -84,17 +84,18 @@ const components = {
       <AlertDescription className="text-gray-300">{children}</AlertDescription>
     </Alert>
   ),
+
   Badge: ({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "secondary" | "destructive" | "outline" }) => {
     const getColorClass = (text: string) => {
-      if (text === 'In Progress') return 'text-emerald-800 flex items-center gap-1';
-      if (text === 'High Priority') return 'text-red-600 flex items-center gap-1';
+      if (text === 'In Progress') return 'text-emerald-800 flex items-center gap-1 inline-flex';
+      if (text === 'High Priority') return 'text-red-600 flex items-center gap-1 inline-flex';
       return '';
     };
 
     return (
       <Badge 
         variant={variant} 
-        className={`mr-2 mb-2 ${getColorClass(children?.toString() || '')}`}
+        className={`mr-2 mb-2 w-auto ${getColorClass(children?.toString() || '')}`}
       >
         {children?.toString() === 'In Progress' && <CheckCircle2 className="h-3 w-3" />}
         {children?.toString() === 'High Priority' && <AlertCircle className="h-3 w-3" />}
@@ -102,6 +103,7 @@ const components = {
       </Badge>
     );
   },
+
   Schedule: Schedule
 };
 
@@ -266,4 +268,5 @@ const fetchData = async () => {
     </AppLayout>
   );
 };
+
 
