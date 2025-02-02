@@ -13,7 +13,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const messageChannels = [
   {
     id: "team-chat",
-    name: "Kathy",
+    name: "Kathy McCooper",
     avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7"
   },
   {

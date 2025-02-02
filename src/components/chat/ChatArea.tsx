@@ -25,7 +25,7 @@ const MOCK_MESSAGES: Record<string, Message[]> = {
       timestamp: "7:16 PM",
       sender: {
         id: "kathy",
-        name: "Kathy",
+        name: "Kathy McCooper",
         avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7"
       }
     },
@@ -55,7 +55,7 @@ const MOCK_MESSAGES: Record<string, Message[]> = {
       timestamp: "7:16 PM",
       sender: {
         id: "kathy",
-        name: "Kathy",
+        name: "Kathy McCooper",
         avatar: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7"
       }
     }
