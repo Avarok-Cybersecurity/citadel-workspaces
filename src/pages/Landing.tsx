@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { PlusCircle } from "lucide-react";
 
 export const Landing = () => {
   const navigate = useNavigate();
@@ -48,9 +49,10 @@ export const Landing = () => {
             
             <Button
               variant="outline"
-              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6 flex items-center gap-2"
               size="lg"
             >
+              <PlusCircle className="w-5 h-5" />
               Create Workspace
             </Button>
           </div>
