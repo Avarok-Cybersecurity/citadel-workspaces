@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Calendar, Download, FileSpreadsheet, FileText, FilePdf, FileCode, User } from "lucide-react";
+import { Calendar, Download, FileSpreadsheet, FileText, FileType, FileCode, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatFileSize } from "@/lib/utils";
 
@@ -31,7 +31,7 @@ const getFileIcon = (fileName: string) => {
     case 'xls':
       return <FileSpreadsheet className="h-5 w-5 text-gray-300" />;
     case 'pdf':
-      return <FilePdf className="h-5 w-5 text-gray-300" />;
+      return <FileType className="h-5 w-5 text-gray-300" />;
     case 'md':
     case 'mdx':
     case 'txt':

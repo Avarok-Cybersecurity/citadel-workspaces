@@ -1,4 +1,4 @@
-import { FileSpreadsheet, FileText, FilePdf, FileCode, Folder } from "lucide-react";
+import { FileSpreadsheet, FileText, FileType, FileCode, Folder } from "lucide-react";
 import { useState } from "react";
 import {
   SidebarGroup,
@@ -57,7 +57,7 @@ const getFileIcon = (fileName: string) => {
     case 'xls':
       return <FileSpreadsheet className="h-4 w-4" />;
     case 'pdf':
-      return <FilePdf className="h-4 w-4" />;
+      return <FileType className="h-4 w-4" />;
     case 'md':
     case 'mdx':
     case 'txt':
