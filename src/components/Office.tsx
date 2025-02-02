@@ -7,14 +7,6 @@ import * as runtime from 'react/jsx-runtime';
 import { evaluate } from '@mdx-js/mdx';
 import { AppLayout } from "./layout/AppLayout";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 
 const components = {
   h1: ({ children }) => (
@@ -22,9 +14,6 @@ const components = {
   ),
   h2: ({ children }) => (
     <h2 className="text-2xl font-semibold mb-3 text-white">{children}</h2>
-  ),
-  h3: ({ children }) => (
-    <h3 className="text-xl font-semibold mb-2 text-white">{children}</h3>
   ),
   p: ({ children }) => (
     <p className="mb-4 text-gray-300">{children}</p>
@@ -43,19 +32,6 @@ const components = {
   img: ({ src, alt }) => (
     <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-lg my-4" />
   ),
-  table: Table,
-  thead: TableHeader,
-  tbody: TableBody,
-  th: ({ children }) => (
-    <TableHead className="text-white">{children}</TableHead>
-  ),
-  td: ({ children }) => (
-    <TableCell className="text-gray-300">{children}</TableCell>
-  ),
-  tr: TableRow,
-  Button: ({ children, ...props }) => (
-    <Button {...props}>{children}</Button>
-  ),
 };
 
 export const Office = () => {
@@ -65,25 +41,6 @@ export const Office = () => {
 ## Interactive Documentation Example
 
 This is a demonstration of what MDX can do in our office space. Let's explore some features:
-
-### MDX-Specific Features
-
-{/* This is an MDX comment - it won't show in the output */}
-
-{/* Using JSX components directly in MDX */}
-<Button 
-  onClick={() => alert('MDX is awesome!')}
-  className="my-4"
->
-  Click me - I'm a React component!
-</Button>
-
-{/* Using JavaScript expressions */}
-export const teamName = 'Awesome Team';
-Current time: {new Date().toLocaleTimeString()}
-
-{/* Dynamic content with JavaScript */}
-Team productivity: {Math.round(Math.random() * 100)}%
 
 ### Rich Text Formatting
 
@@ -126,11 +83,11 @@ Here's our team celebrating last quarter's success:
 
 ### Tables
 
-| Time  | Monday  | Tuesday | Wednesday |
-|-------|---------|----------|-----------|
-| 9:00  | Standup | Planning | Review    |
-| 11:00 | Dev     | Dev      | Testing   |
-| 14:00 | Review  | Testing  | Deploy    |
+| Time | Monday | Tuesday | Wednesday |
+|------|---------|----------|------------|
+| 9:00 | Standup | Planning | Review |
+| 11:00 | Dev | Dev | Testing |
+| 14:00 | Review | Testing | Deploy |
 
 ### Final Notes
 
