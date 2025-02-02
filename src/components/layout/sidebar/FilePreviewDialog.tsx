@@ -116,9 +116,9 @@ export const FilePreviewDialog = ({ file, isOpen, onClose }: FilePreviewDialogPr
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-[#444A6C] border-[#262C4A] text-white max-w-md">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-sm font-medium">
+          <DialogTitle className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider">
             {getFileIcon(file.name)}
-            FILE PREVIEW
+            File Preview
           </DialogTitle>
         </DialogHeader>
 
@@ -137,49 +137,59 @@ export const FilePreviewDialog = ({ file, isOpen, onClose }: FilePreviewDialogPr
         ) : (
           <div className="space-y-4">
             <div className="bg-[#343A5C] rounded-lg p-4">
-              <div className="flex items-center gap-3 mb-4">
-                <User className="h-5 w-5 text-gray-300" />
-                <span className="text-sm font-medium">SENT BY:</span>
-                <div className="flex items-center gap-2 bg-[#444A6C] rounded-lg px-4 py-2 flex-1">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={file.sender.avatar} />
-                    <AvatarFallback>{file.sender.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <span>{file.sender.name}</span>
+              <div className="flex flex-col space-y-6">
+                <div className="text-center">
+                  <div className="text-sm text-gray-300 mb-2 uppercase tracking-wider flex items-center justify-center gap-2">
+                    <User className="h-5 w-5" />
+                    Sent by
+                  </div>
+                  <div className="inline-flex items-center gap-3 bg-[#444A6C] rounded-full px-6 py-2">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src={file.sender.avatar} />
+                      <AvatarFallback>{file.sender.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <span className="text-lg font-medium">{file.sender.name}</span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  {getFileIcon(file.name)}
-                  <span className="text-sm font-medium">FILENAME</span>
-                  <span className="flex-1 bg-[#444A6C] rounded-lg px-4 py-2">
+                <div className="text-center">
+                  <div className="text-sm text-gray-300 mb-2 uppercase tracking-wider flex items-center justify-center gap-2">
+                    {getFileIcon(file.name)}
+                    Filename
+                  </div>
+                  <div className="bg-[#444A6C] rounded-full px-6 py-2">
                     {file.name}
-                  </span>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Calendar className="h-5 w-5 text-gray-300" />
-                  <span className="text-sm font-medium">CREATE DATE</span>
-                  <span className="flex-1 bg-[#444A6C] rounded-lg px-4 py-2">
+                <div className="text-center">
+                  <div className="text-sm text-gray-300 mb-2 uppercase tracking-wider flex items-center justify-center gap-2">
+                    <Calendar className="h-5 w-5" />
+                    Create Date
+                  </div>
+                  <div className="bg-[#444A6C] rounded-full px-6 py-2">
                     {file.createdAt}
-                  </span>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  {getFileIcon(file.name)}
-                  <span className="text-sm font-medium">FILE TYPE</span>
-                  <span className="flex-1 bg-[#444A6C] rounded-lg px-4 py-2">
+                <div className="text-center">
+                  <div className="text-sm text-gray-300 mb-2 uppercase tracking-wider flex items-center justify-center gap-2">
+                    {getFileIcon(file.name)}
+                    File Type
+                  </div>
+                  <div className="bg-[#444A6C] rounded-full px-6 py-2">
                     {file.type}
-                  </span>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  {getFileIcon(file.name)}
-                  <span className="text-sm font-medium">FILE SIZE</span>
-                  <span className="flex-1 bg-[#444A6C] rounded-lg px-4 py-2">
+                <div className="text-center">
+                  <div className="text-sm text-gray-300 mb-2 uppercase tracking-wider flex items-center justify-center gap-2">
+                    {getFileIcon(file.name)}
+                    File Size
+                  </div>
+                  <div className="bg-[#444A6C] rounded-full px-6 py-2">
                     {formatFileSize(file.size)}
-                  </span>
+                  </div>
                 </div>
               </div>
             </div>
