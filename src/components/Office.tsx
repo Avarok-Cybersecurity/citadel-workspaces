@@ -38,16 +38,32 @@ export const Office = () => {
               <h1 className="text-xl font-semibold text-white">Office</h1>
             </div>
             <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="icon">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C]"
+              >
                 <MessageSquare className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C]"
+              >
                 <Search className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C]"
+              >
                 <Share2 className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="icon">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C]"
+              >
                 <Settings className="h-4 w-4" />
               </Button>
               <Button
@@ -68,7 +84,12 @@ export const Office = () => {
                   onChange={(e) => setContent(e.target.value)}
                   className="w-full h-[400px] p-4 rounded-md border border-gray-800 bg-[#444A6C] text-white resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
                 />
-                <Button onClick={handleSave} className="mt-2">Save Changes</Button>
+                <Button 
+                  onClick={handleSave} 
+                  className="mt-2 bg-[#E5DEFF] text-[#343A5C] hover:bg-[#F1F0FB] hover:text-[#262C4A]"
+                >
+                  Save Changes
+                </Button>
               </div>
             ) : (
               <div className="p-2 prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
