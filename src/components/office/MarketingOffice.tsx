@@ -42,10 +42,6 @@ Brand refresh project entering final phase - Review meeting at 2 PM
   { time: '11:30', project: 'Video Editing', team: 'Media Team' },
   { time: '14:00', project: 'Photo Shoot', team: 'Content Team' }
 ]} />
-
-## Search Resources
-
-<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "conference":
@@ -76,10 +72,6 @@ Client presentation for new campaign concept - 11 AM
   { time: '13:00', meeting: 'Strategy Planning', client: 'Internal' },
   { time: '15:00', meeting: 'Content Calendar', client: 'Fashion Brand' }
 ]} />
-
-## Search Resources
-
-<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "media":
@@ -111,10 +103,6 @@ New 4K cameras available for content creation
   { time: '11:00', project: 'Podcast Recording', type: 'Audio' },
   { time: '14:00', project: 'Social Media Content', type: 'Mixed Media' }
 ]} />
-
-## Search Resources
-
-<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       default:
@@ -145,10 +133,6 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
   { date: 'Wed', content: 'Product Video', platform: 'YouTube', status: 'Planning' },
   { date: 'Fri', content: 'Newsletter', platform: 'Email', status: 'Scheduled' }
 ]} />
-
-## Search Resources
-
-<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
     }
   };
@@ -215,4 +199,3 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
     </OfficeLayout>
   );
 };
-

@@ -42,10 +42,6 @@ Leadership Development Workshop - Starting at 10 AM in the main training room
   { time: '11:00', course: 'Leadership Skills', instructor: 'External Coach' },
   { time: '14:00', course: 'Technical Training', instructor: 'IT Department' }
 ]} />
-
-## Search Resources
-
-<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "interview-a":
@@ -76,10 +72,6 @@ Senior Developer Position - Candidate arriving at 11 AM
   { time: '11:00', position: 'Senior Developer', interviewer: 'Tech Lead' },
   { time: '14:00', position: 'Product Manager', interviewer: 'CPO' }
 ]} />
-
-## Search Resources
-
-<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       case "interview-b":
@@ -111,10 +103,6 @@ Group assessment for Management Trainee positions
   { time: '11:30', activity: 'Case Presentations', assessor: 'Department Heads' },
   { time: '14:30', activity: 'Individual Interviews', assessor: 'Senior Management' }
 ]} />
-
-## Search Resources
-
-<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
 
       default:
@@ -145,10 +133,6 @@ Annual performance reviews starting next week - Schedule your meeting with your 
   { course: 'DEI Workshop', date: 'Wednesday', time: '2:00 PM', location: 'Main Hall' },
   { course: 'Tech Skills', date: 'Friday', time: '11:00 AM', location: 'Room 205' }
 ]} />
-
-## Search Resources
-
-<iframe src="https://www.google.com/search?igu=1" scrolling="no" className="w-full h-[500px] rounded-lg border border-purple-200/20 mt-8"></iframe>
 `;
     }
   };
@@ -215,4 +199,3 @@ Annual performance reviews starting next week - Schedule your meeting with your 
     </OfficeLayout>
   );
 };
-
