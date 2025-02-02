@@ -4,6 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 import { MDXProvider } from '@mdx-js/react';
 import { compile } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
+import { evaluate } from '@mdx-js/mdx';
 import { AppLayout } from "./layout/AppLayout";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
 
@@ -48,16 +49,19 @@ export const Office = () => {
 
 ![Sonny and Mariel high fiving.](https://content.codecademy.com/courses/learn-cpp/community-challenge/highfive.gif)
   `);
-  const [compiledContent, setCompiledContent] = useState("");
+  const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
     const compileContent = async () => {
       try {
-        const compiled = String(await compile(content, { outputFormat: 'function-body', jsxRuntime: 'automatic' }));
-        const { default: Component } = await runtime.evaluateSync(compiled, { ...runtime });
-        setCompiledContent(Component());
+        const result = await evaluate(content, {
+          ...runtime,
+          useDynamicImport: true,
+          useMDXComponents: () => components
+        });
+        setCompiledContent(result.default());
       } catch (error) {
         console.error('Error compiling MDX:', error);
       }
