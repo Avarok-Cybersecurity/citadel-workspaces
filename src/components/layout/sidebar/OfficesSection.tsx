@@ -15,7 +15,9 @@ export const OfficesSection = () => {
   const currentSection = new URLSearchParams(location.search).get("section") || "company";
 
   const handleSectionClick = (section: string) => {
-    navigate(`/office?section=${section}`);
+    navigate(`/office?section=${section}`, {
+      state: { prevSection: currentSection }
+    });
   };
 
   return (
