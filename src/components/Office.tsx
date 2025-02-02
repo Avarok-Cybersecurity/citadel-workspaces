@@ -33,7 +33,6 @@ export const Office = () => {
     <AppLayout>
       <div className="flex-1 h-[calc(100vh-3.5rem)] overflow-hidden bg-[#1A1F2C]">
         <div className="h-full flex flex-col">
-          {/* Chat Header */}
           <div className="flex justify-between items-center p-4 border-b border-gray-800">
             <div className="flex items-center space-x-4">
               <h1 className="text-xl font-semibold text-white">Office</h1>
@@ -60,10 +59,9 @@ export const Office = () => {
             </div>
           </div>
           
-          {/* Content Area */}
-          <div className="flex-1 overflow-y-auto p-4">
+          <div className="flex-1 overflow-y-auto">
             {isEditing ? (
-              <div className="space-y-4">
+              <div className="p-4 space-y-4">
                 <textarea
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
@@ -72,14 +70,14 @@ export const Office = () => {
                 <Button onClick={handleSave}>Save Changes</Button>
               </div>
             ) : (
-              <div className="prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
+              <div className="p-4 prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
                 <ReactMarkdown
                   components={{
                     h1: ({ children }) => (
-                      <h1 className="text-2xl font-bold mb-4 text-white">{children}</h1>
+                      <h1 className="text-4xl font-bold mb-4 text-white">{children}</h1>
                     ),
                     h2: ({ children }) => (
-                      <h2 className="text-xl font-semibold mb-3 text-white">{children}</h2>
+                      <h2 className="text-2xl font-semibold mb-3 text-white">{children}</h2>
                     ),
                     p: ({ children }) => (
                       <p className="mb-4 text-gray-300">{children}</p>
@@ -88,10 +86,10 @@ export const Office = () => {
                       <ul className="list-disc list-inside mb-4 text-gray-300">{children}</ul>
                     ),
                     li: ({ children }) => (
-                      <li className="mb-1">{children}</li>
+                      <li className="mb-2">{children}</li>
                     ),
                     a: ({ href, children }) => (
-                      <a href={href} className="text-blue-400 hover:text-blue-300 underline">
+                      <a href={href} className="text-purple-400 hover:text-purple-300 underline">
                         {children}
                       </a>
                     ),
