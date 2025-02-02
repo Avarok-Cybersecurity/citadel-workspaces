@@ -28,16 +28,16 @@ export const Landing = () => {
       
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-3xl">
-          <h1 className="text-6xl font-bold text-white mb-6 leading-tight animate-fade-in">
+        <div className="max-w-3xl animate-fade-in">
+          <h1 className="text-6xl font-bold text-white mb-6 leading-tight">
             Quantum-Proof Your Virtual Workplace
           </h1>
           
-          <p className="text-xl text-gray-300 mb-12 animate-fade-in [animation-delay:200ms]">
+          <p className="text-xl text-gray-300 mb-12">
             Hyper-Secure, p2p, and up to 256 layers of encryption.
           </p>
           
-          <div className="flex gap-4 animate-fade-in [animation-delay:400ms]">
+          <div className="flex gap-4">
             <Button
               onClick={() => navigate("/connect")}
               className="bg-white text-black hover:bg-gray-100 text-lg px-8 py-6"

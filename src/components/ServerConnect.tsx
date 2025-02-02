@@ -51,14 +51,14 @@ export const ServerConnect = () => {
       {/* Back Button */}
       <Button
         variant="ghost"
-        className="absolute top-4 left-4 text-white z-10 hover:bg-purple-500/20"
+        className="absolute top-4 left-4 text-white z-10 hover:bg-purple-500/20 animate-fade-in"
         onClick={() => navigate("/")}
       >
         <ArrowLeft className="mr-2 h-4 w-4" />
         Back
       </Button>
 
-      <div className="w-full max-w-md p-8 space-y-6 bg-[#1A1F2C]/80 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10">
+      <div className="w-full max-w-md p-8 space-y-6 bg-[#1A1F2C]/80 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold text-white">Welcome</h1>
           <p className="text-gray-200">Connect to your workspace</p>
