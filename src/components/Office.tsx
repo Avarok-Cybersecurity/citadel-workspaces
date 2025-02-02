@@ -51,7 +51,8 @@ export const Office = () => {
                 <Settings className="h-4 w-4" />
               </Button>
               <Button
-                variant="outline"
+                variant="secondary"
+                className="bg-[#E5DEFF] text-[#343A5C] hover:bg-[#F1F0FB] hover:text-[#262C4A]"
                 onClick={() => setIsEditing(!isEditing)}
               >
                 {isEditing ? "Cancel" : "Edit"}
