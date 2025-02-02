@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { MessageSquare, Search, Settings, Share2 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { officeRooms } from "../layout/sidebar/RoomsSection";
+import { officeRooms } from "@/types/office";
 
 interface OfficeLayoutProps {
   title: string;

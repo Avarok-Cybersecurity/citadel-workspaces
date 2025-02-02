@@ -7,6 +7,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { Room } from "@/types/office";
 
 interface RoomsSectionProps {
   isActive: boolean;
