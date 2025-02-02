@@ -46,18 +46,28 @@ export const RoomsSection = () => {
       <SidebarGroupLabel>ROOMS</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
-          {rooms.map((room) => (
-            <SidebarMenuItem key={room.id}>
-              <SidebarMenuButton 
-                className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-                onClick={() => handleRoomClick(room.id)}
-                data-active={currentRoom === room.id}
+          <div className="animate-fade-in animate-slide-in">
+            {rooms.map((room, index) => (
+              <SidebarMenuItem 
+                key={room.id}
+                className="transition-all duration-200"
+                style={{ 
+                  animationDelay: `${index * 50}ms`,
+                  opacity: 0,
+                  animation: `fade-in 0.3s ease-out ${index * 50}ms forwards, slide-in 0.3s ease-out ${index * 50}ms forwards`
+                }}
               >
-                <room.icon className="h-4 w-4" />
-                <span>{room.name}</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+                <SidebarMenuButton 
+                  className="hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+                  onClick={() => handleRoomClick(room.id)}
+                  data-active={currentRoom === room.id}
+                >
+                  <room.icon className="h-4 w-4" />
+                  <span>{room.name}</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </div>
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>
