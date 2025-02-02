@@ -74,8 +74,6 @@ This is a demonstration of what MDX can do in our office space. Let's explore so
 
 ### Schedule Component Example
 
-import Schedule from './Schedule'
-
 <Schedule data={[
   { time: '9:00', monday: 'Standup', tuesday: 'Planning', wednesday: 'Review' },
   { time: '11:00', monday: 'Dev', tuesday: 'Dev', wednesday: 'Testing' },
@@ -128,11 +126,13 @@ Here's our team celebrating last quarter's success:
   useEffect(() => {
     const compileContent = async () => {
       try {
+        console.log('Compiling MDX content...');
         const result = await evaluate(content, {
           ...runtime,
           useMDXComponents: () => components,
           baseUrl: window.location.origin
         });
+        console.log('MDX compilation successful');
         setCompiledContent(result.default({ components }));
       } catch (error) {
         console.error('Error compiling MDX:', error);
