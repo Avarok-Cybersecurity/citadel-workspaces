@@ -23,6 +23,9 @@ const components = {
   h2: ({ children }) => (
     <h2 className="text-2xl font-semibold mb-3 text-white">{children}</h2>
   ),
+  h3: ({ children }) => (
+    <h3 className="text-xl font-semibold mb-2 text-white">{children}</h3>
+  ),
   p: ({ children }) => (
     <p className="mb-4 text-gray-300">{children}</p>
   ),
@@ -40,15 +43,9 @@ const components = {
   img: ({ src, alt }) => (
     <img src={src} alt={alt} className="max-w-full h-auto rounded-lg shadow-lg my-4" />
   ),
-  table: ({ children }) => (
-    <Table className="my-4">{children}</Table>
-  ),
-  thead: ({ children }) => (
-    <TableHeader>{children}</TableHeader>
-  ),
-  tbody: ({ children }) => (
-    <TableBody>{children}</TableBody>
-  ),
+  table: Table,
+  thead: TableHeader,
+  tbody: TableBody,
   th: ({ children }) => (
     <TableHead className="text-white">{children}</TableHead>
   ),
@@ -56,6 +53,9 @@ const components = {
     <TableCell className="text-gray-300">{children}</TableCell>
   ),
   tr: TableRow,
+  Button: ({ children, ...props }) => (
+    <Button {...props}>{children}</Button>
+  ),
 };
 
 export const Office = () => {
@@ -70,7 +70,7 @@ This is a demonstration of what MDX can do in our office space. Let's explore so
 
 {/* This is an MDX comment - it won't show in the output */}
 
-{/* Using a React component inline */}
+{/* Using JSX components directly in MDX */}
 <Button 
   onClick={() => alert('MDX is awesome!')}
   className="my-4"
@@ -78,12 +78,12 @@ This is a demonstration of what MDX can do in our office space. Let's explore so
   Click me - I'm a React component!
 </Button>
 
-{/* Using variables and expressions */}
+{/* Using JavaScript expressions */}
 export const teamName = 'Awesome Team';
-export const currentTime = new Date().toLocaleTimeString();
+Current time: {new Date().toLocaleTimeString()}
 
-Your team: **{teamName}**
-Current time: *{currentTime}*
+{/* Dynamic content with JavaScript */}
+Team productivity: {Math.round(Math.random() * 100)}%
 
 ### Rich Text Formatting
 
