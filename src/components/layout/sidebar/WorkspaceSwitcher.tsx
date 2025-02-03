@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Workspace {
   id: string;
@@ -35,11 +36,33 @@ const workspaces: Workspace[] = [
 export const WorkspaceSwitcher = () => {
   const [currentWorkspace, setCurrentWorkspace] = useState(workspaces[0]);
   const [isOpen, setIsOpen] = useState(false);
+  const [previousRoute, setPreviousRoute] = useState<string | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Save the current route when workspace changes
+    setPreviousRoute(location.pathname + location.search);
+  }, [currentWorkspace.id]);
 
   const handleWorkspaceChange = (workspace: Workspace) => {
+    console.log('Switching to workspace:', workspace.name);
+    console.log('Previous route:', previousRoute);
+    
     setCurrentWorkspace(workspace);
     setIsOpen(false);
-    console.log('Switching to workspace:', workspace.name);
+
+    // Animate out current content
+    document.querySelector('.office-content')?.classList.add('animate-fade-out');
+
+    // After animation, navigate and animate in new content
+    setTimeout(() => {
+      if (previousRoute) {
+        navigate(previousRoute);
+        document.querySelector('.office-content')?.classList.remove('animate-fade-out');
+        document.querySelector('.office-content')?.classList.add('animate-fade-in');
+      }
+    }, 300);
   };
 
   return (
@@ -62,22 +85,25 @@ export const WorkspaceSwitcher = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent 
         align="start"
+        sideOffset={0}
         className="w-[300px] bg-[#252424] border border-gray-800"
       >
-        {workspaces.map((workspace) => (
-          <DropdownMenuItem
-            key={workspace.id}
-            onClick={() => handleWorkspaceChange(workspace)}
-            className="flex items-center gap-3 px-4 py-3 hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors cursor-pointer"
-          >
-            <img
-              src={workspace.logoUrl}
-              alt={workspace.name}
-              className="w-8 h-8 rounded"
-            />
-            <span className="font-semibold">{workspace.name}</span>
-          </DropdownMenuItem>
-        ))}
+        {workspaces
+          .filter(workspace => workspace.id !== currentWorkspace.id)
+          .map((workspace) => (
+            <DropdownMenuItem
+              key={workspace.id}
+              onClick={() => handleWorkspaceChange(workspace)}
+              className="flex items-center gap-3 px-4 py-3 hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors cursor-pointer"
+            >
+              <img
+                src={workspace.logoUrl}
+                alt={workspace.name}
+                className="w-8 h-8 rounded"
+              />
+              <span className="font-semibold">{workspace.name}</span>
+            </DropdownMenuItem>
+          ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
