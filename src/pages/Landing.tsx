@@ -36,7 +36,7 @@ export const Landing = () => {
           
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
-              onClick={() => navigate("/connect")}
+              onClick={() => navigate("/server-register")}
               className="bg-white text-black hover:bg-gray-100 text-lg px-8 h-[60px] transition-colors duration-300 w-full sm:w-auto"
               size="lg"
             >
