@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Shield, HelpCircle } from "lucide-react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Shield, HelpCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface ServerConnectProps {
   onNext: () => void;
@@ -50,7 +50,7 @@ export const ServerConnect = ({ onNext }: ServerConnectProps) => {
   };
 
   return (
-    <div className="w-full max-w-xl p-8 space-y-6 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg">
+    <div className="w-full max-w-xl p-8 space-y-6 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-[9999] relative">
       <div className="flex items-center gap-3 mb-8">
         <Shield className="w-8 h-8 text-white" />
         <h1 className="text-2xl font-bold text-white">ADD A NEW WORKSPACE</h1>
@@ -58,36 +58,51 @@ export const ServerConnect = ({ onNext }: ServerConnectProps) => {
 
       <form onSubmit={handleConnect} className="space-y-6">
         <div className="space-y-2">
-          <label htmlFor="server" className="text-sm font-medium text-gray-200 uppercase">
+          <label className="text-sm font-medium text-gray-200 uppercase">
             Workspace Location
           </label>
           <div className="relative">
             <Input
-              id="server"
-              type="text"
-              placeholder="workspace-name.avarok.net"
               value={serverAddress}
               onChange={(e) => setServerAddress(e.target.value)}
-              className="bg-[#221F26]/70 border-purple-400/20 text-white placeholder:text-gray-400 pr-10"
+              className="bg-[#221F26]/70 border-purple-400/20 text-white pr-12"
+              placeholder="workspace-name.avarok.net"
             />
-            <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+                </TooltipTrigger>
+                <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                  <p>Enter your workspace server address</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="password" className="text-sm font-medium text-gray-200 uppercase">
+          <label className="text-sm font-medium text-gray-200 uppercase">
             Workspace Password (Optional)
           </label>
           <div className="relative">
             <Input
-              id="password"
               type="password"
-              placeholder="Enter workspace password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-[#221F26]/70 border-purple-400/20 text-white placeholder:text-gray-400 pr-10"
+              className="bg-[#221F26]/70 border-purple-400/20 text-white pr-12"
+              placeholder="Enter workspace password"
             />
-            <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 cursor-help" />
+                </TooltipTrigger>
+                <TooltipContent className="bg-[#2A2438] border border-purple-400/30 text-white">
+                  <p>Optional: Enter the workspace password if required</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
 

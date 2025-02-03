@@ -43,7 +43,7 @@ export const SecuritySettings = ({ onNext, onBack }: SecuritySettingsProps) => {
   };
 
   return (
-    <div className="w-full max-w-xl p-8 space-y-8 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg">
+    <div className="w-full max-w-xl p-8 space-y-8 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-[9999] relative">
       <div className="flex items-center gap-3 mb-8">
         <Shield className="w-8 h-8 text-white" />
         <h1 className="text-2xl font-bold text-white">ADD A NEW WORKSPACE</h1>
