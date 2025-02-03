@@ -13,6 +13,7 @@ import Messages from "./pages/Messages";
 
 const queryClient = new QueryClient();
 
+// Wrapper component to provide navigation functions to child components
 const RegisterFlow = ({ isOverlay = false }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,33 +23,39 @@ const RegisterFlow = ({ isOverlay = false }) => {
   const handleSecurityBack = () => navigate('/server-register');
   const handleJoinNext = () => {
     if (isOverlay) {
+      // If it's an overlay (from Office), navigate back to office
       navigate('/office');
     } else {
+      // If it's the main flow (from Landing), navigate to office
       navigate('/office');
     }
   };
   const handleJoinBack = () => navigate('/server-register/security');
 
+  // Determine if this is the main registration flow or an overlay
   const containerClass = isOverlay
     ? "fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
     : "min-h-screen w-full flex items-center justify-center relative";
 
+  // Background div for non-overlay mode
   const backgroundStyle = !isOverlay ? (
     <>
       <div 
-        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat md:bg-cover md:bg-center sm:bg-contain sm:bg-center"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-70"
         style={{
-          backgroundImage: "url('/lovable-uploads/6dc44a79-0611-42a5-a5d1-5a4aa7305aaa.png')",
+          backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
+          backgroundSize: 'cover',
           width: '100vw',
           height: '100vh'
         }}
       />
       <div 
-        className="fixed inset-0 z-0 bg-gradient-to-r from-[#1C1D28] via-[rgba(28,29,40,0.8)] to-[rgba(28,29,40,0.4)]"
+        className="absolute inset-0 z-0 bg-gradient-to-r from-[#1C1D28] via-[rgba(28,29,40,0.8)] to-[rgba(28,29,40,0.4)]"
       />
     </>
   ) : null;
 
+  // For overlay mode, don't render anything if we're not on a registration route
   if (isOverlay && !location.pathname.includes('/server-register')) {
     return null;
   }
@@ -73,22 +80,25 @@ const RegisterFlow = ({ isOverlay = false }) => {
   );
 };
 
-export default function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/office/*" element={<Office />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <RegisterFlow />
-          <Toaster />
-          <Sonner />
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-}
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/office" element={<Office />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        {/* Main registration flow */}
+        <RegisterFlow />
+        {/* Overlay registration flow */}
+        <RegisterFlow isOverlay={true} />
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
