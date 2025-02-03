@@ -72,7 +72,7 @@ export const SecuritySettings = ({ onNext, onBack }: SecuritySettingsProps) => {
             
             <div className={cn(
               "transition-all duration-300 ease-out",
-              isAdvancedOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+              isAdvancedOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
             )}>
               <div className="pt-4">
                 <AdvancedSettings />
