@@ -160,7 +160,7 @@ export const WorkspaceSwitcher = () => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <Dialog open={isAddingWorkspace} onOpenChange={setIsAddingWorkspace} modal={false}>
+      <Dialog open={isAddingWorkspace} onOpenChange={setIsAddingWorkspace}>
         <DialogContent className="p-0 bg-transparent border-none max-w-xl">
           {currentStep === "connect" && (
             <ServerConnect onNext={handleNext} />
