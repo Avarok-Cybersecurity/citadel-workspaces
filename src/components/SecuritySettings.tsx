@@ -13,7 +13,6 @@ export const SecuritySettings = () => {
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
   const queryClient = useQueryClient();
 
-  // Store security settings in React Query cache
   const { mutate: updateSecuritySettings } = useMutation({
     mutationFn: (settings: any) => {
       console.log('Updating security settings:', settings);
@@ -25,9 +24,8 @@ export const SecuritySettings = () => {
   });
 
   const handleNext = () => {
-    // Save current security settings to cache before navigation
     updateSecuritySettings({
-      securityLevel: 'standard', // Get actual values from your form
+      securityLevel: 'standard',
       securityMode: 'enhanced',
       encryptionAlgorithm: 'aes',
       kemAlgorithm: 'kyber',
@@ -41,7 +39,6 @@ export const SecuritySettings = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative bg-[#1C1D28]">
-      {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
         style={{
@@ -53,7 +50,6 @@ export const SecuritySettings = () => {
         }}
       />
       
-      {/* Gradient Overlay */}
       <div 
         className="absolute inset-0 z-0"
         style={{
@@ -61,7 +57,6 @@ export const SecuritySettings = () => {
         }}
       />
 
-      {/* Content */}
       <div className="w-full max-w-xl p-8 space-y-8 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
         <div className="flex items-center gap-3 mb-8">
           <Shield className="w-8 h-8 text-white" />
@@ -90,10 +85,12 @@ export const SecuritySettings = () => {
               </button>
               
               <div className={cn(
-                "overflow-hidden transition-all duration-300 ease-out",
+                "transition-all duration-300 ease-out",
                 isAdvancedOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
               )}>
-                <AdvancedSettings />
+                <div className="pt-4">
+                  <AdvancedSettings />
+                </div>
               </div>
             </div>
           </div>
