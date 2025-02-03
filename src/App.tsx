@@ -41,7 +41,7 @@ const RegisterFlow = ({ isOverlay = false }) => {
   const backgroundStyle = !isOverlay ? (
     <>
       <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-70"
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
           backgroundSize: 'cover',
@@ -50,7 +50,7 @@ const RegisterFlow = ({ isOverlay = false }) => {
         }}
       />
       <div 
-        className="absolute inset-0 z-0 bg-gradient-to-r from-[#1C1D28] via-[rgba(28,29,40,0.8)] to-[rgba(28,29,40,0.4)]"
+        className="fixed inset-0 z-0 bg-gradient-to-r from-[#1C1D28] via-[rgba(28,29,40,0.8)] to-[rgba(28,29,40,0.4)]"
       />
     </>
   ) : null;
@@ -61,7 +61,7 @@ const RegisterFlow = ({ isOverlay = false }) => {
   }
 
   return (
-    <div className={containerClass}>
+    <div className={containerClass} style={{ overflow: 'hidden' }}>
       {backgroundStyle}
       <div className="w-full max-w-xl p-4 z-10">
         <Routes>
@@ -88,7 +88,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/office" element={<Office />} />
+          <Route path="/office/*" element={<Office />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
