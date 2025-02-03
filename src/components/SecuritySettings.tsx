@@ -8,7 +8,12 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AdvancedSettings } from "./security/AdvancedSettings";
 
-export const SecuritySettings = () => {
+interface SecuritySettingsProps {
+  onNext: () => void;
+  onBack: () => void;
+}
+
+export const SecuritySettings = ({ onNext, onBack }: SecuritySettingsProps) => {
   const navigate = useNavigate();
   const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
   const queryClient = useQueryClient();
@@ -34,30 +39,11 @@ export const SecuritySettings = () => {
       psk: '',
     });
     
-    navigate("/server-register/join");
+    onNext();
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative bg-[#1C1D28]">
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
-          backgroundSize: "cover",
-          width: "100vw",
-          height: "100vh",
-          opacity: 0.7
-        }}
-      />
-      
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          background: "linear-gradient(90deg, #1C1D28 0%, rgba(28, 29, 40, 0.95) 30%, rgba(28, 29, 40, 0.8) 60%, rgba(28, 29, 40, 0.4) 100%)"
-        }}
-      />
-
-      <div className="w-full max-w-xl p-8 space-y-8 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-10 animate-fade-in">
+    <div className="w-full p-8 space-y-8 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg">
         <div className="flex items-center gap-3 mb-8">
           <Shield className="w-8 h-8 text-white" />
           <h1 className="text-2xl font-bold text-white">ADD A NEW WORKSPACE</h1>
@@ -95,24 +81,22 @@ export const SecuritySettings = () => {
             </div>
           </div>
 
-          <div className="flex justify-end gap-4 mt-8">
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={() => navigate("/server-register")}
-              className="text-white hover:bg-purple-500/20"
-            >
-              BACK
-            </Button>
-            <Button
-              type="button"
-              onClick={handleNext}
-              className="bg-purple-600 hover:bg-purple-700 text-white transition-colors"
-            >
-              NEXT
-            </Button>
-          </div>
-        </div>
+      <div className="flex justify-end gap-4 mt-8">
+        <Button
+          type="button"
+          variant="ghost"
+          onClick={onBack}
+          className="text-white hover:bg-purple-500/20"
+        >
+          BACK
+        </Button>
+        <Button
+          type="button"
+          onClick={handleNext}
+          className="bg-purple-600 hover:bg-purple-700 text-white transition-colors"
+        >
+          NEXT
+        </Button>
       </div>
     </div>
   );
