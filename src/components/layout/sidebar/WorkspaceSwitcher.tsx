@@ -72,7 +72,7 @@ export const WorkspaceSwitcher = () => {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-3 py-2 hover:bg-[#444A6C] transition-colors rounded-md pl-4 pr-3">
+        <button className="flex items-center gap-3 py-2 hover:bg-[#444A6C] transition-colors rounded-md pl-0 pr-3">
           <img
             src={currentWorkspace.logoUrl}
             alt={currentWorkspace.name}
@@ -98,7 +98,7 @@ export const WorkspaceSwitcher = () => {
             <DropdownMenuItem
               key={workspace.id}
               onClick={() => handleWorkspaceChange(workspace)}
-              className="flex items-center gap-3 py-3 hover:bg-[#444A6C] transition-colors cursor-pointer text-white pl-4 pr-3"
+              className="flex items-center gap-3 py-3 hover:bg-[#444A6C] transition-colors cursor-pointer text-white pl-0 pr-3"
             >
               <img
                 src={workspace.logoUrl}
