@@ -36,32 +36,40 @@ const workspaces: Workspace[] = [
 export const WorkspaceSwitcher = () => {
   const [currentWorkspace, setCurrentWorkspace] = useState(workspaces[0]);
   const [isOpen, setIsOpen] = useState(false);
-  const [previousRoute, setPreviousRoute] = useState<string | null>(null);
+  const [workspaceRoutes, setWorkspaceRoutes] = useState<Record<string, string>>({});
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Save current route when location changes
   useEffect(() => {
-    // Save the current route when workspace changes
-    setPreviousRoute(location.pathname + location.search);
-  }, [currentWorkspace.id]);
+    setWorkspaceRoutes(prev => ({
+      ...prev,
+      [currentWorkspace.id]: location.pathname + location.search
+    }));
+  }, [location.pathname, location.search, currentWorkspace.id]);
 
   const handleWorkspaceChange = (workspace: Workspace) => {
     console.log('Switching to workspace:', workspace.name);
-    console.log('Previous route:', previousRoute);
+    const savedRoute = workspaceRoutes[workspace.id];
+    console.log('Saved route for workspace:', savedRoute);
     
-    setCurrentWorkspace(workspace);
-    setIsOpen(false);
-
     // Animate out current content
     document.querySelector('.office-content')?.classList.add('animate-fade-out');
 
-    // After animation, navigate and animate in new content
+    // After animation, switch workspace and navigate
     setTimeout(() => {
-      if (previousRoute) {
-        navigate(previousRoute);
-        document.querySelector('.office-content')?.classList.remove('animate-fade-out');
-        document.querySelector('.office-content')?.classList.add('animate-fade-in');
+      setCurrentWorkspace(workspace);
+      setIsOpen(false);
+      
+      if (savedRoute) {
+        navigate(savedRoute);
+      } else {
+        // Default route if none saved
+        navigate('/office');
       }
+      
+      document.querySelector('.office-content')?.classList.remove('animate-fade-out');
+      document.querySelector('.office-content')?.classList.add('animate-fade-in');
     }, 300);
   };
 
@@ -85,8 +93,7 @@ export const WorkspaceSwitcher = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent 
         align="start"
-        sideOffset={0}
-        className="w-[300px] bg-[#252424] border border-gray-800"
+        className="w-[300px] bg-[#252424] border border-gray-800 -ml-4"
       >
         {workspaces
           .filter(workspace => workspace.id !== currentWorkspace.id)
@@ -94,7 +101,7 @@ export const WorkspaceSwitcher = () => {
             <DropdownMenuItem
               key={workspace.id}
               onClick={() => handleWorkspaceChange(workspace)}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors cursor-pointer"
+              className="flex items-center gap-3 px-4 py-3 hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors cursor-pointer text-white"
             >
               <img
                 src={workspace.logoUrl}
