@@ -78,6 +78,12 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/office/*" element={<Office />} />
+            <Route path="/messages" element={<Messages />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
           <RegisterFlow />
           <Toaster />
           <Sonner />
