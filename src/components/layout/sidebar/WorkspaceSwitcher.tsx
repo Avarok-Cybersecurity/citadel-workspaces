@@ -72,7 +72,7 @@ export const WorkspaceSwitcher = () => {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-3 px-4 py-2 hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors rounded-md -ml-4">
+        <button className="flex items-center gap-3 py-2 hover:bg-[#444A6C] transition-colors rounded-md pl-4 pr-3">
           <img
             src={currentWorkspace.logoUrl}
             alt={currentWorkspace.name}
@@ -89,7 +89,8 @@ export const WorkspaceSwitcher = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent 
         align="start"
-        className="w-[300px] bg-[#252424] border border-gray-800 -ml-4"
+        className="w-[var(--trigger-width)] min-w-[300px] bg-[#252424] border border-gray-800"
+        style={{ "--trigger-width": "var(--radix-dropdown-menu-trigger-width)" } as React.CSSProperties}
       >
         {workspaces
           .filter(workspace => workspace.id !== currentWorkspace.id)
@@ -97,7 +98,7 @@ export const WorkspaceSwitcher = () => {
             <DropdownMenuItem
               key={workspace.id}
               onClick={() => handleWorkspaceChange(workspace)}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-[#444A6C] transition-colors cursor-pointer text-white"
+              className="flex items-center gap-3 py-3 hover:bg-[#444A6C] transition-colors cursor-pointer text-white pl-4 pr-3"
             >
               <img
                 src={workspace.logoUrl}
