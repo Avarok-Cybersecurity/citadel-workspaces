@@ -46,11 +46,13 @@ const RegisterFlow = ({ isOverlay = false }) => {
           backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
           backgroundSize: 'cover',
           width: '100vw',
-          height: '100vh'
+          height: '100vh',
+          position: 'fixed'
         }}
       />
       <div 
         className="absolute inset-0 z-0 bg-gradient-to-r from-[#1C1D28] via-[rgba(28,29,40,0.8)] to-[rgba(28,29,40,0.4)]"
+        style={{ position: 'fixed' }}
       />
     </>
   ) : null;
