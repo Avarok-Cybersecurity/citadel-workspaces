@@ -35,7 +35,25 @@ const RegisterFlow = ({ isOverlay = false }) => {
   // Determine if this is the main registration flow or an overlay
   const containerClass = isOverlay
     ? "fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
-    : "min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#2A2438] to-[#352F44]";
+    : "min-h-screen w-full flex items-center justify-center relative";
+
+  // Background div for non-overlay mode
+  const backgroundStyle = !isOverlay ? (
+    <>
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-70"
+        style={{
+          backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
+          backgroundSize: 'cover',
+          width: '100vw',
+          height: '100vh'
+        }}
+      />
+      <div 
+        className="absolute inset-0 z-0 bg-gradient-to-r from-[#1C1D28] via-[rgba(28,29,40,0.8)] to-[rgba(28,29,40,0.4)]"
+      />
+    </>
+  ) : null;
 
   // For overlay mode, don't render anything if we're not on a registration route
   if (isOverlay && !location.pathname.includes('/server-register')) {
@@ -44,7 +62,8 @@ const RegisterFlow = ({ isOverlay = false }) => {
 
   return (
     <div className={containerClass}>
-      <div className="w-full max-w-xl p-4">
+      {backgroundStyle}
+      <div className="w-full max-w-xl p-4 z-10">
         <Routes>
           <Route path="/server-register" element={<ServerConnect onNext={handleServerNext} />} />
           <Route 

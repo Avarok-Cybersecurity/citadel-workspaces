@@ -70,14 +70,11 @@ export const SecuritySettings = ({ onNext, onBack }: SecuritySettingsProps) => {
               />
             </button>
             
-            <div className={cn(
-              "transition-all duration-300 ease-out",
-              isAdvancedOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-            )}>
-              <div className="pt-4">
+            {isAdvancedOpen && (
+              <div className="pt-4 animate-fade-in">
                 <AdvancedSettings />
               </div>
-            </div>
+            )}
           </div>
         </div>
 
