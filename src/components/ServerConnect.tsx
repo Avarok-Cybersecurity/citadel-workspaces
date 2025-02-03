@@ -15,7 +15,6 @@ export const ServerConnect = ({ onNext }: ServerConnectProps) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  // Use React Query to persist form state
   const { data: formData } = useQuery({
     queryKey: ['serverConnectForm'],
     queryFn: () => ({ serverAddress: '', password: '' }),
@@ -25,7 +24,6 @@ export const ServerConnect = ({ onNext }: ServerConnectProps) => {
   const [serverAddress, setServerAddress] = useState(formData.serverAddress);
   const [password, setPassword] = useState(formData.password);
 
-  // Mutation to update form cache
   const { mutate: updateFormCache } = useMutation({
     mutationFn: (newData: { serverAddress: string; password: string }) => {
       console.log('Updating form cache:', newData);
@@ -47,13 +45,12 @@ export const ServerConnect = ({ onNext }: ServerConnectProps) => {
       return;
     }
     
-    // Update cache before navigation
     updateFormCache({ serverAddress, password });
     onNext();
   };
 
   return (
-    <div className="w-full p-8 space-y-6 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg">
+    <div className="w-full max-w-xl p-8 space-y-6 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg">
       <div className="flex items-center gap-3 mb-8">
         <Shield className="w-8 h-8 text-white" />
         <h1 className="text-2xl font-bold text-white">ADD A NEW WORKSPACE</h1>
