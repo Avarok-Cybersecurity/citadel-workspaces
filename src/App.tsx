@@ -7,13 +7,13 @@ import { ServerConnect } from "@/components/ServerConnect";
 import { SecuritySettings } from "@/components/SecuritySettings";
 import { Office } from "@/components/Office";
 import { Join } from "@/components/Join";
+import { RegisterFlowLayout } from "@/components/layout/RegisterFlowLayout";
 import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
 import Messages from "./pages/Messages";
 
 const queryClient = new QueryClient();
 
-// Wrapper component to provide navigation functions to child components
 const RegisterFlow = () => {
   const navigate = useNavigate();
   
@@ -24,17 +24,19 @@ const RegisterFlow = () => {
   const handleJoinBack = () => navigate('/server-register/security');
 
   return (
-    <Routes>
-      <Route path="/server-register" element={<ServerConnect onNext={handleServerNext} />} />
-      <Route 
-        path="/server-register/security" 
-        element={<SecuritySettings onNext={handleSecurityNext} onBack={handleSecurityBack} />} 
-      />
-      <Route 
-        path="/server-register/join" 
-        element={<Join onNext={handleJoinNext} onBack={handleJoinBack} />} 
-      />
-    </Routes>
+    <RegisterFlowLayout>
+      <Routes>
+        <Route path="/server-register" element={<ServerConnect onNext={handleServerNext} />} />
+        <Route 
+          path="/server-register/security" 
+          element={<SecuritySettings onNext={handleSecurityNext} onBack={handleSecurityBack} />} 
+        />
+        <Route 
+          path="/server-register/join" 
+          element={<Join onNext={handleJoinNext} onBack={handleJoinBack} />} 
+        />
+      </Routes>
+    </RegisterFlowLayout>
   );
 };
 

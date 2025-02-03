@@ -56,6 +56,11 @@
 body {
   @apply bg-background text-foreground font-body antialiased;
   pointer-events: auto !important;
+  background-image: url('/lovable-uploads/2dbbf620-36d8-4f65-a2ad-f8d7ee3c3c0e.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
