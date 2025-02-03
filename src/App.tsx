@@ -36,16 +36,11 @@ const RegisterFlow = ({ isOverlay = false }) => {
   const backgroundStyle = !isOverlay ? (
     <>
       <div 
-        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat md:bg-cover md:bg-center sm:bg-contain sm:bg-center"
         style={{
           backgroundImage: "url('/lovable-uploads/6dc44a79-0611-42a5-a5d1-5a4aa7305aaa.png')",
-          backgroundSize: 'cover',
           width: '100vw',
-          height: '100vh',
-          '@media (max-width: 768px)': {
-            backgroundPosition: 'center center',
-            backgroundSize: 'contain'
-          }
+          height: '100vh'
         }}
       />
       <div 
