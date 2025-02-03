@@ -18,7 +18,7 @@ const workspaces: Workspace[] = [
   {
     id: "1",
     name: "AVAROK CYBERSECURITY",
-    logoUrl: "/lovable-uploads/7ab37a80-7dc7-4639-bcd7-cb913996928d.png"
+    logoUrl: "/lovable-uploads/cc2f58c1-680a-4b27-bbfe-f2ebe9c70797.png"
   },
   {
     id: "2",
