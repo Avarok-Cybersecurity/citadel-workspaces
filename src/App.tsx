@@ -37,7 +37,7 @@ const RegisterFlow = ({ isOverlay = false }) => {
     ? "fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
     : "min-h-screen w-full flex items-center justify-center relative";
 
-  // Only render the background for non-overlay mode
+  // Background div for non-overlay mode
   const backgroundStyle = !isOverlay ? (
     <>
       <div 
@@ -46,13 +46,11 @@ const RegisterFlow = ({ isOverlay = false }) => {
           backgroundImage: "url('/lovable-uploads/fcd25400-92a0-41ed-95ae-573a0298bd55.png')",
           backgroundSize: 'cover',
           width: '100vw',
-          height: '100vh',
-          position: 'fixed'
+          height: '100vh'
         }}
       />
       <div 
         className="absolute inset-0 z-0 bg-gradient-to-r from-[#1C1D28] via-[rgba(28,29,40,0.8)] to-[rgba(28,29,40,0.4)]"
-        style={{ position: 'fixed' }}
       />
     </>
   ) : null;
