@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Shield, HelpCircle } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 interface ServerConnectProps {
   onNext: () => void;
@@ -12,6 +13,7 @@ interface ServerConnectProps {
 export const ServerConnect = ({ onNext }: ServerConnectProps) => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   // Use React Query to persist form state
   const { data: formData } = useQuery({
