@@ -40,7 +40,6 @@ export const WorkspaceSwitcher = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Save current route when location changes
   useEffect(() => {
     setWorkspaceRoutes(prev => ({
       ...prev,
@@ -53,10 +52,8 @@ export const WorkspaceSwitcher = () => {
     const savedRoute = workspaceRoutes[workspace.id];
     console.log('Saved route for workspace:', savedRoute);
     
-    // Animate out current content
     document.querySelector('.office-content')?.classList.add('animate-fade-out');
 
-    // After animation, switch workspace and navigate
     setTimeout(() => {
       setCurrentWorkspace(workspace);
       setIsOpen(false);
@@ -64,7 +61,6 @@ export const WorkspaceSwitcher = () => {
       if (savedRoute) {
         navigate(savedRoute);
       } else {
-        // Default route if none saved
         navigate('/office');
       }
       
@@ -76,16 +72,16 @@ export const WorkspaceSwitcher = () => {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-3 px-4 py-2 hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors rounded-md">
+        <button className="flex items-center gap-3 px-4 py-2 hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors rounded-md -ml-4">
           <img
             src={currentWorkspace.logoUrl}
             alt={currentWorkspace.name}
             className="w-8 h-8 rounded"
           />
-          <span className="font-semibold">{currentWorkspace.name}</span>
+          <span className="font-semibold text-white">{currentWorkspace.name}</span>
           <ChevronDown 
             className={cn(
-              "w-5 h-5 transition-transform duration-300",
+              "w-5 h-5 text-white transition-transform duration-300",
               isOpen && "rotate-180"
             )} 
           />
@@ -101,7 +97,7 @@ export const WorkspaceSwitcher = () => {
             <DropdownMenuItem
               key={workspace.id}
               onClick={() => handleWorkspaceChange(workspace)}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors cursor-pointer text-white"
+              className="flex items-center gap-3 px-4 py-3 hover:bg-[#444A6C] transition-colors cursor-pointer text-white"
             >
               <img
                 src={workspace.logoUrl}
