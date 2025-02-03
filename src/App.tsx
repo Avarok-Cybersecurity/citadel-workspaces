@@ -24,15 +24,15 @@ const RegisterFlow = () => {
   const handleJoinBack = () => navigate('/server-register/security');
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#2A2438] to-[#352F44] p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#2A2438] to-[#352F44] p-4">
       <Routes>
-        <Route path="/server-register" element={<ServerConnect onNext={handleServerNext} />} />
+        <Route path="/" element={<ServerConnect onNext={handleServerNext} />} />
         <Route 
-          path="/server-register/security" 
+          path="/security" 
           element={<SecuritySettings onNext={handleSecurityNext} onBack={handleSecurityBack} />} 
         />
         <Route 
-          path="/server-register/join" 
+          path="/join" 
           element={<Join onNext={handleJoinNext} onBack={handleJoinBack} />} 
         />
       </Routes>
