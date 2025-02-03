@@ -37,7 +37,7 @@ const RegisterFlow = ({ isOverlay = false }) => {
     ? "fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
     : "min-h-screen w-full flex items-center justify-center relative";
 
-  // Background div for non-overlay mode
+  // Only render the background for non-overlay mode
   const backgroundStyle = !isOverlay ? (
     <>
       <div 
