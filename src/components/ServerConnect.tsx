@@ -51,13 +51,14 @@ export const ServerConnect = ({ onNext }: ServerConnectProps) => {
   };
 
   return (
-    <div className="w-full max-w-xl p-8 space-y-6 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg z-[9999] relative">
-      <div className="flex items-center gap-3 mb-8">
-        <Shield className="w-8 h-8 text-white" />
-        <h1 className="text-2xl font-bold text-white">ADD A NEW WORKSPACE</h1>
-      </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="w-full max-w-xl p-8 space-y-6 bg-[#4F5889]/95 backdrop-blur-sm border border-purple-500/20 shadow-lg rounded-lg">
+        <div className="flex items-center gap-3 mb-8">
+          <Shield className="w-8 h-8 text-white" />
+          <h1 className="text-2xl font-bold text-white">ADD A NEW WORKSPACE</h1>
+        </div>
 
-      <form onSubmit={handleConnect} className="space-y-6">
+        <form onSubmit={handleConnect} className="space-y-6">
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-200 uppercase">
             Workspace Location
@@ -123,7 +124,8 @@ export const ServerConnect = ({ onNext }: ServerConnectProps) => {
             NEXT
           </Button>
         </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
