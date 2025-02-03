@@ -5,6 +5,7 @@ import { Shield, HelpCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useState } from 'react';
 
 interface ServerConnectProps {
   onNext: () => void;
