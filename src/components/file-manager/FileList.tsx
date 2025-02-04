@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Trash, CheckSquare, XSquare } from "lucide-react";
-import type { FileMetadata } from "@/types/files";
+import { Trash, CheckSquare, XSquare, FolderTree } from "lucide-react";
+import { VFSBrowser } from "./VFSBrowser";
+import type { FileMetadata, FileSystemNode } from "@/types/files";
 
 interface FileListProps {
   files: FileMetadata[];
@@ -11,6 +13,26 @@ interface FileListProps {
 }
 
 export const FileList = ({ files, type, onFileClick, onDelete }: FileListProps) => {
+  const [selectedFile, setSelectedFile] = useState<FileMetadata | null>(null);
+  const [showVFSBrowser, setShowVFSBrowser] = useState(false);
+
+  const handleVFSFileSelect = (node: FileSystemNode) => {
+    if (node.type === "file" && selectedFile) {
+      onFileClick(selectedFile);
+    }
+    setShowVFSBrowser(false);
+  };
+
+  if (showVFSBrowser && selectedFile?.virtualPath) {
+    return (
+      <VFSBrowser
+        onBack={() => setShowVFSBrowser(false)}
+        onFileSelect={handleVFSFileSelect}
+        initialPath={selectedFile.virtualPath}
+      />
+    );
+  }
+
   return (
     <div className="space-y-4">
       {files.filter(f => f.transferType === type).map((file) => (
@@ -30,39 +52,47 @@ export const FileList = ({ files, type, onFileClick, onDelete }: FileListProps) 
                   {type === 'revfs' && file.virtualPath ? file.virtualPath : file.type}
                 </p>
               </div>
-              {file.receiver && (
-                <Avatar className="h-10 w-10">
-                  <AvatarImage src={file.receiver.avatar} />
-                  <AvatarFallback>{file.receiver.name[0]}</AvatarFallback>
-                </Avatar>
-              )}
             </div>
             <div className="flex items-center gap-2">
-              {type === 'revfs' && file.status === 'pending' && (
+              {type === 'revfs' && (
                 <>
+                  {file.status === 'pending' && (
+                    <>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log('Accept file:', file.id);
+                        }}
+                        className="hover:bg-green-500 hover:text-white"
+                      >
+                        <CheckSquare className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log('Deny file:', file.id);
+                        }}
+                        className="hover:bg-red-500 hover:text-white"
+                      >
+                        <XSquare className="h-4 w-4" />
+                      </Button>
+                    </>
+                  )}
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={(e) => {
                       e.stopPropagation();
-                      // Handle accept
-                      console.log('Accept file:', file.id);
+                      setSelectedFile(file);
+                      setShowVFSBrowser(true);
                     }}
-                    className="hover:bg-green-500 hover:text-white"
+                    className="hover:bg-[#E5DEFF] hover:text-[#343A5C]"
                   >
-                    <CheckSquare className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      // Handle deny
-                      console.log('Deny file:', file.id);
-                    }}
-                    className="hover:bg-red-500 hover:text-white"
-                  >
-                    <XSquare className="h-4 w-4" />
+                    <FolderTree className="h-4 w-4" />
                   </Button>
                 </>
               )}
