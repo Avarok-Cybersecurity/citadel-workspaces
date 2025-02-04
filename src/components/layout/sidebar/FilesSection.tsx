@@ -10,6 +10,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { FilePreviewDialog } from "./FilePreviewDialog";
+import { useNavigate } from "react-router-dom";
 
 const files = [
   {
@@ -74,6 +75,7 @@ const getFileIcon = (fileName: string) => {
 export const FilesSection = () => {
   const [selectedFile, setSelectedFile] = useState<typeof files[0] | null>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleFileClick = (file: typeof files[0]) => {
     setSelectedFile(file);
@@ -104,7 +106,10 @@ export const FilesSection = () => {
                 </SidebarMenuItem>
               ))}
               <SidebarMenuItem>
-                <SidebarMenuButton className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors">
+                <SidebarMenuButton 
+                  className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+                  onClick={() => navigate('/file-manager')}
+                >
                   <Folder className="h-4 w-4" />
                   <span>File Manager</span>
                 </SidebarMenuButton>
