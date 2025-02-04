@@ -47,9 +47,8 @@ export const RoomsSection = () => {
     setOpenMobile(false);
   };
 
-  // Only show rooms if we're not in the files section
-  const showRooms = currentSection !== "files";
-  const rooms = showRooms ? (officeRooms[currentSection as keyof typeof officeRooms] || []) : [];
+  // Show rooms for all sections except when explicitly in files section
+  const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];
 
   return (
     <SidebarGroup className="flex-shrink-0 min-h-[4rem] mb-4">
