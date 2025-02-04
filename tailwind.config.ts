@@ -72,8 +72,12 @@ export default {
           "100%": { opacity: "0" },
         },
         "slide-in": {
-          "0%": { transform: "translateX(-100%)" },
+          "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0)" },
+        },
+        "slide-out": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(100%)" },
         },
       },
       animation: {
@@ -82,6 +86,7 @@ export default {
         "fade-in": "fade-in 0.3s ease-out",
         "fade-out": "fade-out 0.3s ease-out",
         "slide-in": "slide-in 0.3s ease-out",
+        "slide-out": "slide-out 0.3s ease-out",
       },
       fontFamily: {
         sans: ["SF Pro Display", "system-ui", "sans-serif"],

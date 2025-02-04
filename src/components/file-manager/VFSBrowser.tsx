@@ -117,14 +117,13 @@ export const VFSBrowser = ({ onBack, onFileSelect, initialPath }: VFSBrowserProp
           >
             Open
           </ContextMenuItem>
-          {/* Add more context menu items as needed */}
         </ContextMenuContent>
       </ContextMenu>
     </ContextMenuTrigger>
   );
 
   return (
-    <div className="h-full flex flex-col animate-slide-in-right">
+    <div className="h-full flex flex-col animate-slide-in">
       <div className="flex items-center gap-4 p-4 bg-[#343A5C]">
         <Button
           variant="ghost"

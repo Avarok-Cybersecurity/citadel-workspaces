@@ -25,11 +25,13 @@ export const FileList = ({ files, type, onFileClick, onDelete }: FileListProps) 
 
   if (showVFSBrowser && selectedFile?.virtualPath) {
     return (
-      <VFSBrowser
-        onBack={() => setShowVFSBrowser(false)}
-        onFileSelect={handleVFSFileSelect}
-        initialPath={selectedFile.virtualPath}
-      />
+      <div className="animate-slide-in">
+        <VFSBrowser
+          onBack={() => setShowVFSBrowser(false)}
+          onFileSelect={handleVFSFileSelect}
+          initialPath={selectedFile.virtualPath}
+        />
+      </div>
     );
   }
 
@@ -43,7 +45,7 @@ export const FileList = ({ files, type, onFileClick, onDelete }: FileListProps) 
           >
             <div className="flex items-center space-x-4 flex-1">
               <Avatar className="h-10 w-10">
-                <AvatarImage src={file.sender.avatar} />
+                <AvatarImage src={file.sender.avatar} alt={file.sender.name} />
                 <AvatarFallback>{file.sender.name[0]}</AvatarFallback>
               </Avatar>
               <div className="flex-1 min-w-0">

@@ -33,20 +33,23 @@ export const RoomsSection = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { setOpenMobile } = useSidebar();
-  const currentSection = new URLSearchParams(location.search).get("section") || "company";
-  const currentRoom = new URLSearchParams(location.search).get("room");
+  const params = new URLSearchParams(location.search);
+  const currentSection = params.get("section") || "company";
+  const currentRoom = params.get("room");
 
   const handleRoomClick = (roomId: string) => {
     const params = new URLSearchParams(location.search);
     params.set("room", roomId);
+    if (!params.has("section")) {
+      params.set("section", "company");
+    }
     navigate(`/office?${params.toString()}`);
     setOpenMobile(false);
   };
 
-  const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];
-  const isOfficeRoute = location.pathname === "/office";
-  const prevSection = location.state?.prevSection;
-  const shouldAnimate = isOfficeRoute && prevSection && prevSection !== currentSection;
+  // Only show rooms if we're not in the files section
+  const showRooms = currentSection !== "files";
+  const rooms = showRooms ? (officeRooms[currentSection as keyof typeof officeRooms] || []) : [];
 
   return (
     <SidebarGroup className="flex-shrink-0 min-h-[4rem] mb-4">
@@ -54,17 +57,9 @@ export const RoomsSection = () => {
       <SidebarGroupContent>
         <ScrollArea className="max-h-[30vh]">
           <SidebarMenu>
-            <div className={shouldAnimate ? "animate-fade-in animate-slide-in" : ""}>
-              {rooms.map((room, index) => (
-                <SidebarMenuItem 
-                  key={room.id}
-                  className="transition-all duration-200"
-                  style={shouldAnimate ? { 
-                    animationDelay: `${index * 50}ms`,
-                    opacity: 0,
-                    animation: `fade-in 0.3s ease-out ${index * 50}ms forwards, slide-in 0.3s ease-out ${index * 50}ms forwards`
-                  } : undefined}
-                >
+            <div className="animate-fade-in">
+              {rooms.map((room) => (
+                <SidebarMenuItem key={room.id}>
                   <SidebarMenuButton 
                     className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
                     onClick={() => handleRoomClick(room.id)}
