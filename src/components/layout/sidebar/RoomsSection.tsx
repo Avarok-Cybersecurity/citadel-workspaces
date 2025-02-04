@@ -47,7 +47,6 @@ export const RoomsSection = () => {
     setOpenMobile(false);
   };
 
-  // Show rooms for all sections except when explicitly in files section
   const rooms = officeRooms[currentSection as keyof typeof officeRooms] || [];
 
   return (
@@ -60,7 +59,8 @@ export const RoomsSection = () => {
               {rooms.map((room) => (
                 <SidebarMenuItem key={room.id}>
                   <SidebarMenuButton 
-                    className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
+                    className={`text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors
+                      ${currentRoom === room.id ? 'bg-[#E5DEFF] text-[#343A5C] border border-[#9b87f5]' : ''}`}
                     onClick={() => handleRoomClick(room.id)}
                     data-active={currentRoom === room.id}
                   >
