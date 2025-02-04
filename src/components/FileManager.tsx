@@ -28,7 +28,7 @@ const standardFiles = sidebarFiles.map(file => ({
   transferType: 'standard' as const,
 }));
 
-// Add the mock REVFS files
+// Add the mock REVFS files with correct status type
 const mockRevfsFiles = [
   {
     id: "revfs-1",
@@ -46,7 +46,7 @@ const mockRevfsFiles = [
     createdAt: "2024-03-20T15:30:00Z",
     url: "/files/secure.pdf",
     transferType: "revfs" as const,
-    status: "pending",
+    status: "pending" as const, // Fixed: Now using a valid status value
     virtualPath: "/home/alice/documents/secure.pdf",
     isLocallyStored: true
   }
