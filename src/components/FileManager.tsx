@@ -3,26 +3,33 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { FilePreviewDialog } from "@/components/layout/sidebar/FilePreviewDialog";
-import { Check, Download, Folder, Trash, X } from "lucide-react";
+import { Trash } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "sonner";
-import type { FileMetadata, FileSystemNode } from "@/types/files";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import type { FileMetadata } from "@/types/files";
 
-// Mock data - replace with actual data fetching
-const mockFiles: FileMetadata[] = [
-  {
-    id: "standard-1",
-    name: "Project Report.pdf",
-    type: "PDF Document",
-    size: 2500000,
-    sender: {
-      name: "John Doe",
-      avatar: "https://github.com/shadcn.png"
-    },
-    createdAt: "2024-03-20T14:30:00Z",
-    url: "/files/report.pdf",
-    transferType: "standard"
-  },
+// Import all files from the FilesSection component
+import { files as sidebarFiles } from "@/components/layout/sidebar/FilesSection";
+
+// Convert sidebar files to our FileMetadata format
+const standardFiles = sidebarFiles.map(file => ({
+  ...file,
+  transferType: 'standard' as const,
+}));
+
+// Add the mock REVFS files
+const mockRevfsFiles = [
   {
     id: "revfs-1",
     name: "Secure Document.pdf",
@@ -38,46 +45,67 @@ const mockFiles: FileMetadata[] = [
     },
     createdAt: "2024-03-20T15:30:00Z",
     url: "/files/secure.pdf",
-    transferType: "revfs",
+    transferType: "revfs" as const,
     status: "pending",
     virtualPath: "/home/alice/documents/secure.pdf",
     isLocallyStored: true
   }
 ];
 
+const allFiles = [...standardFiles, ...mockRevfsFiles];
+
 const FileManager = () => {
   const [selectedFile, setSelectedFile] = useState<FileMetadata | null>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [files, setFiles] = useState(allFiles);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [showClearAllDialog, setShowClearAllDialog] = useState(false);
+  const [fileToDelete, setFileToDelete] = useState<FileMetadata | null>(null);
+  const [dontAskDelete, setDontAskDelete] = useState(false);
+  const [dontAskClearAll, setDontAskClearAll] = useState(false);
+  const [clearAllType, setClearAllType] = useState<'standard' | 'revfs'>('standard');
 
   const handleFileClick = (file: FileMetadata) => {
     setSelectedFile(file);
     setIsPreviewOpen(true);
   };
 
-  const handleFileAction = (file: FileMetadata, action: 'accept' | 'deny' | 'delete' | 'download') => {
-    switch (action) {
-      case 'accept':
-        toast.success(`Accepted file: ${file.name}`);
-        break;
-      case 'deny':
-        toast.success(`Denied file: ${file.name}`);
-        break;
-      case 'delete':
-        toast.success(`Deleted file: ${file.name}`);
-        break;
-      case 'download':
-        toast.success(`Downloading file: ${file.name}`);
-        break;
+  const handleDelete = (file: FileMetadata) => {
+    if (dontAskDelete) {
+      confirmDelete(file);
+    } else {
+      setFileToDelete(file);
+      setShowDeleteDialog(true);
     }
+  };
+
+  const confirmDelete = (file: FileMetadata) => {
+    setFiles(prev => prev.filter(f => f.id !== file.id));
+    toast.success(`Deleted file: ${file.name}`);
+  };
+
+  const handleClearAll = (type: 'standard' | 'revfs') => {
+    if (dontAskClearAll) {
+      confirmClearAll(type);
+    } else {
+      setClearAllType(type);
+      setShowClearAllDialog(true);
+    }
+  };
+
+  const confirmClearAll = (type: 'standard' | 'revfs') => {
+    setFiles(prev => prev.filter(f => f.transferType !== type));
+    toast.success(`All ${type} files cleared`);
   };
 
   const FileList = ({ files, type }: { files: FileMetadata[], type: 'standard' | 'revfs' }) => (
     <ScrollArea className="h-[600px]">
       <div className="space-y-4 p-4">
         {files.filter(f => f.transferType === type).map((file) => (
-          <div
+          <button
             key={file.id}
-            className="flex items-center justify-between p-4 rounded-lg bg-[#343A5C] hover:bg-[#3F466B] transition-colors"
+            onClick={() => handleFileClick(file)}
+            className="w-full text-left flex items-center justify-between p-4 rounded-lg bg-[#343A5C] hover:bg-[#3F466B] transition-colors"
           >
             <div className="flex items-center space-x-4 flex-1">
               <Avatar className="h-10 w-10">
@@ -97,55 +125,18 @@ const FileManager = () => {
                 </Avatar>
               )}
             </div>
-            <div className="flex items-center space-x-2 ml-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => handleFileClick(file)}
-                className="hover:bg-[#E5DEFF] hover:text-[#343A5C]"
-              >
-                <Folder className="h-4 w-4" />
-              </Button>
-              {type === 'revfs' && file.status === 'pending' && (
-                <>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleFileAction(file, 'accept')}
-                    className="hover:bg-green-500 hover:text-white"
-                  >
-                    <Check className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleFileAction(file, 'deny')}
-                    className="hover:bg-red-500 hover:text-white"
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
-                </>
-              )}
-              {type === 'revfs' && !file.isLocallyStored && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => handleFileAction(file, 'download')}
-                  className="hover:bg-[#E5DEFF] hover:text-[#343A5C]"
-                >
-                  <Download className="h-4 w-4" />
-                </Button>
-              )}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => handleFileAction(file, 'delete')}
-                className="hover:bg-red-500 hover:text-white"
-              >
-                <Trash className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDelete(file);
+              }}
+              className="ml-4 hover:bg-red-500 hover:text-white"
+            >
+              <Trash className="h-4 w-4" />
+            </Button>
+          </button>
         ))}
       </div>
     </ScrollArea>
@@ -177,13 +168,13 @@ const FileManager = () => {
               <div className="flex justify-end mb-4">
                 <Button
                   variant="outline"
-                  onClick={() => toast.success("All standard files cleared")}
+                  onClick={() => handleClearAll('standard')}
                   className="bg-[#E5DEFF] text-[#343A5C] hover:bg-[#E5DEFF]/90"
                 >
                   Clear All
                 </Button>
               </div>
-              <FileList files={mockFiles} type="standard" />
+              <FileList files={files} type="standard" />
             </div>
           </TabsContent>
           
@@ -192,13 +183,13 @@ const FileManager = () => {
               <div className="flex justify-end mb-4">
                 <Button
                   variant="outline"
-                  onClick={() => toast.success("All RE-VFS files cleared")}
+                  onClick={() => handleClearAll('revfs')}
                   className="bg-[#E5DEFF] text-[#343A5C] hover:bg-[#E5DEFF]/90"
                 >
                   Clear All
                 </Button>
               </div>
-              <FileList files={mockFiles} type="revfs" />
+              <FileList files={files} type="revfs" />
             </div>
           </TabsContent>
         </Tabs>
@@ -212,6 +203,80 @@ const FileManager = () => {
           setSelectedFile(null);
         }}
       />
+
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent className="bg-[#444A6C] border-[#262C4A] text-white">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription className="text-gray-300">
+              This action cannot be undone. This will permanently delete the file.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="flex items-center space-x-2 py-4">
+            <Checkbox
+              id="dontAskDelete"
+              checked={dontAskDelete}
+              onCheckedChange={(checked) => setDontAskDelete(checked as boolean)}
+            />
+            <label
+              htmlFor="dontAskDelete"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Don't ask next time
+            </label>
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="bg-gray-600 text-white hover:bg-gray-700">Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                if (fileToDelete) {
+                  confirmDelete(fileToDelete);
+                }
+                setShowDeleteDialog(false);
+              }}
+              className="bg-red-500 text-white hover:bg-red-600"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <AlertDialog open={showClearAllDialog} onOpenChange={setShowClearAllDialog}>
+        <AlertDialogContent className="bg-[#444A6C] border-[#262C4A] text-white">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Clear all files?</AlertDialogTitle>
+            <AlertDialogDescription className="text-gray-300">
+              This action cannot be undone. This will permanently delete all {clearAllType} files.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="flex items-center space-x-2 py-4">
+            <Checkbox
+              id="dontAskClearAll"
+              checked={dontAskClearAll}
+              onCheckedChange={(checked) => setDontAskClearAll(checked as boolean)}
+            />
+            <label
+              htmlFor="dontAskClearAll"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              Don't ask next time
+            </label>
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="bg-gray-600 text-white hover:bg-gray-700">Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                confirmClearAll(clearAllType);
+                setShowClearAllDialog(false);
+              }}
+              className="bg-red-500 text-white hover:bg-red-600"
+            >
+              Clear All
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

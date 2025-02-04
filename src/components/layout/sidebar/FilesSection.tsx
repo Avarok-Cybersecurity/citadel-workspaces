@@ -12,7 +12,7 @@ import {
 import { FilePreviewDialog } from "./FilePreviewDialog";
 import { useNavigate } from "react-router-dom";
 
-const files = [
+export const files = [
   {
     id: "q4-report",
     name: "Q4 Report.pdf",
