@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
 import { FilePreviewDialog } from "./FilePreviewDialog";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const files = [
   {
@@ -76,6 +76,7 @@ export const FilesSection = () => {
   const [selectedFile, setSelectedFile] = useState<typeof files[0] | null>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleFileClick = (file: typeof files[0]) => {
     setSelectedFile(file);
@@ -85,6 +86,12 @@ export const FilesSection = () => {
   const handleClosePreview = () => {
     setIsPreviewOpen(false);
     setSelectedFile(null);
+  };
+
+  const handleFileManagerClick = () => {
+    const params = new URLSearchParams(location.search);
+    params.set('section', 'files');
+    navigate(`/office?${params.toString()}`);
   };
 
   return (
@@ -108,7 +115,7 @@ export const FilesSection = () => {
               <SidebarMenuItem>
                 <SidebarMenuButton 
                   className="text-white hover:bg-[#E5DEFF] hover:text-[#343A5C] transition-colors"
-                  onClick={() => navigate('/file-manager')}
+                  onClick={handleFileManagerClick}
                 >
                   <Folder className="h-4 w-4" />
                   <span>File Manager</span>
