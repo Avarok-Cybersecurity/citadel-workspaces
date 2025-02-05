@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { ChevronRight, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -112,7 +113,7 @@ export const WorkspaceSwitcher = () => {
     <>
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild>
-          <button className="flex items-center gap-3 py-2 px-4 hover:bg-[#444A6C] transition-colors rounded-md w-full">
+          <button className="flex items-center gap-3 py-2 hover:bg-[#9b87f5] transition-colors rounded-r-md w-full">
             <img
               src={currentWorkspace.logoUrl}
               alt={currentWorkspace.name}
@@ -138,7 +139,7 @@ export const WorkspaceSwitcher = () => {
               <DropdownMenuItem
                 key={workspace.id}
                 onClick={() => handleWorkspaceChange(workspace)}
-                className="flex items-center gap-3 py-3 px-4 hover:bg-[#444A6C] transition-colors cursor-pointer text-white w-full"
+                className="flex items-center gap-3 py-3 hover:bg-[#9b87f5] transition-colors cursor-pointer text-white w-full"
               >
                 <img
                   src={workspace.logoUrl}
@@ -150,9 +151,9 @@ export const WorkspaceSwitcher = () => {
             ))}
           <DropdownMenuItem
             onClick={handleAddWorkspace}
-            className="flex items-center gap-3 py-3 px-4 hover:bg-[#444A6C] transition-colors cursor-pointer text-white w-full border-t border-gray-700"
+            className="flex items-center gap-3 py-3 hover:bg-[#9b87f5] transition-colors cursor-pointer text-white w-full border-t border-gray-700"
           >
-            <div className="w-8 h-8 rounded bg-[#444A6C] flex items-center justify-center">
+            <div className="w-8 h-8 rounded bg-[#6E59A5] flex items-center justify-center">
               <Plus className="w-5 h-5" />
             </div>
             <span className="font-semibold">JOIN NEW WORKSPACE</span>
