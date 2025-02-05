@@ -112,17 +112,17 @@ export const WorkspaceSwitcher = () => {
   return (
     <>
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-        <DropdownMenuTrigger asChild>
-          <button className="flex items-center gap-3 py-2 hover:bg-[#9b87f5] transition-colors rounded-r-md w-full">
+        <DropdownMenuTrigger asChild className="-ml-2">
+          <button className="flex items-center gap-3 py-2 hover:bg-[#9b87f5] transition-colors rounded-r-md w-[calc(100%+0.5rem)]">
             <img
               src={currentWorkspace.logoUrl}
               alt={currentWorkspace.name}
-              className="w-8 h-8 rounded"
+              className="w-8 h-8 rounded ml-2"
             />
             <span className="font-semibold text-white flex-1 text-left">{currentWorkspace.name}</span>
             <ChevronRight 
               className={cn(
-                "w-5 h-5 text-white transition-transform duration-300",
+                "w-5 h-5 text-white transition-transform duration-300 mr-2",
                 isOpen && "rotate-90"
               )} 
             />
@@ -130,7 +130,8 @@ export const WorkspaceSwitcher = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent 
           align="start"
-          className="w-[var(--trigger-width)] bg-[#252424] border border-gray-800"
+          sideOffset={0}
+          className="w-[calc(var(--radix-dropdown-menu-trigger-width)+0.5rem)] -ml-2 bg-[#252424] border border-gray-800"
           style={{ "--trigger-width": "var(--radix-dropdown-menu-trigger-width)" } as React.CSSProperties}
         >
           {workspaces
@@ -139,7 +140,7 @@ export const WorkspaceSwitcher = () => {
               <DropdownMenuItem
                 key={workspace.id}
                 onClick={() => handleWorkspaceChange(workspace)}
-                className="flex items-center gap-3 py-3 hover:bg-[#9b87f5] transition-colors cursor-pointer text-white w-full"
+                className="flex items-center gap-3 py-3 hover:bg-[#9b87f5] transition-colors cursor-pointer text-white w-full pl-2"
               >
                 <img
                   src={workspace.logoUrl}
@@ -151,7 +152,7 @@ export const WorkspaceSwitcher = () => {
             ))}
           <DropdownMenuItem
             onClick={handleAddWorkspace}
-            className="flex items-center gap-3 py-3 hover:bg-[#9b87f5] transition-colors cursor-pointer text-white w-full border-t border-gray-700"
+            className="flex items-center gap-3 py-3 hover:bg-[#9b87f5] transition-colors cursor-pointer text-white w-full border-t border-gray-700 pl-2"
           >
             <div className="w-8 h-8 rounded bg-[#6E59A5] flex items-center justify-center">
               <Plus className="w-5 h-5" />
