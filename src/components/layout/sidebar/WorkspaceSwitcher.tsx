@@ -119,10 +119,10 @@ export const WorkspaceSwitcher = () => {
               alt={currentWorkspace.name}
               className="w-8 h-8 rounded ml-2"
             />
-            <span className="font-semibold text-white flex-1 text-left group-hover:text-white">{currentWorkspace.name}</span>
+            <span className="font-semibold text-white flex-1 text-left group-hover:text-[#1C1D28]">{currentWorkspace.name}</span>
             <ChevronRight 
               className={cn(
-                "w-5 h-5 text-white transition-transform duration-300 mr-2",
+                "w-5 h-5 text-white group-hover:text-[#1C1D28] transition-transform duration-300 mr-2",
                 isOpen && "rotate-90"
               )} 
             />
@@ -147,7 +147,7 @@ export const WorkspaceSwitcher = () => {
                   alt={workspace.name}
                   className="w-8 h-8 rounded"
                 />
-                <span className="font-semibold flex-1 group-hover:text-white">{workspace.name}</span>
+                <span className="font-semibold flex-1 group-hover:text-[#1C1D28]">{workspace.name}</span>
               </DropdownMenuItem>
             ))}
           <DropdownMenuItem
@@ -157,7 +157,7 @@ export const WorkspaceSwitcher = () => {
             <div className="w-8 h-8 rounded bg-[#6E59A5] flex items-center justify-center">
               <Plus className="w-5 h-5" />
             </div>
-            <span className="font-semibold group-hover:text-white">JOIN NEW WORKSPACE</span>
+            <span className="font-semibold group-hover:text-[#1C1D28]">JOIN NEW WORKSPACE</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
