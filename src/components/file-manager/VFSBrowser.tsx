@@ -85,42 +85,42 @@ export const VFSBrowser = ({ onBack, onFileSelect }: VFSBrowserProps) => {
   };
 
   const renderNode = (node: FileSystemNode) => (
-    <ContextMenuTrigger key={node.path}>
-      <div
-        className="flex items-center gap-2 p-2 hover:bg-[#343A5C] rounded-lg cursor-pointer"
-        onClick={() => {
-          if (node.type === "directory") {
-            handleNavigate(node.path);
-          } else {
-            onFileSelect(node);
-          }
-        }}
-      >
-        {node.type === "directory" ? (
-          <Folder className="h-4 w-4 text-[#9b87f5]" />
-        ) : (
-          <FileText className="h-4 w-4 text-[#9b87f5]" />
-        )}
-        <span>{node.name}</span>
-        {node.type === "directory" && (
-          <ChevronRight className="h-4 w-4 ml-auto text-gray-400" />
-        )}
-      </div>
-      <ContextMenu>
-        <ContextMenuContent className="bg-[#343A5C] border-[#262C4A] text-white">
-          <ContextMenuItem
-            className="hover:bg-[#444A6C] cursor-pointer"
-            onClick={() => {
-              if (node.type === "file") {
-                onFileSelect(node);
-              }
-            }}
-          >
-            Open
-          </ContextMenuItem>
-        </ContextMenuContent>
-      </ContextMenu>
-    </ContextMenuTrigger>
+    <ContextMenu key={node.path}>
+      <ContextMenuTrigger>
+        <div
+          className="flex items-center gap-2 p-2 hover:bg-[#343A5C] rounded-lg cursor-pointer"
+          onClick={() => {
+            if (node.type === "directory") {
+              handleNavigate(node.path);
+            } else {
+              onFileSelect(node);
+            }
+          }}
+        >
+          {node.type === "directory" ? (
+            <Folder className="h-4 w-4 text-[#9b87f5]" />
+          ) : (
+            <FileText className="h-4 w-4 text-[#9b87f5]" />
+          )}
+          <span>{node.name}</span>
+          {node.type === "directory" && (
+            <ChevronRight className="h-4 w-4 ml-auto text-gray-400" />
+          )}
+        </div>
+      </ContextMenuTrigger>
+      <ContextMenuContent className="bg-[#343A5C] border-[#262C4A] text-white">
+        <ContextMenuItem
+          className="hover:bg-[#444A6C] cursor-pointer"
+          onClick={() => {
+            if (node.type === "file") {
+              onFileSelect(node);
+            }
+          }}
+        >
+          Open
+        </ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
   );
 
   return (
