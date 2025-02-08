@@ -1,3 +1,4 @@
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
@@ -53,15 +54,6 @@ export const FileManagerTabs = ({ files, onFileClick, onDelete, onClearAll }: Fi
       
       <TabsContent value="revfs" className="mt-6">
         <div className="bg-[#262C4A]/95 rounded-lg p-4">
-          <div className="flex justify-end mb-4">
-            <Button
-              variant="outline"
-              onClick={() => onClearAll('revfs')}
-              className="bg-[#E5DEFF] text-[#343A5C] hover:bg-[#E5DEFF]/90"
-            >
-              Clear All
-            </Button>
-          </div>
           <ScrollArea className="h-[600px]">
             <FileList
               files={files}
