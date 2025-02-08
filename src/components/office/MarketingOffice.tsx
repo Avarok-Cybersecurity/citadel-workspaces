@@ -182,7 +182,7 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
       onSave={handleSave}
     >
       {isEditing ? (
-        <div className="p-2">
+        <div className="px-4 pt-6 pb-2">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
@@ -190,7 +190,7 @@ Q1 Product Launch Campaign in progress - All hands meeting at 3 PM
           />
         </div>
       ) : (
-        <div className="p-2 prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
+        <div className="px-4 pt-6 pb-2 prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
           <MDXProvider components={components}>
             {compiledContent}
           </MDXProvider>
