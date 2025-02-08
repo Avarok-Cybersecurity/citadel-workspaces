@@ -18,7 +18,6 @@ interface VFSBrowserProps {
   initialPath?: string;
 }
 
-// Mock filesystem structure - this would be replaced by actual state management
 const filesystem: FileSystemNode = {
   name: "/",
   type: "directory",
@@ -65,6 +64,12 @@ const findNodeByPath = (root: FileSystemNode, path: string): FileSystemNode | nu
   return null;
 };
 
+const getParentPath = (path: string): string => {
+  const parts = path.split('/').filter(Boolean);
+  parts.pop();
+  return '/' + parts.join('/');
+};
+
 export const VFSBrowser = ({ onBack, onFileSelect }: VFSBrowserProps) => {
   const [currentPath, setCurrentPath] = useState("/");
   const [pathInput, setPathInput] = useState("/");
@@ -74,6 +79,15 @@ export const VFSBrowser = ({ onBack, onFileSelect }: VFSBrowserProps) => {
   const handleNavigate = (path: string) => {
     setCurrentPath(path);
     setPathInput(path);
+  };
+
+  const handleGoBack = () => {
+    if (currentPath === "/") {
+      onBack();
+    } else {
+      const parentPath = getParentPath(currentPath);
+      handleNavigate(parentPath);
+    }
   };
 
   const handlePathSubmit = (e: React.FormEvent) => {
@@ -129,7 +143,7 @@ export const VFSBrowser = ({ onBack, onFileSelect }: VFSBrowserProps) => {
         <Button
           variant="ghost"
           size="icon"
-          onClick={onBack}
+          onClick={handleGoBack}
           className="hover:bg-[#444A6C]"
         >
           <ArrowLeft className="h-4 w-4" />

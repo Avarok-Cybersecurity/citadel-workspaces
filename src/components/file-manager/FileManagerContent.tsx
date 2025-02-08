@@ -9,13 +9,11 @@ import { DeleteDialog } from "./DeleteDialog";
 import { ClearAllDialog } from "./ClearAllDialog";
 import { VFSBrowser } from "./VFSBrowser";
 
-// Convert sidebar files to our FileMetadata format
 const standardFiles = sidebarFiles.map(file => ({
   ...file,
   transferType: 'standard' as const,
 }));
 
-// Add the mock REVFS files with correct status type
 const mockRevfsFiles = [
   {
     id: "revfs-1",
@@ -96,12 +94,11 @@ export const FileManagerContent = () => {
         <VFSBrowser
           onBack={() => setShowVFSBrowser(false)}
           onFileSelect={(file) => {
-            setShowVFSBrowser(false);
-            setSelectedFile({
-              ...mockRevfsFiles[0],
-              virtualPath: file.path
-            });
-            setIsPreviewOpen(true);
+            const matchingFile = mockRevfsFiles.find(f => f.virtualPath === file.path);
+            if (matchingFile) {
+              setSelectedFile(matchingFile);
+              setIsPreviewOpen(true);
+            }
           }}
         />
       </div>
@@ -127,6 +124,7 @@ export const FileManagerContent = () => {
         onClose={() => {
           setIsPreviewOpen(false);
           setSelectedFile(null);
+          setShowVFSBrowser(false);
         }}
       />
 
@@ -139,14 +137,16 @@ export const FileManagerContent = () => {
         onConfirmDelete={confirmDelete}
       />
 
-      <ClearAllDialog
-        showDialog={showClearAllDialog}
-        setShowDialog={setShowClearAllDialog}
-        clearAllType={clearAllType}
-        dontAskClearAll={dontAskClearAll}
-        setDontAskClearAll={setDontAskClearAll}
-        onConfirmClearAll={confirmClearAll}
-      />
+      {!showVFSBrowser && (
+        <ClearAllDialog
+          showDialog={showClearAllDialog}
+          setShowDialog={setShowClearAllDialog}
+          clearAllType={clearAllType}
+          dontAskClearAll={dontAskClearAll}
+          setDontAskClearAll={setDontAskClearAll}
+          onConfirmClearAll={confirmClearAll}
+        />
+      )}
     </div>
   );
 };
