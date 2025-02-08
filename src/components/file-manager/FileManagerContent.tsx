@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { FilePreviewDialog } from "@/components/layout/sidebar/FilePreviewDialog";
 import { toast } from "sonner";
@@ -6,6 +7,7 @@ import { files as sidebarFiles } from "@/components/layout/sidebar/FilesSection"
 import { FileManagerTabs } from "./FileManagerTabs";
 import { DeleteDialog } from "./DeleteDialog";
 import { ClearAllDialog } from "./ClearAllDialog";
+import { VFSBrowser } from "./VFSBrowser";
 
 // Convert sidebar files to our FileMetadata format
 const standardFiles = sidebarFiles.map(file => ({
@@ -49,10 +51,15 @@ export const FileManagerContent = () => {
   const [dontAskDelete, setDontAskDelete] = useState(false);
   const [dontAskClearAll, setDontAskClearAll] = useState(false);
   const [clearAllType, setClearAllType] = useState<'standard' | 'revfs'>('standard');
+  const [showVFSBrowser, setShowVFSBrowser] = useState(false);
 
   const handleFileClick = (file: FileMetadata) => {
-    setSelectedFile(file);
-    setIsPreviewOpen(true);
+    if (file.transferType === 'revfs') {
+      setShowVFSBrowser(true);
+    } else {
+      setSelectedFile(file);
+      setIsPreviewOpen(true);
+    }
   };
 
   const handleDelete = (file: FileMetadata) => {
@@ -82,6 +89,24 @@ export const FileManagerContent = () => {
     setFiles(prev => prev.filter(f => f.transferType !== type));
     toast.success(`All ${type} files cleared`);
   };
+
+  if (showVFSBrowser) {
+    return (
+      <div className="h-full bg-[#444A6C]">
+        <VFSBrowser
+          onBack={() => setShowVFSBrowser(false)}
+          onFileSelect={(file) => {
+            setShowVFSBrowser(false);
+            setSelectedFile({
+              ...mockRevfsFiles[0],
+              virtualPath: file.path
+            });
+            setIsPreviewOpen(true);
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 bg-[#444A6C] min-h-screen">

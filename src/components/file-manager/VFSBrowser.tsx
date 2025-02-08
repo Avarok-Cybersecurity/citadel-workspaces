@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,10 +15,10 @@ import type { FileSystemNode } from "@/types/files";
 interface VFSBrowserProps {
   onBack: () => void;
   onFileSelect: (file: FileSystemNode) => void;
-  initialPath: string;
+  initialPath?: string;
 }
 
-// Mock filesystem structure
+// Mock filesystem structure - this would be replaced by actual state management
 const filesystem: FileSystemNode = {
   name: "/",
   type: "directory",
@@ -64,9 +65,9 @@ const findNodeByPath = (root: FileSystemNode, path: string): FileSystemNode | nu
   return null;
 };
 
-export const VFSBrowser = ({ onBack, onFileSelect, initialPath }: VFSBrowserProps) => {
-  const [currentPath, setCurrentPath] = useState(initialPath);
-  const [pathInput, setPathInput] = useState(initialPath);
+export const VFSBrowser = ({ onBack, onFileSelect }: VFSBrowserProps) => {
+  const [currentPath, setCurrentPath] = useState("/");
+  const [pathInput, setPathInput] = useState("/");
   
   const currentNode = findNodeByPath(filesystem, currentPath) || filesystem;
   
