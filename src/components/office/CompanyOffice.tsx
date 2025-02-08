@@ -1,20 +1,10 @@
-import { useState, useEffect } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { MDXProvider } from '@mdx-js/react';
-import { evaluate } from '@mdx-js/mdx';
-import * as runtime from 'react/jsx-runtime';
-import { components } from "./mdxComponents";
-import { OfficeLayout } from "./OfficeLayout";
-import { useLocation } from "react-router-dom";
 
-export const CompanyOffice = () => {
-  const location = useLocation();
-  const currentRoom = new URLSearchParams(location.search).get("room");
+import { BaseOffice } from "./BaseOffice";
 
-  const getInitialContent = () => {
-    switch(currentRoom) {
-      case "main":
-        return `
+const getInitialContent = (currentRoom: string | null) => {
+  switch(currentRoom) {
+    case "main":
+      return `
 # Executive Office 🏢
 
 ## Today's Priorities
@@ -43,8 +33,8 @@ Board meeting scheduled for 3 PM - Q1 performance review and strategy discussion
 ]} />
 `;
 
-      case "meeting-a":
-        return `
+    case "meeting-a":
+      return `
 # Meeting Room A - Strategy Hub 🎯
 
 ## Room Schedule
@@ -74,8 +64,8 @@ Product Strategy Review - Starting in 30 minutes
 ]} />
 `;
 
-      case "meeting-b":
-        return `
+    case "meeting-b":
+      return `
 # Meeting Room B - Innovation Center 💡
 
 ## Room Status
@@ -105,8 +95,8 @@ Room configured for workshop-style meetings with breakout areas
 ]} />
 `;
 
-      default:
-        return `
+    default:
+      return `
 # Welcome to Company Office 🏢
 
 ## Today's Updates
@@ -134,68 +124,9 @@ Team meeting scheduled for 2 PM today in the main conference room.
   { time: '14:00', monday: 'Review', tuesday: 'Testing', wednesday: 'Deploy' }
 ]} />
 `;
-    }
-  };
+  }
+};
 
-  const [content, setContent] = useState(getInitialContent());
-  const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const { toast } = useToast();
-
-  const handleSave = () => {
-    setIsEditing(false);
-    toast({
-      title: "Changes saved",
-      description: "The office page has been updated",
-      className: "bg-[#343A5C] border-purple-800 text-purple-200",
-    });
-  };
-
-  useEffect(() => {
-    setContent(getInitialContent());
-  }, [currentRoom]);
-
-  useEffect(() => {
-    const compileContent = async () => {
-      try {
-        console.log('Compiling MDX content...');
-        const result = await evaluate(content, {
-          ...runtime,
-          useMDXComponents: () => components,
-          baseUrl: window.location.origin
-        });
-        console.log('MDX compilation successful');
-        setCompiledContent(result.default({ components }));
-      } catch (error) {
-        console.error('Error compiling MDX:', error);
-      }
-    };
-
-    compileContent();
-  }, [content]);
-
-  return (
-    <OfficeLayout
-      title="Company"
-      isEditing={isEditing}
-      onEditToggle={() => setIsEditing(!isEditing)}
-      onSave={handleSave}
-    >
-      {isEditing ? (
-        <div className="px-4 pt-6 pb-2">
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="w-full h-[400px] p-4 rounded-md border border-gray-800 bg-[#444A6C] text-white resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
-        </div>
-      ) : (
-        <div className="px-4 pt-6 pb-2 prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
-          <MDXProvider components={components}>
-            {compiledContent}
-          </MDXProvider>
-        </div>
-      )}
-    </OfficeLayout>
-  );
+export const CompanyOffice = () => {
+  return <BaseOffice title="Company" getInitialContent={getInitialContent} />;
 };

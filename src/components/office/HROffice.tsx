@@ -1,20 +1,10 @@
-import { useState, useEffect } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { MDXProvider } from '@mdx-js/react';
-import { evaluate } from '@mdx-js/mdx';
-import * as runtime from 'react/jsx-runtime';
-import { components } from "./mdxComponents";
-import { OfficeLayout } from "./OfficeLayout";
-import { useLocation } from "react-router-dom";
 
-export const HROffice = () => {
-  const location = useLocation();
-  const currentRoom = new URLSearchParams(location.search).get("room");
+import { BaseOffice } from "./BaseOffice";
 
-  const getInitialContent = () => {
-    switch(currentRoom) {
-      case "training":
-        return `
+const getInitialContent = (currentRoom: string | null) => {
+  switch(currentRoom) {
+    case "training":
+      return `
 # Training & Development Center 📚
 
 ## Today's Sessions
@@ -44,8 +34,8 @@ Leadership Development Workshop - Starting at 10 AM in the main training room
 ]} />
 `;
 
-      case "interview-a":
-        return `
+    case "interview-a":
+      return `
 # Interview Room A - Recruitment Hub 🤝
 
 ## Today's Schedule
@@ -74,8 +64,8 @@ Senior Developer Position - Candidate arriving at 11 AM
 ]} />
 `;
 
-      case "interview-b":
-        return `
+    case "interview-b":
+      return `
 # Interview Room B - Assessment Center 📋
 
 ## Room Status
@@ -105,8 +95,8 @@ Group assessment for Management Trainee positions
 ]} />
 `;
 
-      default:
-        return `
+    default:
+      return `
 # Human Resources Department 👥
 
 ## Important Announcements
@@ -134,68 +124,9 @@ Annual performance reviews starting next week - Schedule your meeting with your 
   { course: 'Tech Skills', date: 'Friday', time: '11:00 AM', location: 'Room 205' }
 ]} />
 `;
-    }
-  };
+  }
+};
 
-  const [content, setContent] = useState(getInitialContent());
-  const [compiledContent, setCompiledContent] = useState<React.ReactNode | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const { toast } = useToast();
-
-  const handleSave = () => {
-    setIsEditing(false);
-    toast({
-      title: "Changes saved",
-      description: "The HR office page has been updated",
-      className: "bg-[#343A5C] border-purple-800 text-purple-200",
-    });
-  };
-
-  useEffect(() => {
-    setContent(getInitialContent());
-  }, [currentRoom]);
-
-  useEffect(() => {
-    const compileContent = async () => {
-      try {
-        console.log('Compiling MDX content...');
-        const result = await evaluate(content, {
-          ...runtime,
-          useMDXComponents: () => components,
-          baseUrl: window.location.origin
-        });
-        console.log('MDX compilation successful');
-        setCompiledContent(result.default({ components }));
-      } catch (error) {
-        console.error('Error compiling MDX:', error);
-      }
-    };
-
-    compileContent();
-  }, [content]);
-
-  return (
-    <OfficeLayout
-      title="Human Resources"
-      isEditing={isEditing}
-      onEditToggle={() => setIsEditing(!isEditing)}
-      onSave={handleSave}
-    >
-      {isEditing ? (
-        <div className="px-4 pt-6 pb-2">
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="w-full h-[400px] p-4 rounded-md border border-gray-800 bg-[#444A6C] text-white resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
-          />
-        </div>
-      ) : (
-        <div className="px-4 pt-6 pb-2 prose prose-invert prose-sm md:prose-base lg:prose-lg max-w-none">
-          <MDXProvider components={components}>
-            {compiledContent}
-          </MDXProvider>
-        </div>
-      )}
-    </OfficeLayout>
-  );
+export const HROffice = () => {
+  return <BaseOffice title="Human Resources" getInitialContent={getInitialContent} />;
 };
