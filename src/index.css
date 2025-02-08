@@ -49,6 +49,36 @@
   }
 }
 
+/* Ensure no yellow backgrounds on scroll */
+html, body {
+  background-color: #1C1D28 !important;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+}
+
+/* Override any potential WebKit default colors */
+*::selection {
+  background-color: rgba(139, 92, 246, 0.3);
+  color: inherit;
+}
+
+*::-moz-selection {
+  background-color: rgba(139, 92, 246, 0.3);
+  color: inherit;
+}
+
 * {
   @apply border-border;
 }
