@@ -113,13 +113,13 @@ export const WorkspaceSwitcher = () => {
     <>
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild className="-ml-2">
-          <button className="flex items-center gap-3 py-2 hover:bg-[#9b87f5] transition-colors rounded-r-md w-[calc(100%+0.5rem)]">
+          <button className="flex items-center gap-3 py-2 hover:bg-[#6E59A5] transition-colors rounded-r-md w-[calc(100%+0.5rem)] group">
             <img
               src={currentWorkspace.logoUrl}
               alt={currentWorkspace.name}
               className="w-8 h-8 rounded ml-2"
             />
-            <span className="font-semibold text-white flex-1 text-left">{currentWorkspace.name}</span>
+            <span className="font-semibold text-white flex-1 text-left group-hover:text-white">{currentWorkspace.name}</span>
             <ChevronRight 
               className={cn(
                 "w-5 h-5 text-white transition-transform duration-300 mr-2",
@@ -140,24 +140,24 @@ export const WorkspaceSwitcher = () => {
               <DropdownMenuItem
                 key={workspace.id}
                 onClick={() => handleWorkspaceChange(workspace)}
-                className="flex items-center gap-3 py-3 hover:bg-[#9b87f5] transition-colors cursor-pointer text-white w-full pl-2"
+                className="flex items-center gap-3 py-3 hover:bg-[#6E59A5] transition-colors cursor-pointer text-white w-full pl-2 group"
               >
                 <img
                   src={workspace.logoUrl}
                   alt={workspace.name}
                   className="w-8 h-8 rounded"
                 />
-                <span className="font-semibold flex-1">{workspace.name}</span>
+                <span className="font-semibold flex-1 group-hover:text-white">{workspace.name}</span>
               </DropdownMenuItem>
             ))}
           <DropdownMenuItem
             onClick={handleAddWorkspace}
-            className="flex items-center gap-3 py-3 hover:bg-[#9b87f5] transition-colors cursor-pointer text-white w-full border-t border-gray-700 pl-2"
+            className="flex items-center gap-3 py-3 hover:bg-[#6E59A5] transition-colors cursor-pointer text-white w-full border-t border-gray-700 pl-2 group"
           >
             <div className="w-8 h-8 rounded bg-[#6E59A5] flex items-center justify-center">
               <Plus className="w-5 h-5" />
             </div>
-            <span className="font-semibold">JOIN NEW WORKSPACE</span>
+            <span className="font-semibold group-hover:text-white">JOIN NEW WORKSPACE</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
