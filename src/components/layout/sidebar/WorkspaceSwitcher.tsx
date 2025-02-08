@@ -178,3 +178,5 @@ export const WorkspaceSwitcher = () => {
     </>
   );
 };
+
+export default WorkspaceSwitcher;
